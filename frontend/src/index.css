@@ -1,0 +1,306 @@
+/* Clash Display Variable — Fontshare */
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700,800&display=swap');
+/* Public Sans — Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* shadcn CSS variable layer (dark theme) */
+  --background: 4 4 4;
+  --foreground: 250 250 250;
+  --primary: 60 83 255;
+  --primary-foreground: 250 250 250;
+  --secondary: 255 255 255 / 0.08;
+  --secondary-foreground: 255 255 255;
+  --accent: 255 255 255 / 0.08;
+  --accent-foreground: 255 255 255;
+  --muted: 255 255 255 / 0.06;
+  --muted-foreground: 255 255 255 / 0.5;
+  --card: 22 22 22;
+  --card-foreground: 250 250 250;
+  --border: 255 255 255 / 0.1;
+  --input: 255 255 255 / 0.1;
+  --ring: 60 83 255;
+  --destructive: 239 68 68;
+  --destructive-foreground: 255 255 255;
+  --radius: 0.5rem;
+
+  --brand-blue: #3C53FF;
+  --brand-blue-hover: #2B3BB5;
+  --brand-cyan: #0DFFFF;
+  --brand-gradient: linear-gradient(135deg, #3C53FF, #0DFFFF);
+  --bg-dark: #040404;
+  --bg-surface: #111111;
+  --bg-card: #161616;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(60, 83, 255, 0.4);
+  --text-primary: #FAFAFA;
+  --text-secondary: rgba(250, 250, 250, 0.6);
+  --text-muted: rgba(250, 250, 250, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #040404;
+  color: #FAFAFA;
+  font-family: 'Public Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #040404; }
+::-webkit-scrollbar-thumb { background: rgba(60,83,255,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(60,83,255,0.6); }
+
+/* ── Selection ── */
+::selection { background: rgba(60,83,255,0.3); color: #FAFAFA; }
+
+/* ── Glass Card ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(60,83,255,0.25);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(60,83,255,0.1);
+}
+
+/* ── Brand Gradient Text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #3C53FF, #0DFFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Prevent WebKit from clipping the gradient at tight line-heights */
+  padding-bottom: 0.1em;
+}
+
+/* ── Brand Gradient Background ── */
+.gradient-bg {
+  background: linear-gradient(135deg, #3C53FF, #0DFFFF);
+}
+
+/* ── Grid Background ── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Glow Orb ── */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.glow-blue { background: radial-gradient(circle, rgba(60,83,255,0.25), transparent 70%); }
+.glow-cyan { background: radial-gradient(circle, rgba(13,255,255,0.15), transparent 70%); }
+
+/* ── Animations ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(60,83,255,0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(60,83,255,0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(60,83,255,0); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-fade-up { animation: fadeUp 0.6s ease forwards; }
+.animate-pulse-ring { animation: pulse-ring 2s infinite; }
+
+/* ── Stat Number ── */
+.stat-number {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+/* ── Section heading ── */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(60,83,255,0.08);
+  border: 1px solid rgba(60,83,255,0.2);
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-blue);
+}
+
+/* ── Nav pill ── */
+.nav-pill {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 9999px;
+}
+
+/* ── Button variants ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: linear-gradient(135deg, #3C53FF, #0DFFFF);
+  color: #040404;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(60,83,255,0.3);
+  text-decoration: none;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(60,83,255,0.5);
+  background: linear-gradient(135deg, #2B3BB5, #3C53FF);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: #FAFAFA;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  border-color: rgba(60,83,255,0.5);
+  background: rgba(60,83,255,0.06);
+  transform: translateY(-2px);
+}
+
+/* ── Input ── */
+.input-field {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.75rem;
+  color: #FAFAFA;
+  font-size: 0.9rem;
+  font-family: 'Public Sans', sans-serif;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+.input-field::placeholder { color: rgba(250,250,250,0.3); }
+.input-field:focus { border-color: rgba(60,83,255,0.5); }
+
+/* ── Noise overlay ── */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Domain card hover gradient ── */
+.domain-card-fintech:hover { box-shadow: 0 0 40px rgba(60,83,255,0.15); }
+.domain-card-egov:hover { box-shadow: 0 0 40px rgba(16,185,129,0.15); }
+.domain-card-ai:hover { box-shadow: 0 0 40px rgba(139,92,246,0.15); }
+.domain-card-bi:hover { box-shadow: 0 0 40px rgba(245,158,11,0.15); }
+.domain-card-it:hover { box-shadow: 0 0 40px rgba(239,68,68,0.15); }
+.domain-card-staff:hover { box-shadow: 0 0 40px rgba(236,72,153,0.15); }
+
+/* ── Animated gradient border button ── */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-spin {
+  to { --border-angle: 360deg; }
+}
+
+.btn-gradient-outline {
+  position: relative;
+  border-radius: 9999px;
+  padding: 1.5px;
+  background: conic-gradient(from var(--border-angle), #3C53FF, #0DFFFF, #3C53FF);
+  animation: border-spin 3s linear infinite;
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.btn-gradient-outline > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(4, 4, 4, 0.30);
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FAFAFA;
+  white-space: nowrap;
+  transition: background 0.3s ease;
+}
+
+.btn-gradient-outline:hover > span {
+  background: rgba(60, 83, 255, 0.12);
+}
+
+/* ── Responsive typography ── */
+.hero-heading {
+  font-family: 'Clash Display Variable', 'Clash Display', system-ui, sans-serif;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+.section-heading {
+  font-family: 'Clash Display Variable', 'Clash Display', system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
