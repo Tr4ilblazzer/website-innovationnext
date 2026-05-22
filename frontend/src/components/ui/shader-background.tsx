@@ -34,7 +34,7 @@ const FS_SOURCE = `
   const float maxOffsetSpread = 2.0;
   const int linesPerGroup = 12;
 
-  // Brand: #3C53FF line color
+  // Brand: #0072BC line color
   const vec4 lineColor = vec4(0.235, 0.325, 1.0, 1.0);
 
   #define drawSmoothLine(pos, halfWidth, t) smoothstep(halfWidth, 0.0, abs(pos - (t)))

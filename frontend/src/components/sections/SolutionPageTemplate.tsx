@@ -1,183 +1,171 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle } from 'lucide-react'
-import { FeatureShaderCards } from '@/components/ui/feature-shader-cards'
+import { AnimatedBackground } from '@/components/ui/animated-background'
+import { TrustedBySection } from '@/components/sections/TrustedBySection'
+import { InsightsSection } from '@/components/sections/InsightsSection'
+import { TechOrbit } from '@/components/ui/tech-orbit'
 
-interface Feature {
-  title: string
-  description: string
-}
+interface Feature { title: string; desc: string }
+interface Stat { value: string; label: string }
 
-interface Stat {
-  value: string
-  label: string
-}
-
-interface Deployment {
-  name: string
-  description: string
-  tags: string[]
-}
-
-interface SolutionPageProps {
+interface SolutionPageTemplateProps {
   tag: string
   headline: string
   headlineAccent: string
-  subheadline: string
+  quote: string
   description: string
-  accentColor: string
-  icon: string
-  stats?: Stat[]
+  accentColor?: string
+  heroImage: string
+  heroImageAlt: string
+  stats: Stat[]
+  featuresSubheadline: string
   features: Feature[]
-  deployments?: Deployment[]
+  capabilitiesSubtext: string
   capabilities: string[]
-  ctaLabel?: string
-  ctaHref?: string
-  credentialBadge?: string
+  showTechOrbit?: boolean
+  insightsCategory: string
 }
 
 export function SolutionPageTemplate({
-  tag,
-  headline,
-  headlineAccent,
-  subheadline,
-  description,
-  accentColor,
-  icon,
-  stats,
-  features,
-  deployments,
-  capabilities,
-  ctaLabel = 'Talk to Our Team',
-  ctaHref = '/contact',
-  credentialBadge,
-}: SolutionPageProps) {
+  tag, headline, headlineAccent, quote, description,
+  accentColor = '#0072BC',
+  heroImage, heroImageAlt,
+  stats, featuresSubheadline, features,
+  capabilitiesSubtext, capabilities,
+  showTechOrbit = false,
+  insightsCategory,
+}: SolutionPageTemplateProps) {
+  const ACCENT = accentColor
   return (
-    <main className="pt-32 pb-24 relative overflow-hidden">
-      {/* Glows */}
-      <div className="glow-orb w-[600px] h-[600px] -top-40 -right-40 opacity-10 pointer-events-none"
-        style={{ background: `radial-gradient(circle, ${accentColor}40, transparent 70%)` }} />
-      <div className="glow-orb glow-blue w-96 h-96 bottom-40 left-0 opacity-10 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* ── Hero ───────────────────────────────────── */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-          <div>
-            <div className="section-tag mb-5" style={{ color: accentColor, borderColor: `${accentColor}30`, background: `${accentColor}10` }}>
-              {tag}
-            </div>
-            <h1 className="section-heading text-white mb-4">
-              {headline}
-              <br />
-              <span style={{ background: `linear-gradient(135deg, ${accentColor}, #0DFFFF)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                {headlineAccent}
-              </span>
-            </h1>
-            <p className="text-lg text-white/40 italic mb-3">{subheadline}</p>
-            <p className="text-white/55 leading-relaxed mb-8">{description}</p>
-            {credentialBadge && (
-              <div className="flex items-center gap-3 glass-card p-4 mb-8 w-fit">
-                <span className="text-2xl">🏆</span>
-                <span className="text-sm text-white/70">{credentialBadge}</span>
-              </div>
-            )}
-            <Link to={ctaHref} className="btn-primary">
-              {ctaLabel} <ArrowRight size={15} />
-            </Link>
-          </div>
-
-          {/* Stats */}
-          {stats && stats.length > 0 && (
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((s, i) => (
-                <div key={i} className="glass-card p-6 text-center">
-                  <div
-                    className="text-3xl font-black mb-2"
-                    style={{ background: `linear-gradient(135deg, ${accentColor}, #0DFFFF)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
-                  >
-                    {s.value}
-                  </div>
-                  <div className="text-sm text-white/40">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* ── Features ────────────────────────────────── */}
-        <div className="mb-24">
-          <div className="text-center mb-12">
-            <div className="section-tag mx-auto mb-4" style={{ color: accentColor, borderColor: `${accentColor}30`, background: `${accentColor}10` }}>
-              Capabilities
-            </div>
-            <h2 className="text-3xl font-black text-white">What we deliver</h2>
-          </div>
-          <FeatureShaderCards features={features} />
-        </div>
-
-        {/* ── Deployments ─────────────────────────────── */}
-        {deployments && deployments.length > 0 && (
-          <div className="mb-24">
-            <div className="text-center mb-12">
-              <div className="section-tag mx-auto mb-4">Live Deployments</div>
-              <h2 className="text-3xl font-black text-white">
-                In production. <span className="gradient-text">At scale.</span>
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-5">
-              {deployments.map((d, i) => (
-                <div key={i} className="glass-card p-7">
-                  <h3 className="font-bold text-white mb-2">{d.name}</h3>
-                  <p className="text-sm text-white/55 leading-relaxed mb-4">{d.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {d.tags.map(t => (
-                      <span key={t} className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/40">{t}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* ── Tech Capabilities Checklist ─────────────── */}
-        <div className="glass-card p-10 mb-12">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
+    <>
+      {/* ── Hero ── */}
+      <section className="bg-white pt-32 pb-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
             <div>
-              <div className="section-tag mb-4">Technical depth</div>
-              <h2 className="text-3xl font-black text-white mb-3">Built for production.</h2>
-              <p className="text-white/50 leading-relaxed">Every capability listed below has been delivered in real, live systems — not in proof-of-concept environments.</p>
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: ACCENT }}>
+                {tag}
+              </p>
+              <h1 className="hero-heading text-[#0A0A0A] mb-5">
+                {headline}
+                <br />
+                <span className="gradient-text">{headlineAccent}</span>
+              </h1>
+              <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
+                &ldquo;{quote}&rdquo;
+              </p>
+              <p className="text-[#0A0A0A]/55 leading-relaxed mb-8">
+                {description}
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link to="/company" className="btn-secondary">Our Credentials</Link>
+              </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {capabilities.map((c, i) => (
-                <div key={i} className="flex items-center gap-2.5">
-                  <CheckCircle size={14} style={{ color: accentColor }} className="flex-shrink-0" />
-                  <span className="text-sm text-white/65">{c}</span>
+            <div>
+              <img
+                src={heroImage}
+                alt={heroImageAlt}
+                className="w-full h-[520px] object-cover rounded-3xl"
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06]">
+            {stats.map(s => (
+              <div key={s.label}>
+                <div className="text-3xl font-black mb-1" style={{ color: ACCENT }}>{s.value}</div>
+                <div className="text-sm text-[#0A0A0A]/45 uppercase tracking-wide">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Features ── */}
+      <section className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-14 grid md:grid-cols-2 md:items-end gap-6">
+            <h2 className="section-heading text-[#0A0A0A]">
+              What we <span className="section-accent">deliver.</span>
+            </h2>
+            <p className="text-[#0A0A0A]/50 text-base leading-relaxed">{featuresSubheadline}</p>
+          </div>
+          <div className="rounded-3xl bg-[#EBF5FF] p-8 md:p-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {features.map(f => (
+                <div key={f.title} className="bg-white rounded-2xl p-7">
+                  <div className="w-1.5 h-6 rounded-full mb-5" style={{ background: ACCENT }} />
+                  <h3 className="text-base font-bold text-[#0A0A0A] mb-2">{f.title}</h3>
+                  <p className="text-sm text-[#0A0A0A]/50 leading-relaxed">{f.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
+      </section>
 
-        {/* ── CTA ─────────────────────────────────────── */}
-        <div className="glass-card p-12 text-center relative overflow-hidden">
-          <div className="glow-orb w-64 h-64 absolute -top-20 left-1/2 -translate-x-1/2"
-            style={{ background: `radial-gradient(circle, ${accentColor}30, transparent 70%)` }} />
-          <span className="text-4xl mb-4 block">{icon}</span>
-          <h2 className="text-3xl font-black text-white mb-3">Ready to get started?</h2>
-          <p className="text-white/45 mb-8 max-w-lg mx-auto">
-            Talk to our team about your requirements. We'll tell you straight whether we're the right fit.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link to="/contact" className="btn-primary py-3.5 px-8">
-              Get in Touch <ArrowRight size={15} />
-            </Link>
-            <Link to="/insights/case-studies" className="btn-secondary py-3.5 px-8">
-              View Case Studies
-            </Link>
+      {showTechOrbit && (
+        <section className="py-16 bg-[#EBF5FF] relative">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-6">
+              <h2 className="section-heading text-[#0A0A0A] mb-4">
+                Built with the{' '}
+                <span style={{ color: '#0072BC' }}>right tools.</span>
+              </h2>
+              <p className="text-[#0A0A0A]/50 max-w-xl mx-auto">
+                36 technologies across frontend, backend, data, and cloud — chosen for production reliability, not resume padding.
+              </p>
+            </div>
+            <TechOrbit />
+          </div>
+        </section>
+      )}
+
+      <TrustedBySection />
+      <InsightsSection category={insightsCategory} />
+
+      {/* ── Capabilities + CTA ── */}
+      <section className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+            <div>
+              <h2 className="section-heading text-[#0A0A0A] mb-4">Built for production.</h2>
+              <p className="text-[#0A0A0A]/50 text-lg leading-relaxed">{capabilitiesSubtext}</p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {capabilities.map(c => (
+                <div key={c} className="flex items-center gap-2.5">
+                  <CheckCircle size={14} style={{ color: ACCENT }} className="flex-shrink-0" />
+                  <span className="text-sm text-[#0A0A0A]/60">{c}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: ACCENT }}>
+            <AnimatedBackground />
+            <div className="relative z-10">
+              <h2 className="section-heading text-white mb-3">Ready to get started?</h2>
+              <p className="text-white/70 mb-8 max-w-lg mx-auto leading-relaxed">
+                Talk to our team about your requirements. We&apos;ll tell you straight whether we&apos;re the right fit.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
+                >
+                  Get in Touch <ArrowRight size={14} />
+                </Link>
+                <Link
+                  to="/insights/case-studies"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 text-white font-semibold text-sm py-3.5 px-8 hover:bg-white/10 transition-colors"
+                >
+                  View Case Studies
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </section>
+    </>
   )
 }

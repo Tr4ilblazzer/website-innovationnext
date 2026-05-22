@@ -1,21 +1,21 @@
 import { HeroSection } from '@/components/sections/HeroSection'
 import { DomainsSection } from '@/components/sections/DomainsSection'
-import { CredentialsSection } from '@/components/sections/CredentialsSection'
+import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { ProductsSection } from '@/components/sections/ProductsSection'
-import { IndustriesSection } from '@/components/sections/IndustriesSection'
+import { InsightsSection } from '@/components/sections/InsightsSection'
 import { Testimonials } from '@/components/ui/testimonials'
-import { TeamSection } from '@/components/sections/TeamSection'
+import { About3 } from '@/components/ui/about-3'
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
       <DomainsSection />
-      <CredentialsSection />
-      <TeamSection />
-      <Testimonials />
+      <About3 />
+      <TrustedBySection />
       <ProductsSection />
-      <IndustriesSection />
+      <Testimonials />
+      <InsightsSection />
     </>
   )
 }

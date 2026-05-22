@@ -1,148 +1,238 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, CheckCircle } from 'lucide-react'
+import { AnimatedBackground } from '@/components/ui/animated-background'
+import { TrustedBySection } from '@/components/sections/TrustedBySection'
+import { GlassLocationCard } from '@/components/ui/glass-location-card'
+
+const ACCENT = '#0072BC'
+
+const pillars = [
+  {
+    label: 'We Partner',
+    body: 'We work as an extension of your organization, not above it. From strategy to deployment, we share accountability for outcomes — not just deliverables.',
+  },
+  {
+    label: 'We Illuminate',
+    body: 'Experience from regulated, high-stakes environments shapes how we think. We bring that perspective to every problem — challenging assumptions and asking the questions that lead to better results.',
+  },
+  {
+    label: 'We Grow',
+    body: 'Every engagement is designed to leave your organization stronger. We are invested in your independence, not your dependency on us.',
+  },
+]
 
 export default function CompanyPage() {
   return (
-    <main className="pt-32 pb-0 relative">
-      <div className="glow-orb glow-blue w-[600px] h-[600px] top-0 left-1/4 opacity-10 pointer-events-none" />
+    <main className="bg-white">
 
-      {/* Hero */}
-      <section className="max-w-7xl mx-auto px-6 pb-20 border-b border-white/[0.06]">
-        <div className="max-w-3xl">
-          <div className="section-tag mb-6">About Innovation Next</div>
-          <h1 className="hero-heading text-white mb-6">
-            Built by operators.
-            <br />
-            <span className="gradient-text">For operators.</span>
-          </h1>
-          <p className="text-white/50 text-xl leading-relaxed mb-4">
-            Innovation Next is a full-stack digital technology company headquartered in Dubai, with a technology and delivery hub in Kathmandu, Nepal. We operate across six domains: Digital Financial Services, E-Governance, AI & ML, BI & Data, IT Services, and Staff Augmentation.
-          </p>
-          <p className="text-white/40 text-lg leading-relaxed">
-            What separates us from every other technology vendor is operational depth. Our founders didn't just advise on digital finance — they co-founded South Asia's first digital wallet and Nepal's national payment switch. We bring that infrastructure-grade experience to every engagement.
-          </p>
-        </div>
-      </section>
-
-      {/* Key facts */}
-      <section className="py-20">
+      {/* ── Hero ──────────────────────────────────────── */}
+      <section className="bg-white pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+
+            <div>
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: ACCENT }}>
+                About Innovation Next
+              </p>
+              <h1 className="hero-heading text-[#0A0A0A] mb-5">
+                Built by operators.
+                <br />
+                <span className="gradient-text">For operators.</span>
+              </h1>
+              <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
+                "What separates us from every other technology vendor is operational depth."
+              </p>
+              <p className="text-[#0A0A0A]/55 leading-relaxed mb-8">
+                Innovation Next is a full-stack digital technology company headquartered in Dubai, with a technology and delivery hub in Kathmandu, Nepal. We operate across six domains: Digital Financial Services, E-Governance, AI & ML, BI & Data, IT Services, and Staff Augmentation.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link to="/contact" className="btn-secondary">Get in Touch</Link>
+              </div>
+            </div>
+
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80"
+                alt="Innovation Next headquarters"
+                className="w-full h-[520px] object-cover rounded-3xl"
+              />
+            </div>
+          </div>
+
+          {/* Stats strip */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06]">
             {[
-              { value: '20+', label: 'Years building at scale', sub: 'Since 2002' },
-              { value: '13M+', label: 'End users on our platforms', sub: 'Across South Asia' },
-              { value: '$275M+', label: 'Monthly transactions', sub: 'Processed on our infrastructure' },
-              { value: '7+', label: 'Live gov\'t products', sub: 'In production today' },
+              { value: '20+', label: 'Years building at scale' },
+              { value: '13M+', label: 'End users on our platforms' },
+              { value: '$275M+', label: 'Monthly transactions processed' },
+              { value: '7+', label: "Live gov't products" },
             ].map(s => (
-              <div key={s.label} className="glass-card p-7 text-center">
-                <div className="stat-number gradient-text mb-2">{s.value}</div>
-                <div className="text-sm font-semibold text-white mb-1">{s.label}</div>
-                <div className="text-xs text-white/30">{s.sub}</div>
+              <div key={s.label}>
+                <div className="text-3xl font-black mb-1" style={{ color: ACCENT }}>{s.value}</div>
+                <div className="text-sm text-[#0A0A0A]/45 uppercase tracking-wide">{s.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Founder credentials */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#e5e5e5] rounded-t-[4rem]" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="section-tag mb-6" style={{ background: 'rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.08)', color: '#040404' }}>
-            Founder Credentials
-          </div>
-          <h2 className="font-black text-[#040404] mb-4" style={{ fontSize: 'clamp(2rem,4vw,3rem)', letterSpacing: '-0.03em' }}>
-            Not consultants. Builders.
-          </h2>
-          <p className="text-[#040404]/60 text-lg max-w-2xl mb-12 leading-relaxed">
-            Our leadership team co-founded two of South Asia's most consequential financial infrastructure platforms — under central bank regulation, at national scale, from zero to millions of users.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                name: 'eSewa',
-                sub: 'South Asia\'s First Digital Wallet',
-                desc: 'Launched in 2009 as Nepal\'s first licensed Payment Service Provider. Scaled to 13M+ customers, 80%+ market share, and 3.5M+ daily transactions. Pioneer of digital remittance, connecting to HomeSend (2011), Western Union (2013), and 20+ global remittance companies.',
-                stats: [['13M+', 'Customers'], ['80%+', 'Market share'], ['250K', 'Agents'], ['3M+', 'Merchants']],
-                color: '#3C53FF',
-              },
-              {
-                name: 'Fonepay',
-                sub: 'Nepal\'s National Payment Switch',
-                desc: 'Co-founded as the first non-card-based PSO licensed by Nepal Rastra Bank. The first payment infrastructure in Nepal to achieve PCI DSS certification. The interoperable backbone connecting virtually all of Nepal\'s banking institutions across QR, interbank, NFC, and card rails.',
-                stats: [['52+', 'Banks integrated'], ['$275M+', 'Monthly txns'], ['PCI DSS', 'Certified'], ['20M+', 'Customers']],
-                color: '#10b981',
-              },
-            ].map(c => (
-              <div key={c.name} className="bg-[#040404] rounded-3xl p-8">
-                <div className="text-white/30 text-xs font-mono uppercase tracking-widest mb-2">Founder Credential</div>
-                <h3 className="text-white font-black text-2xl mb-1">{c.name}</h3>
-                <p className="text-white/40 text-sm mb-4">{c.sub}</p>
-                <p className="text-white/55 text-sm leading-relaxed mb-6">{c.desc}</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {c.stats.map(([v, l]) => (
-                    <div key={l} className="bg-white/[0.04] rounded-xl p-3 border border-white/[0.06] text-center">
-                      <div className="font-black text-lg" style={{ color: c.color }}>{v}</div>
-                      <div className="text-white/30 text-xs">{l}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Offices */}
-      <section className="py-20">
+      {/* ── What We Do / How We Work ──────────────────── */}
+      <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="section-tag mb-6">Our Offices</div>
-          <h2 className="section-heading text-white mb-10">
-            Dubai + Kathmandu.
-            <br />
-            <span className="gradient-text">Global reach.</span>
-          </h2>
+          <div className="rounded-3xl bg-[#EBF5FF] p-8 md:p-10 flex flex-col gap-5">
+            <div className="grid md:grid-cols-2 gap-5">
+              {/* What We Do */}
+              <div className="bg-white rounded-2xl p-7">
+                <div className="w-1.5 h-6 rounded-full mb-5" style={{ background: ACCENT }} />
+                <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: ACCENT }}>What We Do</p>
+                <h2 className="text-xl font-black text-[#0A0A0A] leading-snug mb-3">
+                  Full-stack technology, end to end.
+                </h2>
+                <p className="text-[#0A0A0A]/55 text-sm leading-relaxed">
+                  We partner with banks, financial institutions, large enterprises, and governments to solve problems that matter. From architecture to launch, from scaling to ongoing operation — we own the outcome end to end.
+                </p>
+              </div>
+
+              {/* How We Work */}
+              <div className="bg-white rounded-2xl p-7">
+                <div className="w-1.5 h-6 rounded-full mb-5" style={{ background: ACCENT }} />
+                <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: ACCENT }}>How We Work</p>
+                <h2 className="text-xl font-black text-[#0A0A0A] leading-snug mb-3">
+                  Not consultants. Partners.
+                </h2>
+                <p className="text-[#0A0A0A]/55 text-sm leading-relaxed">
+                  We think alongside your leadership, bring domain expertise earned through real deployments, and stay to build, scale, and operate what we design together.
+                </p>
+              </div>
+            </div>
+
+            {/* Pillars */}
+            <div className="grid md:grid-cols-3 gap-5">
+              {pillars.map(p => (
+                <div key={p.label} className="bg-white rounded-2xl p-7">
+                  <div className="w-1.5 h-6 rounded-full mb-5" style={{ background: ACCENT }} />
+                  <h4 className="text-base font-bold text-[#0A0A0A] mb-2">{p.label}</h4>
+                  <p className="text-[#0A0A0A]/50 text-sm leading-relaxed">{p.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ── Offices ───────────────────────────────────── */}
+      <section className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-14 grid md:grid-cols-2 md:items-end gap-6">
+            <h2 className="section-heading text-[#0A0A0A]">
+              Dubai + Kathmandu.
+              <br />
+              <span className="section-accent">Global reach.</span>
+            </h2>
+            <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
+              Headquartered in the Gulf, built in the Himalayas — serving clients across the Middle East, South Asia, and Southeast Asia.
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 gap-5">
             {[
-              { city: 'Dubai', country: 'United Arab Emirates', flag: '🇦🇪', role: 'Global Headquarters & Business Development', desc: 'Our commercial and client-facing hub — serving financial institutions and governments across the Middle East, Southeast Asia, and beyond.', badge: 'HQ' },
-              { city: 'Kathmandu', country: 'Nepal', flag: '🇳🇵', role: 'Technology & Delivery Hub', desc: 'Our engineering and product delivery centre — home to senior developers, data engineers, and product specialists with deep domain expertise.' },
+              {
+                city: 'Dubai',
+                country: 'United Arab Emirates',
+                flag: '🇦🇪',
+                role: 'Global Headquarters & Business Development',
+                desc: 'Our commercial and client-facing hub — serving financial institutions and governments across the Middle East, Southeast Asia, and beyond.',
+                badge: 'HQ',
+                image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80',
+              },
+              {
+                city: 'Kathmandu',
+                country: 'Nepal',
+                flag: '🇳🇵',
+                role: 'Technology & Delivery Hub',
+                desc: 'Our engineering and product delivery centre — home to senior developers, data engineers, and product specialists with deep domain expertise.',
+                image: 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=900&q=80',
+              },
             ].map(o => (
-              <div key={o.city} className="glass-card p-8">
-                <div className="flex items-start justify-between mb-5">
-                  <span className="text-4xl">{o.flag}</span>
-                  {o.badge && (
-                    <span className="text-xs px-2.5 py-1 rounded-full gradient-bg text-black font-bold uppercase tracking-wider">{o.badge}</span>
-                  )}
-                </div>
-                <h3 className="text-xl font-black text-white mb-1">{o.city}</h3>
-                <p className="text-white/40 text-sm mb-3">{o.country} · {o.role}</p>
-                <p className="text-white/45 text-sm leading-relaxed">{o.desc}</p>
-              </div>
+              <GlassLocationCard key={o.city} {...o} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20">
+
+      {/* ── Trusted By ── */}
+      <TrustedBySection />
+
+      {/* ── Capabilities checklist ────────────────────── */}
+      <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="glass-card p-12 text-center relative overflow-hidden">
-            <div className="glow-orb glow-blue w-64 h-64 absolute top-0 left-1/2 -translate-x-1/2 opacity-30" />
-            <div className="relative z-10">
-              <h2 className="section-heading text-white mb-4">
-                Ready to work with us?
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+            <div>
+              <h2 className="section-heading text-[#0A0A0A] mb-4">
+                Six domains.
+                <br />
+                <span style={{ color: ACCENT }}>One partner.</span>
               </h2>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/contact" className="btn-primary text-base py-3.5 px-8">
-                  Get in Touch <ArrowRight size={16} />
+              <p className="text-[#0A0A0A]/50 text-lg leading-relaxed">
+                From regulated fintech infrastructure to national e-governance platforms — every domain has been delivered in production.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                'Digital Financial Services',
+                'E-Governance & Digital Gov',
+                'AI & Machine Learning',
+                'BI & Data Solutions',
+                'IT Services & Engineering',
+                'Staff Augmentation',
+                'PCI DSS certified infrastructure',
+                'Central bank compliance',
+                'Interpol-integrated systems',
+                'National QR scheme deployment',
+                'IoT & smart infrastructure',
+                'Sovereign data compliance',
+              ].map(c => (
+                <div key={c} className="flex items-center gap-2.5">
+                  <CheckCircle size={14} style={{ color: ACCENT }} className="flex-shrink-0" />
+                  <span className="text-sm text-[#0A0A0A]/60">{c}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: ACCENT }}>
+            <AnimatedBackground />
+            <img
+              src="/skyline.png"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+              style={{ mixBlendMode: 'multiply', opacity: 0.35, filter: 'hue-rotate(-30deg) saturate(2) brightness(1.3)' }}
+            />
+            <div className="relative z-10">
+              <h2 className="section-heading text-white mb-3">Ready to work with us?</h2>
+              <p className="text-white/70 mb-8 max-w-lg mx-auto leading-relaxed">
+                Talk to our team about your requirements. We'll tell you straight whether we're the right fit.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
+                >
+                  Get in Touch <ArrowRight size={14} />
                 </Link>
-                <Link to="/careers" className="btn-secondary text-base py-3.5 px-8">
+                <Link
+                  to="/careers"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/40 text-white font-semibold text-sm py-3.5 px-8 hover:bg-white/10 transition-colors"
+                >
                   Join Our Team
                 </Link>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 

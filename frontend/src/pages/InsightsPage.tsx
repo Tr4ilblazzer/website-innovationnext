@@ -1,97 +1,68 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { GlassBlogCard } from '@/components/ui/glass-blog-card'
-
-// ── Mock data ────────────────────────────────────────────────────
-const MOCK_POSTS = [
-  {
-    id: '1', slug: 'building-national-payment-switch',
-    title: 'What it actually takes to build a national payment switch',
-    excerpt: 'From licensing with the central bank to PCI DSS certification — the operational reality of deploying financial infrastructure at national scale.',
-    category: 'Fintech',
-    author: { name: 'Innovation Next Team' },
-    publishedAt: '10 Apr 2026', readTime: '8 min read', featured: true,
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80',
-  },
-  {
-    id: '2', slug: 'citizen-app-design-principles',
-    title: 'Designing for 15 million citizens: lessons from the Nagarik App',
-    excerpt: 'Offline-first UX, USSD fallback, and multi-ministry interoperability — the design decisions that made Nepal\'s citizen super-app work for everyone.',
-    category: 'E-Governance',
-    author: { name: 'Innovation Next Team' },
-    publishedAt: '28 Mar 2026', readTime: '6 min read', featured: true,
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
-  },
-  {
-    id: '3', slug: 'ai-in-fintech-fraud-detection',
-    title: 'AI fraud detection in emerging market payment systems',
-    excerpt: 'Why traditional ML models fail for QR and mobile money in low-data environments — and what actually works in production.',
-    category: 'AI & ML',
-    author: { name: 'Innovation Next Team' },
-    publishedAt: '15 Mar 2026', readTime: '7 min read', featured: false,
-    image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80',
-  },
-  {
-    id: '4', slug: 'staff-augmentation-vs-outsourcing',
-    title: 'Staff augmentation vs. outsourcing: what your CFO isn\'t telling you',
-    excerpt: 'The hidden cost of outsourcing and why embedded senior engineers outperform on every metric that matters.',
-    category: 'Staff Augmentation',
-    author: { name: 'Innovation Next Team' },
-    publishedAt: '5 Mar 2026', readTime: '5 min read', featured: false,
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
-  },
-  {
-    id: '5', slug: 'bi-dashboards-for-government',
-    title: 'BI dashboards for government: beyond the vanity metric',
-    excerpt: 'How data warehousing and real-time analytics transformed programme monitoring for a national government executive office.',
-    category: 'BI & Data',
-    author: { name: 'Innovation Next Team' },
-    publishedAt: '20 Feb 2026', readTime: '6 min read', featured: false,
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-  },
-]
+import { ALL_POSTS as MOCK_POSTS } from '@/data/insights'
 
 const categories = ['All', 'Fintech', 'E-Governance', 'AI & ML', 'BI & Data', 'IT Services', 'Staff Augmentation', 'Company News']
 
-const categoryColors: Record<string, string> = {
-  'Fintech': '#3C53FF',
-  'E-Governance': '#10b981',
-  'AI & ML': '#8b5cf6',
-  'BI & Data': '#f59e0b',
-  'IT Services': '#ef4444',
-  'Staff Augmentation': '#ec4899',
-  'Company News': '#ffffff',
-}
+const PAGE_SIZE = 6
 
 export default function InsightsPage() {
   const [activeCategory, setActiveCategory] = useState('All')
+  const [page, setPage] = useState(1)
   const navigate = useNavigate()
 
   const featured = MOCK_POSTS.filter(p => p.featured)
+
   const filtered = activeCategory === 'All'
     ? MOCK_POSTS
     : MOCK_POSTS.filter(p => p.category === activeCategory)
 
-  return (
-    <main className="pt-32 pb-0 relative">
-      <div className="glow-orb glow-blue w-96 h-96 top-0 left-1/3 opacity-10 pointer-events-none" />
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
+  function handleCategory(cat: string) {
+    setActiveCategory(cat)
+    setPage(1)
+  }
+
+  function handlePage(next: number) {
+    setPage(next)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  return (
+    <main className="pt-32 pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
+
         {/* Header */}
-        <div className="text-center mb-14">
-          <div className="section-tag mx-auto mb-4">Insights</div>
-          <h1 className="section-heading text-white mb-4">
-            From the
-            <span className="gradient-text"> infrastructure layer</span>.
-          </h1>
-          <p className="text-white/40 max-w-xl mx-auto">
-            Analysis, lessons learned, and practical guides from practitioners who've built fintech and government platforms at national scale.
-          </p>
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: '#0072BC' }}>
+              Insights
+            </p>
+            <h1 className="hero-heading text-[#0A0A0A] mb-5">
+              From the
+              <br />
+              <span style={{ color: '#0072BC' }}>infrastructure layer.</span>
+            </h1>
+            <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
+              Analysis, lessons learned, and practical guides from practitioners who've built fintech and government platforms at national scale.
+            </p>
+          </div>
+          <div>
+            <img
+              src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=80"
+              alt="Insights"
+              className="w-full h-[460px] object-cover rounded-3xl"
+            />
+          </div>
         </div>
 
-        {/* Featured posts */}
-        {featured.length > 0 && (
+        {/* Featured posts — only on page 1, no category filter active */}
+        {featured.length > 0 && page === 1 && activeCategory === 'All' && (
           <div className="grid md:grid-cols-2 gap-5 mb-14">
             {featured.map(post => (
               <GlassBlogCard
@@ -103,7 +74,7 @@ export default function InsightsPage() {
                 date={post.publishedAt}
                 readTime={post.readTime}
                 tags={[post.category]}
-                accentColor={categoryColors[post.category] ?? '#3C53FF'}
+                className="h-[500px]"
                 onClick={() => navigate(`/insights/${post.slug}`)}
               />
             ))}
@@ -115,12 +86,12 @@ export default function InsightsPage() {
           {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => handleCategory(cat)}
               className={cn(
                 'text-xs px-4 py-2 rounded-full border transition-all',
                 activeCategory === cat
-                  ? 'border-[#3C53FF] bg-[#3C53FF]/10 text-[#3C53FF]'
-                  : 'border-white/10 text-white/40 hover:border-white/20'
+                  ? 'border-[#0072BC] bg-[#0072BC]/08 text-[#0072BC]'
+                  : 'border-black/10 text-[#0A0A0A]/40 hover:border-black/25 hover:text-[#0A0A0A]/70'
               )}
             >
               {cat}
@@ -129,24 +100,69 @@ export default function InsightsPage() {
         </div>
 
         {/* Post grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
-          {filtered.map(post => (
-            <GlassBlogCard
-              key={post.id}
-              title={post.title}
-              excerpt={post.excerpt}
-              image={post.image}
-              author={post.author}
-              date={post.publishedAt}
-              readTime={post.readTime}
-              tags={[post.category]}
-              accentColor={categoryColors[post.category] ?? '#3C53FF'}
-              onClick={() => navigate(`/insights/${post.slug}`)}
-            />
-          ))}
-        </div>
-      </div>
+        {paginated.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+            {paginated.map(post => (
+              <GlassBlogCard
+                key={post.id}
+                title={post.title}
+                excerpt={post.excerpt}
+                image={post.image}
+                author={post.author}
+                date={post.publishedAt}
+                readTime={post.readTime}
+                tags={[post.category]}
+                accentColor={post.accentColor}
+                onClick={() => navigate(`/insights/${post.slug}`)}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="text-[#0A0A0A]/40 text-sm py-16 text-center">No insights in this category yet.</p>
+        )}
 
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-between border-t border-black/[0.06] pt-8">
+            <p className="text-xs text-[#0A0A0A]/35">
+              Page {page} of {totalPages} · {filtered.length} articles
+            </p>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => handlePage(page - 1)}
+                disabled={page === 1}
+                className="flex items-center gap-1 px-3 py-2 rounded-full text-xs font-medium border border-black/10 text-[#0A0A0A]/50 hover:border-[#0072BC] hover:text-[#0072BC] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              >
+                <ChevronLeft className="h-3 w-3" /> Prev
+              </button>
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+                <button
+                  key={n}
+                  onClick={() => handlePage(n)}
+                  className={cn(
+                    'w-8 h-8 rounded-full text-xs font-medium border transition-all',
+                    n === page
+                      ? 'border-[#0072BC] bg-[#0072BC] text-white'
+                      : 'border-black/10 text-[#0A0A0A]/50 hover:border-[#0072BC] hover:text-[#0072BC]'
+                  )}
+                >
+                  {n}
+                </button>
+              ))}
+
+              <button
+                onClick={() => handlePage(page + 1)}
+                disabled={page === totalPages}
+                className="flex items-center gap-1 px-3 py-2 rounded-full text-xs font-medium border border-black/10 text-[#0A0A0A]/50 hover:border-[#0072BC] hover:text-[#0072BC] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              >
+                Next <ChevronRight className="h-3 w-3" />
+              </button>
+            </div>
+          </div>
+        )}
+
+      </div>
     </main>
   )
 }

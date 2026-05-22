@@ -4,6 +4,7 @@ build/
 .env
 .env.local
 .env.production
+.env.*.local
 *.log
 .DS_Store
 Thumbs.db
@@ -12,3 +13,10 @@ Thumbs.db
 *.tsbuildinfo
 coverage/
 .cache/
+
+# Claude Code local settings (machine-specific)
+.claude/settings.local.json
+
+# Prisma generated client
+backend/node_modules/
+backend/dist/

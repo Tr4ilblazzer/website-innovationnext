@@ -98,10 +98,10 @@ export function FeatureShaderCards({ features }: FeatureShaderCardsProps) {
             </div>
 
             {/* Content overlay */}
-            <div className="relative z-10 h-full flex flex-col p-7 rounded-2xl bg-black/80 border border-white/[0.08] transition-all duration-300 group-hover:border-[#3C53FF]/30 group-hover:bg-black/75">
+            <div className="relative z-10 h-full flex flex-col p-7 rounded-2xl bg-black/80 border border-white/[0.08] transition-all duration-300 group-hover:border-[#0072BC]/30 group-hover:bg-black/75">
               {/* Accent line */}
               <div className="w-8 h-0.5 mb-5 rounded-full"
-                style={{ background: 'linear-gradient(90deg, #3C53FF, #0DFFFF)' }} />
+                style={{ background: 'linear-gradient(90deg, #0072BC, #0DFFFF)' }} />
 
               <h3 className="text-base font-bold text-white mb-3 leading-snug">
                 {feature.title}

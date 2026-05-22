@@ -20,7 +20,7 @@ const SOLUTIONS: Record<string, SolutionConfig> = {
     label: 'Digital Financial Services',
     tagline: 'We built the infrastructure that runs a country\'s financial system. Now we deploy it for you.',
     description: 'From digital wallets and neo-banking platforms to national payment switches and settlement engines — Innovation Next delivers production-grade financial infrastructure built from real operational experience, not assembled from third-party components.',
-    accent: '#3C53FF',
+    accent: '#0072BC',
     stats: [
       { value: '13M+', label: 'End users on our platforms' },
       { value: '$275M+', label: 'Monthly transactions processed' },
@@ -234,7 +234,7 @@ export default function SolutionPage({ domain }: { domain: string }) {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {config.products.map(p => (
                 <Link key={p.href} to={p.href} className="glass-card p-5 group text-center">
-                  <h3 className="text-sm font-bold text-white mb-1 group-hover:text-[#3C53FF] transition-colors">{p.name}</h3>
+                  <h3 className="text-sm font-bold text-white mb-1 group-hover:text-[#0072BC] transition-colors">{p.name}</h3>
                   <p className="text-xs text-white/35">{p.desc}</p>
                   <ArrowRight size={12} className="mx-auto mt-3 text-white/20 group-hover:text-white/60 transition-colors" />
                 </Link>

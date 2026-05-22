@@ -1,18 +1,12 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
+import React from 'react'
 import { cn } from '@/lib/utils'
-import { motion } from 'framer-motion'
-import { BookOpen, Clock } from 'lucide-react'
+import { Clock } from 'lucide-react'
 
 interface GlassBlogCardProps {
   title?: string
   excerpt?: string
   image?: string
-  author?: {
-    name: string
-    avatar?: string
-  }
+  author?: { name: string; avatar?: string }
   date?: string
   readTime?: string
   tags?: string[]
@@ -29,85 +23,71 @@ export function GlassBlogCard({
   date = 'Apr 2026',
   readTime = '5 min read',
   tags = ['Fintech'],
-  accentColor = '#3C53FF',
+  accentColor = '#0072BC',
   className,
   onClick,
 }: GlassBlogCardProps) {
+  const ACCENT = accentColor
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className={cn('w-full', className)}
+    <div
       onClick={onClick}
+      className={cn(
+        'relative rounded-3xl overflow-hidden cursor-pointer group h-[420px]',
+        className
+      )}
     >
-      <Card className="group relative h-full overflow-hidden cursor-pointer hover:border-[#3C53FF]/30 hover:shadow-[0_8px_40px_rgba(0,0,0,0.5),0_0_0_1px_rgba(60,83,255,0.12)]">
-        {/* Image */}
-        <div className="relative aspect-[16/9] overflow-hidden rounded-t-2xl">
-          <motion.img
-            src={image}
-            alt={title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#040404]/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
+      {/* Background image */}
+      <img
+        src={image}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
 
-          {/* Tags */}
-          <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
-            {tags?.map((tag, i) => (
-              <Badge
-                key={i}
-                className="backdrop-blur-sm"
-                style={{ background: `${accentColor}18`, borderColor: `${accentColor}35`, color: accentColor }}
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
+      {/* Dark gradient for readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
-          {/* Hover CTA overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-[#040404]/30 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold text-black shadow-lg"
-              style={{ background: 'linear-gradient(135deg, #3C53FF, #0DFFFF)', boxShadow: '0 0 30px rgba(60,83,255,0.4)' }}
-            >
-              <BookOpen className="h-4 w-4" />
-              Read Article
-            </motion.button>
-          </div>
+      {/* Glass panel */}
+      <div
+        className="absolute inset-x-4 bottom-4 rounded-2xl p-5 transition-all duration-300"
+        style={{
+          background: 'rgba(255,255,255,0.76)',
+          backdropFilter: 'blur(2px)',
+          WebkitBackdropFilter: 'blur(2px)',
+          border: '1px solid rgba(255,255,255,0.6)',
+        }}
+      >
+        {/* Category + date */}
+        <div className="flex items-center gap-2 mb-2">
+          {tags?.map((tag, i) => (
+            <span key={i} className="text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: ACCENT }}>
+              {tag}
+            </span>
+          ))}
+          <span className="text-[10px] text-[#0A0A0A]/35">· {date}</span>
         </div>
 
-        {/* Content */}
-        <div className="flex flex-col gap-4 p-5">
-          <div className="space-y-2">
-            <h3 className="text-base font-bold leading-snug text-white transition-colors group-hover:text-[#3C53FF] line-clamp-2">
-              {title}
-            </h3>
-            <p className="line-clamp-2 text-sm text-white/45 leading-relaxed">
-              {excerpt}
-            </p>
-          </div>
+        {/* Title */}
+        <h3 className="text-base font-bold text-[#0A0A0A] leading-snug mb-1.5 line-clamp-2 transition-colors" style={{ ['--hover-color' as string]: ACCENT } as React.CSSProperties}
+          onMouseEnter={e => (e.currentTarget.style.color = ACCENT)}
+          onMouseLeave={e => (e.currentTarget.style.color = '')}
+        >
+          {title}
+        </h3>
 
-          <div className="flex items-center justify-between border-t border-white/[0.06] pt-4">
-            <div className="flex items-center gap-2">
-              <Avatar className="h-7 w-7 border border-white/[0.1]">
-                {author.avatar && <AvatarImage src={author.avatar} alt={author.name} />}
-                <AvatarFallback>{author.name[0]}</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col">
-                <span className="text-xs font-medium text-white/70">{author.name}</span>
-                <span className="text-[10px] text-white/30">{date}</span>
-              </div>
-            </div>
+        {/* Excerpt */}
+        <p className="text-xs text-[#0A0A0A]/55 leading-relaxed line-clamp-2 mb-3">
+          {excerpt}
+        </p>
 
-            <div className="flex items-center gap-1 text-[11px] text-white/30">
-              <Clock className="h-3 w-3" />
-              <span>{readTime}</span>
-            </div>
+        {/* Footer */}
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-medium text-[#0A0A0A]/50">{author.name}</span>
+          <div className="flex items-center gap-1 text-[11px] text-[#0A0A0A]/35">
+            <Clock className="h-3 w-3" />
+            <span>{readTime}</span>
           </div>
         </div>
-      </Card>
-    </motion.div>
+      </div>
+    </div>
   )
 }
