@@ -6,12 +6,12 @@ interface HeroThemeContextType {
 }
 
 const HeroThemeContext = createContext<HeroThemeContextType>({
-  isDark: true,
+  isDark: false,
   setIsDark: () => {},
 })
 
 export function HeroThemeProvider({ children }: { children: React.ReactNode }) {
-  const [isDark, setIsDark] = useState(true)
+  const [isDark, setIsDark] = useState(false)
   return (
     <HeroThemeContext.Provider value={{ isDark, setIsDark }}>
       {children}

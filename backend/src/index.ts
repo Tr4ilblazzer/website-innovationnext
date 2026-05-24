@@ -13,6 +13,7 @@ import vacanciesRouter from './routes/vacancies'
 import careersRouter from './routes/careers'
 import blogRouter from './routes/blog'
 import caseStudiesRouter from './routes/caseStudies'
+import adminRouter from './routes/admin/index'
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -28,17 +29,21 @@ app.use(express.json({ limit: '2mb' }))
 app.use(express.urlencoded({ extended: true }))
 
 // ── Rate limiting ─────────────────────────────────────────────────
+const isDev = process.env.NODE_ENV !== 'production'
+
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
+  windowMs: 15 * 60 * 1000,          // 15 minutes
+  max: isDev ? 0 : 100,               // 0 = unlimited in dev
   standardHeaders: true,
   legacyHeaders: false,
+  skip: () => isDev,                  // skip entirely in dev
   message: { error: 'Too many requests. Please try again shortly.' },
 })
 
 const formLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: 10,
+  windowMs: 60 * 60 * 1000,          // 1 hour
+  max: isDev ? 0 : 10,                // 0 = unlimited in dev
+  skip: () => isDev,                  // skip entirely in dev
   message: { error: 'Too many form submissions. Please try again later.' },
 })
 
@@ -61,6 +66,7 @@ app.use('/api/vacancies', vacanciesRouter)
 app.use('/api/careers', formLimiter, careersRouter)
 app.use('/api/blog', blogRouter)
 app.use('/api/case-studies', caseStudiesRouter)
+app.use('/api/admin', adminRouter)
 
 // ── 404 handler ───────────────────────────────────────────────────
 app.use((_req, res) => {

@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { GlassBlogCard } from '@/components/ui/glass-blog-card'
-import { ALL_POSTS as MOCK_POSTS } from '@/data/insights'
+import { getBlogPosts } from '@/services/api'
+import type { InsightPost } from '@/data/insights'
 
 const categories = ['All', 'Fintech', 'E-Governance', 'AI & ML', 'BI & Data', 'IT Services', 'Staff Augmentation', 'Company News']
 
@@ -12,13 +13,18 @@ const PAGE_SIZE = 6
 export default function InsightsPage() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [page, setPage] = useState(1)
+  const [allPosts, setAllPosts] = useState<InsightPost[]>([])
   const navigate = useNavigate()
 
-  const featured = MOCK_POSTS.filter(p => p.featured)
+  useEffect(() => {
+    getBlogPosts().then(setAllPosts).catch(() => {})
+  }, [])
+
+  const featured = allPosts.filter(p => p.featured)
 
   const filtered = activeCategory === 'All'
-    ? MOCK_POSTS
-    : MOCK_POSTS.filter(p => p.category === activeCategory)
+    ? allPosts
+    : allPosts.filter(p => p.category === activeCategory)
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)

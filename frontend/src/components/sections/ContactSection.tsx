@@ -47,7 +47,11 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
   const onSubmit = async (data: FormValues) => {
     setStatus('loading')
     try {
-      await api.submitContact({ ...data, interest: selectedInterest })
+      await api.submitContact({
+        ...data,
+        subject: selectedInterest ? `Inquiry: ${selectedInterest}` : 'General Enquiry',
+        interest: selectedInterest,
+      })
       setStatus('success')
       reset()
       setSelectedInterest('')

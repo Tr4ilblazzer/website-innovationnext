@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Clock } from 'lucide-react'
-import { ALL_POSTS, type ContentBlock } from '@/data/insights'
+import type { ContentBlock, InsightPost } from '@/data/insights'
+import { getBlogPost, getBlogPosts } from '@/services/api'
 import { GlassBlogCard } from '@/components/ui/glass-blog-card'
 
 function renderBlock(block: ContentBlock, i: number, accent: string) {
@@ -44,8 +46,28 @@ function renderBlock(block: ContentBlock, i: number, accent: string) {
 export default function InsightDetailPage() {
   const { slug } = useParams()
   const navigate = useNavigate()
+  const [post, setPost] = useState<InsightPost | null | 'loading'>('loading')
+  const [related, setRelated] = useState<InsightPost[]>([])
 
-  const post = ALL_POSTS.find(p => p.slug === slug)
+  useEffect(() => {
+    if (!slug) return
+    getBlogPost(slug)
+      .then(p => {
+        setPost(p)
+        getBlogPosts(p.category)
+          .then(all => setRelated(all.filter(r => r.slug !== slug).slice(0, 3)))
+          .catch(() => {})
+      })
+      .catch(() => setPost(null))
+  }, [slug])
+
+  if (post === 'loading') {
+    return (
+      <main className="pt-40 pb-24 text-center bg-white">
+        <div className="w-8 h-8 border-2 border-[#0072BC] border-t-transparent rounded-full animate-spin mx-auto" />
+      </main>
+    )
+  }
 
   if (!post) {
     return (
@@ -56,10 +78,6 @@ export default function InsightDetailPage() {
       </main>
     )
   }
-
-  const related = ALL_POSTS
-    .filter(p => p.category === post.category && p.slug !== post.slug)
-    .slice(0, 3)
 
   const ACCENT = post.accentColor
 
@@ -121,10 +139,20 @@ export default function InsightDetailPage() {
           {post.excerpt}
         </p>
 
-        {/* Content blocks */}
-        <div>
-          {post.body.map((block, i) => renderBlock(block, i, ACCENT))}
-        </div>
+        {/* Content blocks — HTML from backend or ContentBlock[] from mock data */}
+        {post.content
+          ? (
+            <div
+              className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-[#0A0A0A] prose-p:text-[#0A0A0A]/65 prose-p:leading-[1.85] prose-blockquote:border-l-[3px] prose-li:text-[#0A0A0A]/65"
+              style={{ '--tw-prose-bullets': ACCENT } as React.CSSProperties}
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          ) : (
+            <div>
+              {post.body.map((block, i) => renderBlock(block, i, ACCENT))}
+            </div>
+          )
+        }
 
         {/* Category tag */}
         <div className="mt-14 pt-8 border-t border-black/[0.07] flex items-center gap-3">

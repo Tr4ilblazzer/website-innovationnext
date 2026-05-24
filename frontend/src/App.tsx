@@ -1,9 +1,19 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { HeroThemeProvider } from '@/context/HeroThemeContext'
 import { ErrorBoundary } from '@/components/ui/error-boundary'
+import { AdminLayout } from '@/components/admin/AdminLayout'
+import { AdminRoute } from '@/components/admin/AdminRoute'
+import AdminLoginPage from '@/pages/admin/AdminLoginPage'
+import AdminDashboardPage from '@/pages/admin/AdminDashboardPage'
+import AdminContactsPage from '@/pages/admin/AdminContactsPage'
+import AdminInsightsPage from '@/pages/admin/AdminInsightsPage'
+import AdminBlogEditorPage from '@/pages/admin/AdminBlogEditorPage'
+import AdminVacanciesPage from '@/pages/admin/AdminVacanciesPage'
+import AdminVacancyEditorPage from '@/pages/admin/AdminVacancyEditorPage'
+import AdminApplicationsPage from '@/pages/admin/AdminApplicationsPage'
 
 // ── Lazy-loaded pages (route-level code splitting) ───────────────────────────
 const HomePage            = lazy(() => import('@/pages/HomePage'))
@@ -53,77 +63,106 @@ function ComingSoon({ title }: { title: string }) {
   )
 }
 
+// ── Public layout — Navbar + content + Footer ─────────────────────────────────
+function PublicLayout() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Navbar />
+      <div className="flex-1">
+        <ErrorBoundary>
+          <Suspense fallback={<PageSkeleton />}>
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
+      </div>
+      <Footer />
+    </div>
+  )
+}
+
 // ── App ───────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
     <BrowserRouter>
       <HeroThemeProvider>
-        <div className="flex flex-col min-h-screen bg-white">
-          <Navbar />
-          <div className="flex-1">
-            <ErrorBoundary>
-              <Suspense fallback={<PageSkeleton />}>
-                <Routes>
-                  <Route path="/"                         element={<HomePage />} />
+        <Routes>
 
-                  {/* Solutions */}
-                  <Route path="/solutions"                element={<Navigate to="/solutions/fintech" replace />} />
-                  <Route path="/solutions/fintech"        element={<FintechSolutionPage />} />
-                  <Route path="/solutions/egovernance"    element={<EGovSolutionPage />} />
-                  <Route path="/solutions/ai-ml"          element={<AiMlSolutionPage />} />
-                  <Route path="/solutions/bi-data"        element={<BiDataSolutionPage />} />
-                  <Route path="/solutions/it-services"    element={<ItServicesSolutionPage />} />
-                  <Route path="/solutions/staff-augmentation" element={<StaffAugSolutionPage />} />
+          {/* ── Admin (no Navbar/Footer) ──────────────────────────── */}
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route
+            path="/admin"
+            element={<AdminRoute><AdminLayout /></AdminRoute>}
+          >
+            <Route index element={<AdminDashboardPage />} />
+            <Route path="contacts" element={<AdminContactsPage />} />
+            <Route path="insights" element={<AdminInsightsPage />} />
+            <Route path="insights/new" element={<AdminBlogEditorPage />} />
+            <Route path="insights/:id" element={<AdminBlogEditorPage />} />
+            <Route path="vacancies" element={<AdminVacanciesPage />} />
+            <Route path="vacancies/new" element={<AdminVacancyEditorPage />} />
+            <Route path="vacancies/:id" element={<AdminVacancyEditorPage />} />
+            <Route path="vacancies/:id/applications" element={<AdminApplicationsPage />} />
+          </Route>
 
-                  {/* Products */}
-                  <Route path="/products"                 element={<ComingSoon title="Our Products" />} />
-                  <Route path="/products/groot-neo"       element={<GrootNeoPage />} />
-                  <Route path="/products/groot-pay"       element={<GrootPayPage />} />
-                  <Route path="/products/pfm"             element={<PfmPage />} />
-                  <Route path="/products/loyalty"         element={<LoyaltyPage />} />
-                  <Route path="/products/merchant-ai"     element={<MerchantAiPage />} />
-                  <Route path="/products/:slug"           element={<ComingSoon title="Product Detail" />} />
+          {/* ── Public site (with Navbar + Footer) ───────────────── */}
+          <Route element={<PublicLayout />}>
+            <Route path="/"                             element={<HomePage />} />
 
-                  {/* Industries & Use Cases */}
-                  <Route path="/industries"               element={<IndustriesPage />} />
-                  <Route path="/industries/:slug"         element={<ComingSoon title="Industry Page" />} />
-                  <Route path="/use-cases"                element={<ComingSoon title="Use Cases" />} />
-                  <Route path="/use-cases/:slug"          element={<ComingSoon title="Use Case" />} />
+            {/* Solutions */}
+            <Route path="/solutions"                    element={<Navigate to="/solutions/fintech" replace />} />
+            <Route path="/solutions/fintech"            element={<FintechSolutionPage />} />
+            <Route path="/solutions/egovernance"        element={<EGovSolutionPage />} />
+            <Route path="/solutions/ai-ml"              element={<AiMlSolutionPage />} />
+            <Route path="/solutions/bi-data"            element={<BiDataSolutionPage />} />
+            <Route path="/solutions/it-services"        element={<ItServicesSolutionPage />} />
+            <Route path="/solutions/staff-augmentation" element={<StaffAugSolutionPage />} />
 
-                  {/* Company & Insights */}
-                  <Route path="/company"                  element={<CompanyPage />} />
-                  <Route path="/insights"                 element={<InsightsPage />} />
-                  <Route path="/insights/case-studies"    element={<ComingSoon title="Case Studies" />} />
-                  <Route path="/insights/:slug"           element={<InsightDetailPage />} />
+            {/* Products */}
+            <Route path="/products"                     element={<ComingSoon title="Our Products" />} />
+            <Route path="/products/groot-neo"           element={<GrootNeoPage />} />
+            <Route path="/products/groot-pay"           element={<GrootPayPage />} />
+            <Route path="/products/pfm"                 element={<PfmPage />} />
+            <Route path="/products/loyalty"             element={<LoyaltyPage />} />
+            <Route path="/products/merchant-ai"         element={<MerchantAiPage />} />
+            <Route path="/products/:slug"               element={<ComingSoon title="Product Detail" />} />
 
-                  {/* Misc */}
-                  <Route path="/careers"                  element={<CareersPage />} />
-                  <Route path="/contact"                  element={<ContactPage />} />
-                  <Route path="/privacy"                  element={<ComingSoon title="Privacy Policy" />} />
-                  <Route path="/terms"                    element={<ComingSoon title="Terms of Service" />} />
-                  <Route path="/cookies"                  element={<ComingSoon title="Cookie Policy" />} />
+            {/* Industries & Use Cases */}
+            <Route path="/industries"                   element={<IndustriesPage />} />
+            <Route path="/industries/:slug"             element={<ComingSoon title="Industry Page" />} />
+            <Route path="/use-cases"                    element={<ComingSoon title="Use Cases" />} />
+            <Route path="/use-cases/:slug"              element={<ComingSoon title="Use Case" />} />
 
-                  {/* 404 */}
-                  <Route path="*" element={
-                    <main className="pt-40 pb-24 text-center">
-                      <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-4">
-                        404
-                      </p>
-                      <h1 className="section-heading text-[#0A0A0A] mb-4">Page not found</h1>
-                      <p className="text-[#0A0A0A]/40 mb-8">
-                        The page you're looking for doesn't exist or has been moved.
-                      </p>
-                      <a href="/" className="btn-primary inline-flex mx-auto">
-                        Back to Home
-                      </a>
-                    </main>
-                  } />
-                </Routes>
-              </Suspense>
-            </ErrorBoundary>
-          </div>
-          <Footer />
-        </div>
+            {/* Company & Insights */}
+            <Route path="/company"                      element={<CompanyPage />} />
+            <Route path="/insights"                     element={<InsightsPage />} />
+            <Route path="/insights/case-studies"        element={<ComingSoon title="Case Studies" />} />
+            <Route path="/insights/:slug"               element={<InsightDetailPage />} />
+
+            {/* Misc */}
+            <Route path="/careers"                      element={<CareersPage />} />
+            <Route path="/contact"                      element={<ContactPage />} />
+            <Route path="/privacy"                      element={<ComingSoon title="Privacy Policy" />} />
+            <Route path="/terms"                        element={<ComingSoon title="Terms of Service" />} />
+            <Route path="/cookies"                      element={<ComingSoon title="Cookie Policy" />} />
+
+            {/* 404 */}
+            <Route path="*" element={
+              <main className="pt-40 pb-24 text-center">
+                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-4">
+                  404
+                </p>
+                <h1 className="section-heading text-[#0A0A0A] mb-4">Page not found</h1>
+                <p className="text-[#0A0A0A]/40 mb-8">
+                  The page you're looking for doesn't exist or has been moved.
+                </p>
+                <a href="/" className="btn-primary inline-flex mx-auto">
+                  Back to Home
+                </a>
+              </main>
+            } />
+          </Route>
+
+        </Routes>
       </HeroThemeProvider>
     </BrowserRouter>
   )

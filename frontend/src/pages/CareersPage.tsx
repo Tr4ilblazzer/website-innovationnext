@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { ArrowRight, Upload, CheckCircle, MapPin, Briefcase, Clock } from 'lucide-react'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { api, cn } from '@/lib/utils'
+import { getVacancies } from '@/services/api'
 import type { Vacancy } from '@/types'
 
 const ACCENT = '#0072BC'
@@ -214,11 +215,15 @@ function ApplicationForm({ vacancy, onClose }: { vacancy: Vacancy; onClose: () =
 }
 
 export default function CareersPage() {
-  const [vacancies] = useState<Vacancy[]>(MOCK_VACANCIES)
+  const [vacancies, setVacancies] = useState<Vacancy[]>(MOCK_VACANCIES)
   const [applying, setApplying] = useState<Vacancy | null>(null)
   const [filter, setFilter] = useState('All')
 
-  const departments = ['All', ...Array.from(new Set(MOCK_VACANCIES.map(v => v.department)))]
+  useEffect(() => {
+    getVacancies().then(setVacancies).catch(() => {})
+  }, [])
+
+  const departments = ['All', ...Array.from(new Set(vacancies.map(v => v.department)))]
   const filtered = filter === 'All' ? vacancies : vacancies.filter(v => v.department === filter)
 
   return (

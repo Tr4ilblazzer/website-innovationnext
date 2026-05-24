@@ -2,37 +2,45 @@
   "name": "innovation-next-backend",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "db:generate": "prisma generate"
+    "db:generate": "prisma generate",
+    "seed:admin": "ts-node src/scripts/seed-admin.ts"
   },
   "dependencies": {
-    "express": "^4.18.2",
+    "@prisma/client": "^5.9.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
-    "helmet": "^7.1.0",
-    "zod": "^3.22.4",
-    "resend": "^3.2.0",
-    "multer": "^1.4.5-lts.1",
-    "cloudinary": "^2.0.1",
-    "@prisma/client": "^5.9.1",
-    "prisma": "^5.9.1",
+    "express": "^4.18.2",
     "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.0",
-    "uuid": "^9.0.1"
+    "multer": "^1.4.5-lts.1",
+    "prisma": "^5.9.1",
+    "resend": "^3.2.0",
+    "uuid": "^9.0.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
     "@types/cors": "^2.8.17",
-    "@types/multer": "^1.4.11",
+    "@types/express": "^4.17.21",
     "@types/morgan": "^1.9.9",
-    "@types/uuid": "^9.0.7",
+    "@types/multer": "^1.4.11",
     "@types/node": "^20.11.5",
-    "typescript": "^5.3.3",
-    "ts-node-dev": "^2.0.0"
+    "@types/uuid": "^9.0.7",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
   }
 }

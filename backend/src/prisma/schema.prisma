@@ -1,5 +1,3 @@
-// prisma/schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,125 +7,124 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ── Contact Submissions ──────────────────────────────────────────
+model AdminUser {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admin_users")
+}
 
 model ContactSubmission {
-  id         String   @id @default(uuid())
-  name       String
-  email      String
-  company    String?
-  phone      String?
-  subject    String
-  message    String   @db.Text
-  interest   String?
-  status     String   @default("new")  // new | read | replied
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  company   String?
+  phone     String?
+  subject   String
+  message   String
+  interest  String?
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("contact_submissions")
 }
 
-// ── Newsletter Subscribers ───────────────────────────────────────
-
 model NewsletterSubscriber {
-  id          String    @id @default(uuid())
-  email       String    @unique
-  name        String?
-  active      Boolean   @default(true)
-  subscribedAt DateTime @default(now())
+  id             String    @id @default(uuid())
+  email          String    @unique
+  name           String?
+  active         Boolean   @default(true)
+  subscribedAt   DateTime  @default(now())
   unsubscribedAt DateTime?
 
   @@map("newsletter_subscribers")
 }
 
-// ── Vacancies ────────────────────────────────────────────────────
-
 model Vacancy {
-  id           String   @id @default(uuid())
+  id           String           @id @default(uuid())
   title        String
   department   String
   location     String
-  type         String   // Full-time | Part-time | Contract | Remote
-  level        String   // Junior | Mid | Senior | Lead | Manager
-  description  String   @db.Text
-  requirements String[] 
+  type         String
+  level        String
+  description  String
+  requirements String[]
   niceToHave   String[]
   salary       String?
   closingDate  DateTime?
-  active       Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  active       Boolean          @default(true)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
   applications JobApplication[]
 
   @@map("vacancies")
 }
 
-// ── Job Applications ─────────────────────────────────────────────
-
 model JobApplication {
-  id            String   @id @default(uuid())
-  vacancyId     String
-  vacancy       Vacancy  @relation(fields: [vacancyId], references: [id])
-  firstName     String
-  lastName      String
-  email         String
-  phone         String
-  currentRole   String?
-  experience    String   @db.Text
-  coverLetter   String?  @db.Text
-  cvUrl         String   // Cloudinary URL
-  portfolioUrl  String?
-  linkedinUrl   String?
-  status        String   @default("new")  // new | reviewing | shortlisted | rejected | hired
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id           String   @id @default(uuid())
+  vacancyId    String
+  firstName    String
+  lastName     String
+  email        String
+  phone        String
+  currentRole  String?
+  experience   String
+  coverLetter  String?
+  cvUrl        String
+  portfolioUrl String?
+  linkedinUrl  String?
+  status       String   @default("new")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  vacancy      Vacancy  @relation(fields: [vacancyId], references: [id])
 
   @@map("job_applications")
 }
 
-// ── Blog Posts ───────────────────────────────────────────────────
-
 model BlogPost {
-  id           String   @id @default(uuid())
-  title        String
-  slug         String   @unique
-  excerpt      String   @db.Text
-  content      String   @db.Text
-  category     String
-  tags         String[]
-  authorName   String
-  authorRole   String?
+  id            String    @id @default(uuid())
+  title         String
+  slug          String    @unique
+  excerpt       String
+  content       String
+  category      String
+  tags          String[]
+  authorName    String
+  authorRole    String?
   featuredImage String?
-  published    Boolean  @default(false)
-  featured     Boolean  @default(false)
-  readTime     Int      @default(5)
-  publishedAt  DateTime?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  published     Boolean   @default(false)
+  featured      Boolean   @default(false)
+  readTime      Int       @default(5)
+  publishedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   @@map("blog_posts")
 }
 
-// ── Case Studies ─────────────────────────────────────────────────
-
 model CaseStudy {
-  id            String   @id @default(uuid())
+  id            String    @id @default(uuid())
   title         String
-  slug          String   @unique
+  slug          String    @unique
   client        String
   industry      String
   domain        String
-  challenge     String   @db.Text
-  solution      String   @db.Text
-  results       Json     // Array of { metric, value, description }
+  challenge     String
+  solution      String
+  results       Json
   technologies  String[]
   duration      String?
   featuredImage String?
-  published     Boolean  @default(false)
-  featured      Boolean  @default(false)
+  published     Boolean   @default(false)
+  featured      Boolean   @default(false)
   publishedAt   DateTime?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   @@map("case_studies")
 }

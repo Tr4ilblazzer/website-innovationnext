@@ -17,6 +17,8 @@ export interface InsightPost {
   image: string
   accentColor: string
   body: ContentBlock[]
+  /** HTML string — set when post is fetched from the backend (overrides body) */
+  content?: string
 }
 
 export const ALL_POSTS: InsightPost[] = [

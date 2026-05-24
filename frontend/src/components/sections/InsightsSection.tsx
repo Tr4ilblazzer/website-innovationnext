@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { GlassBlogCard } from '@/components/ui/glass-blog-card'
-import { ALL_POSTS } from '@/data/insights'
+import { getBlogPosts } from '@/services/api'
+import type { InsightPost } from '@/data/insights'
 
 interface InsightsSectionProps {
   category?: string
@@ -9,10 +11,11 @@ interface InsightsSectionProps {
 
 export function InsightsSection({ category }: InsightsSectionProps) {
   const navigate = useNavigate()
+  const [posts, setPosts] = useState<InsightPost[]>([])
 
-  const posts = category
-    ? ALL_POSTS.filter(p => p.category === category).slice(0, 3)
-    : ALL_POSTS.slice(0, 3)
+  useEffect(() => {
+    getBlogPosts(category).then(all => setPosts(all.slice(0, 3))).catch(() => {})
+  }, [category])
 
   if (posts.length === 0) return null
 
