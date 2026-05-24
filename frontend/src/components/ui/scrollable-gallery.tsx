@@ -9,7 +9,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 
-export interface Gallery4Item {
+export interface GalleryItem {
   id: string
   title: string
   description: string
@@ -17,17 +17,17 @@ export interface Gallery4Item {
   image: string
 }
 
-export interface Gallery4Props {
+export interface ScrollableGalleryProps {
   title?: string
   description?: string
-  items: Gallery4Item[]
+  items: GalleryItem[]
 }
 
-const Gallery4 = ({
+export function ScrollableGallery({
   title = "Case Studies",
   description = "Real-world applications and success stories from practitioners who've built fintech and government platforms at national scale.",
   items,
-}: Gallery4Props) => {
+}: ScrollableGalleryProps) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>()
   const [canScrollPrev, setCanScrollPrev] = useState(false)
   const [canScrollNext, setCanScrollNext] = useState(false)
@@ -143,5 +143,3 @@ const Gallery4 = ({
     </section>
   )
 }
-
-export { Gallery4 }

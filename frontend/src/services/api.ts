@@ -1,14 +1,15 @@
 /// <reference types="vite/client" />
 import type {
   ApiResponse,
-  BlogPost,
   CaseStudy,
   ContactFormData,
   JobApplicationData,
   NewsletterFormData,
   Vacancy,
 } from '@/types'
-import { ALL_POSTS } from '@/data/insights'
+// BlogPost (from @/types) is the backend shape — import it when the real API is live and
+// swap the return types of getBlogPosts / getBlogPost below.
+import { ALL_POSTS, type InsightPost } from '@/data/insights'
 import { MOCK_VACANCIES } from '@/data/vacancies'
 
 const BASE_URL = (import.meta as { env: { VITE_API_URL?: string } }).env.VITE_API_URL ?? 'http://localhost:3001'
@@ -34,19 +35,20 @@ async function request<T>(
 
 // ── Blog / Insights ──────────────────────────────────────────────────────────
 
-export async function getBlogPosts(category?: string): Promise<BlogPost[]> {
+// NOTE: While using mock data, these functions return InsightPost (local CMS shape).
+// When the backend is live, swap to BlogPost from @/types and use the request() wrapper.
+export async function getBlogPosts(category?: string): Promise<InsightPost[]> {
   // TODO: replace with → return request<BlogPost[]>(`/api/blog${category ? `?category=${category}` : ''}`)
-  const posts = category
+  return category
     ? ALL_POSTS.filter(p => p.category === category)
     : ALL_POSTS
-  return posts as unknown as BlogPost[]
 }
 
-export async function getBlogPost(slug: string): Promise<BlogPost> {
+export async function getBlogPost(slug: string): Promise<InsightPost> {
   // TODO: replace with → return request<BlogPost>(`/api/blog/${slug}`)
   const post = ALL_POSTS.find(p => p.slug === slug)
   if (!post) throw new Error('Post not found')
-  return post as unknown as BlogPost
+  return post
 }
 
 // ── Case Studies ─────────────────────────────────────────────────────────────

@@ -23,7 +23,7 @@ const achievements = [
   { label: "Industries Served",   value: "8"   },
 ]
 
-export function About3() {
+export function AboutSection() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">

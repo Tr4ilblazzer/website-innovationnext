@@ -47,19 +47,20 @@ cd cms && npm run dev
 innovation-next/
 ├── frontend/src/
 │   ├── components/
-│   │   ├── ui/              # shadcn primitives + custom UI components
+│   │   ├── ui/              # shadcn primitives + custom brand components
 │   │   ├── layout/          # Navbar, Footer
-│   │   └── sections/        # Reusable page sections
+│   │   └── sections/        # Reusable page sections (SolutionPageTemplate, ProductPageTemplate, InsightsSection, etc.)
 │   ├── pages/
-│   │   ├── solutions/       # 6 individual solution pages (all active in router)
-│   │   └── products/        # 5 individual product pages (all active in router)
+│   │   ├── solutions/       # 6 individual solution pages (lazy-loaded in App.tsx)
+│   │   └── products/        # 5 individual product pages (lazy-loaded in App.tsx)
+│   ├── hooks/               # Custom React hooks (useScrollY, useIntersection, useMediaQuery)
 │   ├── data/                # Mock data — replaced by API calls when backend is live
-│   │   ├── insights.ts      # 18 blog posts (3 per domain) with full body content
+│   │   ├── insights.ts      # 18 blog posts (3 per domain) with full body content + InsightPost type
 │   │   └── vacancies.ts     # 4 mock job listings
 │   ├── services/
 │   │   └── api.ts           # Typed fetch functions for all endpoints (see Data Layer below)
 │   ├── lib/utils.ts         # cn() helper (clsx + tailwind-merge)
-│   └── types/index.ts       # All shared TypeScript types
+│   └── types/index.ts       # All shared TypeScript types (API / backend shapes)
 ├── backend/src/
 │   ├── index.ts             # Express app entry — middleware, rate limits, route mounting
 │   └── routes/              # One file per endpoint group
@@ -74,13 +75,13 @@ All data that will eventually come from the CMS/backend lives in `frontend/src/d
 When the backend is live, only `api.ts` changes — each function has a `// TODO: replace with →` comment showing the exact fetch call that replaces the mock. Components stay untouched.
 
 ```ts
-// Current (mock)
-export async function getBlogPosts(category?: string) {
+// Current (mock) — returns InsightPost[] (local CMS shape from data/insights.ts)
+export async function getBlogPosts(category?: string): Promise<InsightPost[]> {
   return ALL_POSTS.filter(...)
 }
 
-// After backend is live — only this line changes
-export async function getBlogPosts(category?: string) {
+// After backend is live — swap return type to BlogPost[] and use request()
+export async function getBlogPosts(category?: string): Promise<BlogPost[]> {
   return request<BlogPost[]>(`/api/blog${category ? `?category=${category}` : ''}`)
 }
 ```
@@ -93,10 +94,10 @@ export async function getBlogPosts(category?: string) {
 - **`InsightDetailPage`** — reads `slug` from `useParams()`, renders `body` blocks, shows related posts from the same category, then a CTA.
 
 ### Solution Pages
-Each of the 6 solution pages is in `frontend/src/pages/solutions/` and imported directly in `App.tsx`. Layout: hero → features/capabilities → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. `SolutionPage.tsx` and `SolutionPageTemplate.tsx` exist but are **not used by the router**.
+Each of the 6 solution pages is in `frontend/src/pages/solutions/` and lazy-loaded in `App.tsx`. Layout: hero → features/capabilities → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each page uses `<SolutionPageTemplate>` from `components/sections/SolutionPageTemplate.tsx` — except `FintechSolutionPage` and `StaffAugSolutionPage` which are hand-written.
 
 ### Product Pages
-All 5 product pages follow an identical pattern: hero + stats strip → feature cards grid → capabilities checklist → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. `ProductPageTemplate.tsx` exists but is **not used**.
+All 5 product pages follow an identical pattern: hero + stats strip → feature cards grid → capabilities checklist → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each page uses `<ProductPageTemplate>` from `components/sections/ProductPageTemplate.tsx`.
 
 Domain-to-category mapping for `InsightsSection`:
 - GrootNeo, GrootPay, PFM, Loyalty → `category="Fintech"`

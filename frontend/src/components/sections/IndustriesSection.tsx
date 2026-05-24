@@ -1,6 +1,6 @@
-import { Gallery4, Gallery4Item } from '@/components/ui/gallery4'
+import { ScrollableGallery, GalleryItem } from '@/components/ui/scrollable-gallery'
 
-const industries: Gallery4Item[] = [
+const industries: GalleryItem[] = [
   {
     id: 'banking',
     title: 'Banks & Digital Banks',
@@ -40,10 +40,11 @@ const industries: Gallery4Item[] = [
 
 export function IndustriesSection() {
   return (
-    <Gallery4
+    <ScrollableGallery
       title="Industries that trust production-grade teams."
       description="From central banks to citizen super-apps — we work with the teams building the critical infrastructure that millions depend on."
       items={industries}
     />
+
   )
 }
