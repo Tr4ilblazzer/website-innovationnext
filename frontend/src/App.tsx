@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { HeroThemeProvider } from '@/context/HeroThemeContext'
 import HomePage from '@/pages/HomePage'
 import ContactPage from '@/pages/ContactPage'
 import CareersPage from '@/pages/CareersPage'
@@ -33,6 +34,7 @@ function ComingSoon({ title }: { title: string }) {
 export default function App() {
   return (
     <BrowserRouter>
+      <HeroThemeProvider>
       <div className="flex flex-col min-h-screen bg-white">
         <Navbar />
         <div className="flex-1">
@@ -76,6 +78,7 @@ export default function App() {
         </div>
         <Footer />
       </div>
+      </HeroThemeProvider>
     </BrowserRouter>
   )
 }

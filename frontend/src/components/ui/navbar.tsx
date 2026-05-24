@@ -12,10 +12,14 @@ export type IMenu = {
 
 type MenuProps = {
   list: IMenu[]
+  theme?: 'light' | 'dark'
 }
 
-export default function Menu({ list }: MenuProps) {
+export default function Menu({ list, theme = 'light' }: MenuProps) {
   const [hovered, setHovered] = useState<number | null>(null)
+
+  const linkBase  = theme === 'dark' ? 'text-white/70 hover:text-white'       : 'text-[#0A0A0A]/70 hover:text-[#0A0A0A]'
+  const linkHover = theme === 'dark' ? 'bg-white/[0.07] text-white'           : 'bg-black/[0.05] text-[#0A0A0A]'
 
   return (
     <MotionConfig transition={{ bounce: 0, type: 'tween' }}>
@@ -27,8 +31,8 @@ export default function Menu({ list }: MenuProps) {
                 to={item.url}
                 onMouseEnter={() => setHovered(item.id)}
                 onMouseLeave={() => setHovered(null)}
-                className={`relative flex items-center justify-center rounded px-5 py-2.5 text-sm font-medium transition-colors text-[#0A0A0A]/70 hover:text-[#0A0A0A] ${
-                  hovered === item.id ? 'bg-black/[0.05] text-[#0A0A0A]' : ''
+                className={`relative flex items-center justify-center rounded px-5 py-2.5 text-sm font-medium transition-colors ${linkBase} ${
+                  hovered === item.id ? linkHover : ''
                 }`}
               >
                 {item.title}

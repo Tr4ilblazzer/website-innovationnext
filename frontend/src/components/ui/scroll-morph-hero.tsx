@@ -20,12 +20,13 @@ interface FlipCardProps {
   phase: AnimationPhase;
   target: { x: number; y: number; rotation: number; scale: number; opacity: number };
   onClick: () => void;
+  isDark: boolean;
 }
 
-const IMG_WIDTH  = 145;
-const IMG_HEIGHT = 190;
+const IMG_WIDTH  = 115;
+const IMG_HEIGHT = 152;
 
-function FlipCard({ industry, target, onClick }: FlipCardProps) {
+function FlipCard({ industry, target, onClick, isDark }: FlipCardProps) {
   return (
     <motion.div
       animate={{
@@ -54,7 +55,7 @@ function FlipCard({ industry, target, onClick }: FlipCardProps) {
       >
         {/* Front — image + overlay */}
         <div
-          className="absolute inset-0 h-full w-full rounded-xl overflow-hidden"
+          className={`absolute inset-0 h-full w-full rounded-xl overflow-hidden ring-1 ${isDark ? 'ring-white/10' : 'ring-black/10'}`}
           style={{ backfaceVisibility: "hidden" }}
         >
           <img
@@ -84,7 +85,11 @@ const MAX_SCROLL   = 3000;
 
 const lerp = (start: number, end: number, t: number) => start * (1 - t) + end * t;
 
-export default function IntroAnimation() {
+interface IntroAnimationProps {
+  isDark?: boolean;
+}
+
+export default function IntroAnimation({ isDark = true }: IntroAnimationProps) {
   const navigate = useNavigate();
   const [introPhase, setIntroPhase] = useState<AnimationPhase>("scatter");
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
@@ -226,7 +231,7 @@ export default function IntroAnimation() {
   const contentY       = useTransform(smoothMorph, [0.8, 1], [20, 0]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-white">
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-transparent">
       <div
         className="flex h-full w-full flex-col items-center justify-center"
         style={{ perspective: "1000px" }}
@@ -247,7 +252,7 @@ export default function IntroAnimation() {
               fontSize: 'clamp(1.2rem, 2.5vw, 2rem)',
               letterSpacing: '-0.03em',
               lineHeight: 1.05,
-              color: '#0A0A0A',
+              color: isDark ? '#FAFAFA' : '#0A0A0A',
             }}
           >
             Unlocking the <span className="heading-accent">Potential.</span>
@@ -260,7 +265,7 @@ export default function IntroAnimation() {
                 : { opacity: 0 }
             }
             transition={{ duration: 1, delay: 0.2 }}
-            className="mt-4 text-xs font-bold tracking-[0.2em] text-gray-500"
+            className={`mt-4 text-xs font-bold tracking-[0.2em] ${isDark ? 'text-gray-400' : 'text-gray-500'}`}
           >
             SCROLL TO EXPLORE
           </motion.p>
@@ -271,10 +276,10 @@ export default function IntroAnimation() {
           style={{ opacity: contentOpacity, y: contentY }}
           className="absolute top-[10%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-4"
         >
-          <h2 className="text-3xl md:text-5xl font-semibold text-gray-900 tracking-tight mb-4">
+          <h2 className={`text-3xl md:text-5xl font-semibold tracking-tight mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             Unlocking the Potential
           </h2>
-          <p className="text-sm md:text-base text-gray-500 max-w-lg leading-relaxed">
+          <p className={`text-sm md:text-base max-w-lg leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
             We build enterprise software for banks, financial institutions, and large-scale organizations.{" "}
             <br className="hidden md:block" />
             Streamlining complexity so the institutions that power economies can move faster.
@@ -289,7 +294,7 @@ export default function IntroAnimation() {
             if (introPhase === "scatter") {
               target = scatterPositions[i];
             } else if (introPhase === "line") {
-              const lineSpacing    = 135;
+              const lineSpacing    = 110;
               const lineTotalWidth = TOTAL_IMAGES * lineSpacing;
               target = { x: i * lineSpacing - lineTotalWidth / 2, y: 0, rotation: 0, scale: 1, opacity: 1 };
             } else {
@@ -321,7 +326,7 @@ export default function IntroAnimation() {
                 x:        Math.cos(arcRad) * arcRadius + parallaxValue,
                 y:        Math.sin(arcRad) * arcRadius + arcCenterY,
                 rotation: currentArcAngle + 90,
-                scale:    isMobile ? 1.4 : 1.8,
+                scale:    isMobile ? 1.1 : 1.4,
               };
 
               target = {
@@ -340,6 +345,7 @@ export default function IntroAnimation() {
                 phase={introPhase}
                 target={target}
                 onClick={() => navigate(industry.route)}
+                isDark={isDark}
               />
             );
           })}

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Menu as MenuIcon, X, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Menu, { type IMenu } from '@/components/ui/navbar'
+import { useHeroTheme } from '@/context/HeroThemeContext'
 
 const menuItems: IMenu[] = [
   {
@@ -68,9 +69,27 @@ const mobileProducts = [
 ]
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
+  const [scrolled, setScrolled]     = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const location = useLocation()
+  const location                    = useLocation()
+  const { isDark }                  = useHeroTheme()
+
+  // Hero theme only applies on the home page before the user has scrolled
+  const isHome           = location.pathname === '/'
+  const heroThemeActive  = isHome && !scrolled
+
+  // Derived tokens
+  const logoSrc    = scrolled
+    ? '/next_logo_dark.png'
+    : heroThemeActive
+      ? (isDark ? '/next_logo_light.png' : '/next_logo_dark.png')
+      : '/next_logo_light.png'
+
+  const menuTheme  = heroThemeActive && isDark ? 'dark' : 'light'
+
+  const mobileToggleCls = heroThemeActive && isDark
+    ? 'border-white/20 text-white/60 hover:text-white'
+    : 'border-black/10 text-[#0A0A0A]/70 hover:text-[#0A0A0A]'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -97,15 +116,15 @@ export function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
             <img
-              src="/next_logo_light.png"
+              src={logoSrc}
               alt="Innovation Next"
-              className="h-8 w-auto object-contain"
+              className="h-8 w-auto object-contain transition-opacity duration-300"
             />
           </Link>
 
-          {/* Desktop Nav — animated Menu component */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center px-2 py-1">
-            <Menu list={menuItems} />
+            <Menu list={menuItems} theme={menuTheme} />
           </div>
 
           {/* CTA */}
@@ -121,7 +140,7 @@ export function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded-xl border border-black/10 text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors"
+            className={cn('lg:hidden p-2 rounded-xl border transition-colors', mobileToggleCls)}
           >
             {mobileOpen ? <X size={20} /> : <MenuIcon size={20} />}
           </button>
