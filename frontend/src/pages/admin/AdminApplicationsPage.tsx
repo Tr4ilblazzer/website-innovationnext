@@ -12,11 +12,11 @@ const STATUS_OPTIONS: JobApplication['status'][] = [
 ]
 
 const STATUS_COLORS: Record<string, string> = {
-  new:         'bg-blue-50 text-blue-600',
-  reviewing:   'bg-amber-50 text-amber-600',
-  shortlisted: 'bg-purple-50 text-purple-600',
-  rejected:    'bg-red-50 text-red-500',
-  hired:       'bg-green-50 text-green-600',
+  new:         'border-blue-300 text-blue-600',
+  reviewing:   'border-amber-400 text-amber-600',
+  shortlisted: 'border-purple-300 text-purple-600',
+  rejected:    'border-red-300 text-red-500',
+  hired:       'border-green-400 text-green-600',
 }
 
 function formatDate(iso: string) {
@@ -129,7 +129,7 @@ export default function AdminApplicationsPage() {
                     </td>
                     <td className="px-5 py-4 text-xs text-black/40">{formatDate(app.createdAt)}</td>
                     <td className="px-5 py-4">
-                      <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold capitalize ${STATUS_COLORS[app.status]}`}>
+                      <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold capitalize border ${STATUS_COLORS[app.status]}`}>
                         {app.status}
                       </span>
                     </td>
@@ -166,7 +166,7 @@ export default function AdminApplicationsPage() {
               {/* Links */}
               <div className="flex flex-wrap gap-2">
                 <a href={selected.cvUrl} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#EBF5FF] text-[#0072BC] hover:bg-[#0072BC] hover:text-white transition-colors">
+                  className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border border-[#0072BC] text-[#0072BC] hover:bg-[#0072BC] hover:text-white transition-colors">
                   <FileText className="w-3 h-3" /> Download CV
                 </a>
                 {selected.linkedinUrl && (

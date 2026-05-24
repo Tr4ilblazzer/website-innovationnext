@@ -12,10 +12,10 @@ function formatDate(iso?: string | null) {
 }
 
 const TYPE_COLORS: Record<string, string> = {
-  'Full-time': 'bg-blue-50 text-blue-600',
-  'Part-time': 'bg-purple-50 text-purple-600',
-  'Contract': 'bg-amber-50 text-amber-600',
-  'Remote': 'bg-green-50 text-green-600',
+  'Full-time': 'border-blue-300 text-blue-600',
+  'Part-time': 'border-purple-300 text-purple-600',
+  'Contract':  'border-amber-400 text-amber-600',
+  'Remote':    'border-green-400 text-green-600',
 }
 
 export default function AdminVacanciesPage() {
@@ -126,7 +126,7 @@ export default function AdminVacanciesPage() {
                   </td>
                   <td className="px-5 py-4 text-sm text-black/50">{v.department}</td>
                   <td className="px-5 py-4">
-                    <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold ${TYPE_COLORS[v.type] ?? 'bg-gray-100 text-gray-500'}`}>
+                    <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold border ${TYPE_COLORS[v.type] ?? 'border-black/20 text-black/40'}`}>
                       {v.type}
                     </span>
                   </td>

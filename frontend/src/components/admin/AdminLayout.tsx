@@ -121,16 +121,16 @@ export function AdminPageHeader({ title, subtitle, action, breadcrumb }: AdminPa
 // ── Status badge ──────────────────────────────────────────────────
 export function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, string> = {
-    new:        'bg-blue-50 text-blue-600',
-    read:       'bg-gray-100 text-gray-500',
-    replied:    'bg-green-50 text-green-600',
-    published:  'bg-green-50 text-green-600',
-    draft:      'bg-amber-50 text-amber-600',
-    active:     'bg-green-50 text-green-600',
-    inactive:   'bg-gray-100 text-gray-400',
+    new:        'border-blue-300 text-blue-600',
+    read:       'border-black/20 text-black/40',
+    replied:    'border-green-400 text-green-600',
+    published:  'border-green-400 text-green-600',
+    draft:      'border-amber-400 text-amber-600',
+    active:     'border-green-400 text-green-600',
+    inactive:   'border-black/20 text-black/35',
   }
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold capitalize ${styles[status] ?? 'bg-gray-100 text-gray-500'}`}>
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold capitalize border ${styles[status] ?? 'border-black/20 text-black/40'}`}>
       {status}
     </span>
   )

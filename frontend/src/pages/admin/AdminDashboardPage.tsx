@@ -23,7 +23,7 @@ function StatCard({
   return (
     <Link to={to} className="block bg-white rounded-2xl border border-black/[0.07] p-6 hover:shadow-md hover:border-[#0072BC]/20 transition-all group">
       <div className="flex items-start justify-between mb-4">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${accent}15` }}>
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center border" style={{ borderColor: `${accent}50` }}>
           <Icon className="w-5 h-5" style={{ color: accent }} />
         </div>
         <ArrowRight className="w-4 h-4 text-black/20 group-hover:text-[#0072BC] group-hover:translate-x-0.5 transition-all" />
@@ -40,9 +40,9 @@ function formatDate(iso: string) {
 }
 
 function statusColor(status: string) {
-  if (status === 'new') return 'bg-blue-50 text-blue-600'
-  if (status === 'replied') return 'bg-green-50 text-green-600'
-  return 'bg-gray-100 text-gray-400'
+  if (status === 'new') return 'border-blue-300 text-blue-600'
+  if (status === 'replied') return 'border-green-400 text-green-600'
+  return 'border-black/20 text-black/35'
 }
 
 export default function AdminDashboardPage() {
@@ -121,7 +121,7 @@ export default function AdminDashboardPage() {
 
           {/* Quick summary strip */}
           {stats.contacts.new > 0 && (
-            <div className="mt-4 bg-[#EBF5FF] border border-[#0072BC]/20 rounded-2xl px-5 py-3.5 flex items-center gap-3">
+            <div className="mt-4 border border-[#0072BC]/30 rounded-2xl px-5 py-3.5 flex items-center gap-3">
               <TrendingUp className="w-4 h-4 text-[#0072BC] shrink-0" />
               <p className="text-sm text-[#0072BC] font-medium">
                 You have <strong>{stats.contacts.new} new</strong> contact{stats.contacts.new !== 1 ? 's' : ''} waiting for a response.
@@ -160,7 +160,7 @@ export default function AdminDashboardPage() {
                         </td>
                         <td className="px-5 py-3.5 text-black/60 max-w-[200px] truncate">{c.subject}</td>
                         <td className="px-5 py-3.5">
-                          <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold capitalize ${statusColor(c.status)}`}>
+                          <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold capitalize border ${statusColor(c.status)}`}>
                             {c.status}
                           </span>
                         </td>
