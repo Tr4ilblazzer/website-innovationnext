@@ -80,10 +80,10 @@ export function Navbar() {
 
   // Derived tokens
   const logoSrc    = scrolled
-    ? '/next_logo_dark.png'
+    ? '/next_logo_lightbackgorund.png'
     : heroThemeActive
-      ? (isDark ? '/next_logo_light.png' : '/next_logo_dark.png')
-      : '/next_logo_light.png'
+      ? (isDark ? '/next_logo_darkbackground.png' : '/next_logo_lightbackgorund.png')
+      : '/next_logo_lightbackgorund.png'
 
   const menuTheme  = heroThemeActive && isDark ? 'dark' : 'light'
 
