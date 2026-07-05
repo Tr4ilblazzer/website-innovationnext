@@ -83,7 +83,7 @@ function PublicLayout() {
 // ── App ───────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_relativeSplatPath: true }}>
       <HeroThemeProvider>
         <Routes>
 
