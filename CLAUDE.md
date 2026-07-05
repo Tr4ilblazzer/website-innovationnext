@@ -134,7 +134,7 @@ Prisma schema at `backend/src/prisma/schema.prisma`. Models:
 - **Backend shape vs. frontend shape:** `api.ts` has a `toInsightPost()` function that normalises `BackendPost` → `InsightPost`. When the backend is live, only `api.ts` changes; pages stay untouched.
 
 ### HeroThemeContext
-`HeroThemeProvider` wraps the entire app. Hero sections call `setIsDark(true/false)` to signal whether they're dark-background — the Navbar uses `isDark` to switch between light and dark logo/link styles.
+`HeroThemeProvider` wraps the entire app. Hero sections call `setIsDark(true/false)` on mount to signal whether they're dark-background — the Navbar uses `isDark` to switch between light and dark logo/link styles. Currently only the legacy `components/sections/HeroSection.tsx` (no longer used by any route) calls `setIsDark` — no live page sets it, so `isDark` stays `false` and the Navbar always renders its light variant on Home until a hero wires this back up.
 
 ### Solution Pages
 Each of the 6 solution pages is in `frontend/src/pages/solutions/` and lazy-loaded in `App.tsx`. Layout: hero → features/capabilities → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each page uses `<SolutionPageTemplate>` — except `FintechSolutionPage` and `StaffAugSolutionPage` which are hand-written.
@@ -229,6 +229,8 @@ Custom Tailwind utility classes in `frontend/src/index.css`:
 Tailwind token aliases (from `tailwind.config.js`):
 - `bg-brand-dark` / `bg-brand-surface` / `bg-brand-card` — `#040404` / `#111111` / `#161616`
 
+`tailwind.config.js` also wires shadcn-convention semantic tokens (`background`, `foreground`, `primary`, `secondary`, `accent`, `muted`, `card`, `destructive`, `border`, `input`, `ring`) to the CSS custom properties already defined in `index.css`. Those vars are **space-separated RGB triplets** (e.g. `--background: 255 255 255`), not HSL — some (`--secondary`, `--accent`, `--muted`, `--border`, `--input`) already embed their own alpha (`0 0 0 / 0.06`) and are mapped as plain `rgb(var(--x))` rather than `rgb(var(--x) / <alpha-value>)`, so they won't respond to Tailwind opacity modifiers like `/50`. Use these tokens (`bg-background`, `text-muted-foreground`, etc.) when dropping in third-party/shadcn-registry components that expect them; hand-written components in this codebase use the `brand-*` tokens and raw hex instead.
+
 Path alias: `@/` maps to `frontend/src/` (configured in `vite.config.ts` and `tsconfig.json`).
 
 ### Third-party shader library
@@ -253,6 +255,6 @@ Path alias: `@/` maps to `frontend/src/` (configured in `vite.config.ts` and `ts
 
 ## Pages: Live vs. Stub
 
-**Fully built:** Home, Company, Contact, Careers, Insights (list + detail), all 6 Solution pages, all 5 Product pages (GrootNeo, GrootPay, PFM, Loyalty, MerchantAI), Admin panel (Login, Dashboard, Contacts, Insights/Blog, Vacancies, Applications)
+**Fully built:** Home (hero currently renders `FinancialHero` from `components/ui/hero-section.tsx` with placeholder Unsplash imagery/copy — swap `title`/`description`/`imageUrl1`/`imageUrl2` in `HomePage.tsx` for real content), Company, Contact, Careers, Insights (list + detail), all 6 Solution pages, all 5 Product pages (GrootNeo, GrootPay, PFM, Loyalty, MerchantAI), Admin panel (Login, Dashboard, Contacts, Insights/Blog, Vacancies, Applications)
 
 **ComingSoon stubs:** Products index (`/products`), Industries detail pages, Use Cases, `/insights/case-studies`, Privacy, Terms, Cookies

@@ -17,6 +17,35 @@ export default {
           neutral2: '#393939',
           neutral3: '#B1B1B1',
         },
+        background: 'rgb(var(--background) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        primary: {
+          DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
+          foreground: 'rgb(var(--primary-foreground) / <alpha-value>)',
+        },
+        secondary: {
+          DEFAULT: 'rgb(var(--secondary))',
+          foreground: 'rgb(var(--secondary-foreground) / <alpha-value>)',
+        },
+        accent: {
+          DEFAULT: 'rgb(var(--accent))',
+          foreground: 'rgb(var(--accent-foreground) / <alpha-value>)',
+        },
+        muted: {
+          DEFAULT: 'rgb(var(--muted))',
+          foreground: 'rgb(var(--muted-foreground))',
+        },
+        card: {
+          DEFAULT: 'rgb(var(--card) / <alpha-value>)',
+          foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
+        },
+        destructive: {
+          DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
+          foreground: 'rgb(var(--destructive-foreground) / <alpha-value>)',
+        },
+        border: 'rgb(var(--border))',
+        input: 'rgb(var(--input))',
+        ring: 'rgb(var(--ring) / <alpha-value>)',
       },
       fontFamily: {
         display: ['"Bricolage Grotesque"', '"General Sans"', 'system-ui', 'sans-serif'],
