@@ -4,50 +4,58 @@ const domains = [
   {
     label: 'Digital Financial Services',
     short: 'Fintech',
-    href: '/solutions/fintech',
-    desc: 'Neo-banking, digital wallets, payment switches, settlement engines, and cross-border remittance — built by founders of eSewa and Fonepay.',
-    accent: '#0072BC',
+    href: '/industries/digital-financial-services',
+    desc: 'Digital wallets, neo-banking platforms, QR and real-time payments, and cross-border remittance — live in Nepal and Malaysia.',
+    accent: '#0040C1',
     image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=600&fit=crop&auto=format',
   },
   {
     label: 'E-Governance & Digital Government',
     short: 'E-Gov',
-    href: '/solutions/egovernance',
-    desc: 'Citizen super-apps, immigration systems, traffic management, smart-city IoT, and government e-payment — live in production.',
-    accent: '#10b981',
+    href: '/industries/e-governance',
+    desc: 'Citizen super-apps, governance monitoring, smart infrastructure, and digital revenue collection — seven live national deployments, now deploying in Sri Lanka.',
+    accent: '#0040C1',
     image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&h=600&fit=crop&auto=format',
   },
   {
     label: 'AI & Machine Learning',
     short: 'AI / ML',
     href: '/solutions/ai-ml',
-    desc: 'Signature verification, fraud detection, merchant AI, predictive analytics, and custom model development trained on real production data.',
-    accent: '#8b5cf6',
+    desc: 'Signature verification, fraud detection, document intelligence, and analytics — AI models in production, not in the lab.',
+    accent: '#0040C1',
     image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=900&h=600&fit=crop&auto=format',
+  },
+  {
+    label: 'Digital Transformation Consulting',
+    short: 'Advise',
+    href: '/solutions/consulting',
+    desc: 'Business requirements, system specifications, tender documents, and process redesign — written by the team that builds and runs national systems.',
+    accent: '#0040C1',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&h=600&fit=crop&auto=format',
+  },
+  {
+    label: 'Bespoke Software Development',
+    short: 'Build',
+    href: '/solutions/bespoke-software',
+    desc: 'Mobile, web, and backend platforms, security engineering, and legacy modernisation — built to the standard of live national systems.',
+    accent: '#0040C1',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&h=600&fit=crop&auto=format',
   },
   {
     label: 'BI & Data Solutions',
     short: 'BI & Data',
     href: '/solutions/bi-data',
-    desc: 'Business intelligence dashboards, data warehousing, big-data pipelines, master data management, and real-time analytics infrastructure.',
-    accent: '#f59e0b',
+    desc: 'Power BI dashboards, data warehousing, data pipelines, and master data management — 50+ dashboards deployed, including live capital-market reporting.',
+    accent: '#0040C1',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=600&fit=crop&auto=format',
   },
   {
-    label: 'IT Services',
-    short: 'IT',
-    href: '/solutions/it-services',
-    desc: 'End-to-end software development, mobile and web apps, infrastructure management, security audits, and legacy modernisation.',
-    accent: '#ef4444',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&h=600&fit=crop&auto=format',
-  },
-  {
-    label: 'Staff Augmentation',
-    short: 'Talent',
-    href: '/solutions/staff-augmentation',
-    desc: "Nepal's top-tier tech talent — pre-screened, onboarded in 2–4 weeks. Flexible monthly, dedicated team, or project-based contracts.",
-    accent: '#ec4899',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&h=600&fit=crop&auto=format',
+    label: 'Managed Services',
+    short: 'Run',
+    href: '/solutions/managed-services',
+    desc: 'SLA-governed application and infrastructure management, plus dedicated engineering teams from Kathmandu.',
+    accent: '#0040C1',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&h=600&fit=crop&auto=format',
   },
 ]
 
@@ -63,8 +71,8 @@ export function DomainsSection() {
             Across Every Layer
           </h2>
           <p className="text-[#0A0A0A]/50 text-base leading-relaxed max-w-sm lg:text-right">
-            From the payment layer to the citizen portal — we cover the full
-            technology stack that governments and financial institutions depend on.
+            From the first requirement to live operation — we advise, build, and run the
+            digital platforms that financial institutions and governments depend on.
           </p>
         </div>
 

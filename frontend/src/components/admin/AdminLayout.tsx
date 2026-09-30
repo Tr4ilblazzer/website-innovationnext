@@ -51,7 +51,7 @@ export function AdminLayout() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                   isActive
-                    ? 'bg-[#EBF5FF] text-[#0072BC]'
+                    ? 'bg-[#EBF5FF] text-[#0040C1]'
                     : 'text-black/50 hover:bg-black/[0.04] hover:text-black/80'
                 }`
               }
@@ -65,7 +65,7 @@ export function AdminLayout() {
         {/* User */}
         <div className="px-4 py-4 border-t border-black/[0.07]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-[#EBF5FF] flex items-center justify-center text-[#0072BC] text-xs font-bold shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[#EBF5FF] flex items-center justify-center text-[#0040C1] text-xs font-bold shrink-0">
               {admin?.name?.[0]?.toUpperCase() ?? 'A'}
             </div>
             <div className="min-w-0">

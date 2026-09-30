@@ -1,32 +1,34 @@
 import { ProductPageTemplate } from '@/components/sections/ProductPageTemplate'
 
 const stats = [
-  { value: '13M+', label: 'Users on the underlying platform' },
-  { value: 'Months', label: 'Time to live — not years' },
+  { value: '13M+', label: 'Users on platforms we built' },
+  { value: '3.5M+', label: 'Daily transactions' },
+  { value: '10', label: 'Pre-integrated modules' },
   { value: '1', label: 'Vendor for every layer' },
-  { value: 'Central bank', label: 'Compliance built-in' },
 ]
 
 const features = [
-  { title: 'Consumer Banking App', desc: 'Fully branded iOS and Android app — accounts, transfers, cards, statements, KYC, and onboarding. Config-driven, not custom-built.' },
-  { title: 'Core Banking Engine', desc: 'Transaction processing, account management, interest calculation, product configuration, and ledger — built for high-throughput digital banks.' },
-  { title: 'Payment Rails Integration', desc: 'Pre-integrated connectors for local payment schemes, interbank transfers, SWIFT, and card networks — no cross-vendor integration effort.' },
-  { title: 'KYC & Onboarding', desc: 'eKYC, biometric verification, document scanning, and liveness detection — regulatory-grade onboarding in under 5 minutes.' },
-  { title: 'Settlement & Reconciliation', desc: 'Real-time and batch settlement, dispute management, multi-bank reconciliation, and automated reporting — all in one module.' },
-  { title: 'Compliance & AML', desc: 'Transaction monitoring, AML screening, regulatory reporting, and audit trails — built to central bank specification.' },
+  { title: 'Core Mobile Banking', desc: 'Native iOS and Android apps — account management, statements, and alerts.' },
+  { title: 'Digital Wallet — Groot Pay', desc: 'A fully embedded wallet: P2P, merchant payments, and bill pay. Partners can list their own services as mini-apps through the SDK.' },
+  { title: 'AI Intelligence Layer', desc: 'Fraud AI, PFM, campaign intelligence, and an AI digital assistant built into the banking app.' },
+  { title: 'Customer Engagement Platform', desc: 'A customer data platform with omnichannel communication and campaign automation.' },
+  { title: 'Payment Infrastructure', desc: 'QR (EMVCo), NFC, RTGS integration, and a payment gateway.' },
+  { title: 'Settlement & Reconciliation', desc: 'A multi-rail, multi-currency settlement engine with automated reconciliation.' },
+  { title: 'Merchant, Agent & KYC Onboarding', desc: 'Automated KYC and KYB flows — liveness, document OCR, biometric identity, and Video KYC — powered by the Onboarding Platform.' },
+  { title: 'Digital Lending & Virtual Accounts', desc: 'Embedded credit decisioning and loan origination, plus an account-as-a-service layer.' },
 ]
 
 const capabilities = [
-  'Microservices architecture — modular activation',
-  'API-first — REST and webhooks throughout',
-  'Cloud-native — AWS, Azure, GCP ready',
-  'ISO 27001 security baseline',
-  'PCI DSS compliant infrastructure',
-  'Multi-tenancy SaaS or dedicated deployment',
-  'React Native consumer app (iOS + Android)',
-  'Real-time event streaming (Kafka)',
-  'PostgreSQL + Redis data layer',
+  'Pre-integrated modules — no systems integration project',
+  'Single-vendor accountability',
+  'Built for variable connectivity and agent networks',
+  'KYC, AML, and reporting built in',
+  'Native iOS and Android apps',
+  'REST APIs throughout',
+  'Cloud or on-premise deployment',
   'White-label — fully brandable',
+  'Standalone modules or the full bundle',
+  'AI fraud, PFM, and campaign intelligence',
 ]
 
 const relatedProducts = [
@@ -41,15 +43,15 @@ export default function GrootNeoPage() {
       tag="Neo-Banking Platform"
       headline="From contract to"
       headlineAccent="live digital bank."
-      quote="Full-stack neo-banking infrastructure — built from 13M+ user production experience."
-      description="Groot Neo is a white-label neo-banking platform where every module — consumer app, core banking, payment rails, KYC, settlement, and compliance — is pre-built and pre-integrated. Banks go live in months, not years. One vendor, one contract, every layer."
+      quote="A complete digital bank in one pre-integrated product."
+      description="Groot Neo bundles every component needed to launch a fully featured digital bank into one pre-integrated product — removing the integration cost, vendor risk, and time of assembling a stack from point solutions. For banks, digital banks, and fintechs launching or modernising digital channels."
       mockup="/groot-neo-mockup.png"
       mockupAlt="Groot Neo"
       mockupHeight="h-[620px]"
       stats={stats}
-      featuresSubheadline="Every module has been built and operated in live banking environments — not assembled from third-party components."
+      featuresSubheadline="Every module is part of one product, so it works out of the box."
       features={features}
-      capabilitiesSubtext="Every capability listed has been delivered in real, regulated banking environments — not prototyped."
+      capabilitiesSubtext="Live in multiple markets — for greenfield digital banks, commercial banks, telecoms launching mobile money, and microfinance institutions."
       capabilities={capabilities}
       relatedProducts={relatedProducts}
       ctaHeadline="Ready to deploy Groot Neo?"

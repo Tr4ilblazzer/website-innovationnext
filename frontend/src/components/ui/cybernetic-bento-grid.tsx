@@ -17,7 +17,7 @@ interface BentoItemProps {
   accent?: string
 }
 
-function BentoItem({ className = '', children, accent = '#0072BC' }: BentoItemProps) {
+function BentoItem({ className = '', children, accent = '#0040C1' }: BentoItemProps) {
   const itemRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -48,7 +48,25 @@ interface CyberneticBentoGridProps {
 }
 
 export function CyberneticBentoGrid({ domains }: CyberneticBentoGridProps) {
-  const [fintech, egov, ai, it, bi, staff] = domains
+  // Order matters for grid auto-placement (4 cols × 3 rows):
+  // fintech (2×2) · e-gov (1×1) · ai (1×2) · consulting (1×1) · bespoke (2×1) · bi (1×1) · managed (1×1)
+  const [fintech, egov, ai, consulting, bespoke, bi, managed] = domains
+
+  const small = (d: Domain) => (
+    <BentoItem className="relative" accent={d.accent}>
+      <img src={d.image} alt={d.label} className="absolute inset-0 w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
+      <div className="relative z-10 h-full flex flex-col justify-between p-5">
+        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40">{d.short}</span>
+        <div>
+          <h3 className="text-base font-bold text-white leading-snug mb-3">{d.label}</h3>
+          <Link to={d.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
+            Explore <ArrowRight size={11} />
+          </Link>
+        </div>
+      </div>
+    </BentoItem>
+  )
 
   return (
     <div className="bento-grid">
@@ -69,20 +87,7 @@ export function CyberneticBentoGrid({ domains }: CyberneticBentoGridProps) {
         </div>
       </BentoItem>
 
-      {/* E-Gov */}
-      <BentoItem className="relative" accent={egov.accent}>
-        <img src={egov.image} alt={egov.label} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
-        <div className="relative z-10 h-full flex flex-col justify-between p-5">
-          <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40">{egov.short}</span>
-          <div>
-            <h3 className="text-base font-bold text-white leading-snug mb-3">{egov.label}</h3>
-            <Link to={egov.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
-              Explore <ArrowRight size={11} />
-            </Link>
-          </div>
-        </div>
-      </BentoItem>
+      {small(egov)}
 
       {/* AI/ML — tall */}
       <BentoItem className="row-span-2 relative" accent={ai.accent}>
@@ -100,51 +105,25 @@ export function CyberneticBentoGrid({ domains }: CyberneticBentoGridProps) {
         </div>
       </BentoItem>
 
-      {/* IT Services — tall */}
-      <BentoItem className="row-span-2 relative" accent={it.accent}>
-        <img src={it.image} alt={it.label} className="absolute inset-0 w-full h-full object-cover" />
+      {small(consulting)}
+
+      {/* Bespoke Software — wide */}
+      <BentoItem className="col-span-2 relative" accent={bespoke.accent}>
+        <img src={bespoke.image} alt={bespoke.label} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
         <div className="relative z-10 h-full flex flex-col justify-between p-5">
-          <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40">{it.short}</span>
+          <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40">{bespoke.short}</span>
           <div>
-            <h3 className="text-base font-bold text-white leading-snug mb-2">{it.label}</h3>
-            <p className="text-white/55 text-xs leading-relaxed mb-3">{it.desc}</p>
-            <Link to={it.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
+            <h3 className="text-base font-bold text-white leading-snug mb-3">{bespoke.label}</h3>
+            <Link to={bespoke.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
               Explore <ArrowRight size={11} />
             </Link>
           </div>
         </div>
       </BentoItem>
 
-      {/* BI & Data — wide */}
-      <BentoItem className="col-span-2 relative" accent={bi.accent}>
-        <img src={bi.image} alt={bi.label} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
-        <div className="relative z-10 h-full flex flex-col justify-between p-5">
-          <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40">{bi.short}</span>
-          <div>
-            <h3 className="text-base font-bold text-white leading-snug mb-3">{bi.label}</h3>
-            <Link to={bi.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
-              Explore <ArrowRight size={11} />
-            </Link>
-          </div>
-        </div>
-      </BentoItem>
-
-      {/* Staff Augmentation */}
-      <BentoItem className="relative" accent={staff.accent}>
-        <img src={staff.image} alt={staff.label} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
-        <div className="relative z-10 h-full flex flex-col justify-between p-5">
-          <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40">{staff.short}</span>
-          <div>
-            <h3 className="text-base font-bold text-white leading-snug mb-3">{staff.label}</h3>
-            <Link to={staff.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
-              Explore <ArrowRight size={11} />
-            </Link>
-          </div>
-        </div>
-      </BentoItem>
+      {small(bi)}
+      {small(managed)}
 
     </div>
   )

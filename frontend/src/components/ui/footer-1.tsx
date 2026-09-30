@@ -56,7 +56,7 @@ export const Footer: FC<FooterProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-[#0A0A0A]/40 hover:text-[#0072BC] hover:border-[#0072BC] transition-colors"
+                  className="w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-[#0A0A0A]/40 hover:text-[#0040C1] hover:border-[#0040C1] transition-colors"
                 >
                   <Icon size={15} />
                 </a>
@@ -79,7 +79,7 @@ export const Footer: FC<FooterProps> = ({
                   >
                     {label}
                     {badge && (
-                      <span className="bg-[#0072BC]/10 text-[#0072BC] text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                      <span className="bg-[#0040C1]/10 text-[#0040C1] text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
                         {badge}
                       </span>
                     )}

@@ -1,26 +1,38 @@
-const clients = [
+export const trustedClients: { name: string; logo: string; height?: string }[] = [
   { name: 'Global IME Bank',    logo: '/logos/global-ime-bank.png' },
   { name: 'Groot Intel',        logo: '/logos/groot-intel.png' },
-  { name: 'Four Symmetrons',    logo: '/logos/four-symmetrons.png' },
-  { name: 'Ambition Guru',      logo: '/logos/ambition-guru.png' },
-  { name: 'YAJ Tech',           logo: '/logos/yaj-tech.png' },
-  { name: 'Sociair',            logo: '/logos/sociair.png' },
+  { name: 'NMB Bank',           logo: '/logos/nmb-bank.png',   height: 'h-10' },
+  { name: 'n-able',             logo: '/logos/n-able.png' },
+  { name: 'RisingPoint',        logo: '/logos/risingpoint.png', height: 'h-12' },
+  { name: 'Sunlife',            logo: '/logos/sunlife.png',    height: 'h-12' },
 ]
 
 // Duplicate enough times for a seamless infinite scroll
 const repeat = <T,>(arr: T[], times = 6) =>
   Array.from({ length: times }).flatMap(() => arr)
 
-const row1 = repeat(clients)
+const row1 = repeat(trustedClients)
 
-function LogoChip({ name, logo }: { name: string; logo: string }) {
+function LogoChip({ name, logo, height = 'h-8' }: { name: string; logo: string; height?: string }) {
   return (
     <div className="flex-shrink-0 flex items-center justify-center px-8">
       <img
         src={logo}
         alt={name}
-        className="h-8 w-auto object-contain"
+        className={`${height} w-auto object-contain`}
       />
+    </div>
+  )
+}
+
+export function LogoMarquee() {
+  return (
+    <div className="relative overflow-hidden bg-white py-10">
+      <div className="flex animate-marquee w-max items-center">
+        {row1.map((c, i) => <LogoChip key={i} name={c.name} logo={c.logo} height={c.height} />)}
+      </div>
+      <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
+      <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
     </div>
   )
 }
@@ -41,7 +53,7 @@ export function TrustedBySection() {
       {/* Logos — scrolls left */}
       <div className="relative">
         <div className="flex gap-4 animate-marquee w-max">
-          {row1.map((c, i) => <LogoChip key={i} name={c.name} logo={c.logo} />)}
+          {row1.map((c, i) => <LogoChip key={i} name={c.name} logo={c.logo} height={c.height} />)}
         </div>
         <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
         <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />

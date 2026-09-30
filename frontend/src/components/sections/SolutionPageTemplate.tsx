@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { InsightsSection } from '@/components/sections/InsightsSection'
@@ -17,7 +17,7 @@ interface SolutionPageTemplateProps {
   accentColor?: string
   heroImage: string
   heroImageAlt: string
-  stats: Stat[]
+  stats?: Stat[]
   featuresSubheadline: string
   features: Feature[]
   capabilitiesSubtext: string
@@ -28,7 +28,7 @@ interface SolutionPageTemplateProps {
 
 export function SolutionPageTemplate({
   tag, headline, headlineAccent, quote, description,
-  accentColor = '#0072BC',
+  accentColor = '#0040C1',
   heroImage, heroImageAlt,
   stats, featuresSubheadline, features,
   capabilitiesSubtext, capabilities,
@@ -69,14 +69,16 @@ export function SolutionPageTemplate({
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06]">
-            {stats.map(s => (
-              <div key={s.label}>
-                <div className="text-3xl font-black mb-1" style={{ color: ACCENT }}>{s.value}</div>
-                <div className="text-sm text-[#0A0A0A]/45 uppercase tracking-wide">{s.label}</div>
-              </div>
-            ))}
-          </div>
+          {stats && stats.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06] text-center">
+              {stats.map(s => (
+                <div key={s.label}>
+                  <div className="text-3xl md:text-4xl font-medium mb-1" style={{ color: ACCENT }}>{s.value}</div>
+                  <div className="text-sm text-[#575757]">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -109,7 +111,7 @@ export function SolutionPageTemplate({
             <div className="text-center mb-6">
               <h2 className="section-heading text-[#0A0A0A] mb-4">
                 Built with the{' '}
-                <span style={{ color: '#0072BC' }}>right tools.</span>
+                <span style={{ color: '#0040C1' }}>right tools.</span>
               </h2>
               <p className="text-[#0A0A0A]/50 max-w-xl mx-auto">
                 36 technologies across frontend, backend, data, and cloud — chosen for production reliability, not resume padding.
@@ -124,24 +126,34 @@ export function SolutionPageTemplate({
       <InsightsSection category={insightsCategory} />
 
       {/* ── Capabilities + CTA ── */}
+      <section className="bg-[#FAFAFA] py-24">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-14">
+          <div className="max-w-3xl text-center">
+            <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Capabilities</p>
+            <h2 className="text-3xl md:text-[38px] md:leading-[46px] font-medium text-[#0A0A0A] mb-4">
+              Built for <span style={{ color: ACCENT }}>production.</span>
+            </h2>
+            <p className="text-base leading-6 text-[#575757]">
+              {capabilitiesSubtext}
+            </p>
+          </div>
+          <div className="w-full flex flex-wrap justify-center gap-x-10 gap-y-5">
+            {capabilities.map(c => (
+              <div key={c} className="flex items-center gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style={{ background: ACCENT }}>
+                  <Check size={14} className="text-white" />
+                </span>
+                <span className="text-base text-[#0A0A0A]">{c}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-            <div>
-              <h2 className="section-heading text-[#0A0A0A] mb-4">Built for production.</h2>
-              <p className="text-[#0A0A0A]/50 text-lg leading-relaxed">{capabilitiesSubtext}</p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {capabilities.map(c => (
-                <div key={c} className="flex items-center gap-2.5">
-                  <CheckCircle size={14} style={{ color: ACCENT }} className="flex-shrink-0" />
-                  <span className="text-sm text-[#0A0A0A]/60">{c}</span>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: ACCENT }}>
+          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: '#0040C1' }}>
             <AnimatedBackground />
             <div className="relative z-10">
               <h2 className="section-heading text-white mb-3">Ready to get started?</h2>

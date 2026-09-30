@@ -27,13 +27,14 @@ const GrootNeoPage        = lazy(() => import('@/pages/products/GrootNeoPage'))
 const GrootPayPage        = lazy(() => import('@/pages/products/GrootPayPage'))
 const PfmPage             = lazy(() => import('@/pages/products/PfmPage'))
 const LoyaltyPage         = lazy(() => import('@/pages/products/LoyaltyPage'))
-const MerchantAiPage      = lazy(() => import('@/pages/products/MerchantAiPage'))
+const OnboardingPage      = lazy(() => import('@/pages/products/OnboardingPage'))
 const FintechSolutionPage = lazy(() => import('@/pages/solutions/FintechSolutionPage'))
 const EGovSolutionPage    = lazy(() => import('@/pages/solutions/EGovSolutionPage'))
 const AiMlSolutionPage    = lazy(() => import('@/pages/solutions/AiMlSolutionPage'))
 const BiDataSolutionPage  = lazy(() => import('@/pages/solutions/BiDataSolutionPage'))
-const ItServicesSolutionPage  = lazy(() => import('@/pages/solutions/ItServicesSolutionPage'))
-const StaffAugSolutionPage    = lazy(() => import('@/pages/solutions/StaffAugSolutionPage'))
+const ConsultingSolutionPage      = lazy(() => import('@/pages/solutions/ConsultingSolutionPage'))
+const BespokeSoftwareSolutionPage = lazy(() => import('@/pages/solutions/BespokeSoftwareSolutionPage'))
+const ManagedServicesSolutionPage = lazy(() => import('@/pages/solutions/ManagedServicesSolutionPage'))
 
 // ── Page skeleton shown while lazy chunks load ───────────────────────────────
 function PageSkeleton() {
@@ -109,13 +110,16 @@ export default function App() {
             <Route path="/"                             element={<HomePage />} />
 
             {/* Solutions */}
-            <Route path="/solutions"                    element={<Navigate to="/solutions/fintech" replace />} />
-            <Route path="/solutions/fintech"            element={<FintechSolutionPage />} />
-            <Route path="/solutions/egovernance"        element={<EGovSolutionPage />} />
+            <Route path="/solutions"                    element={<Navigate to="/solutions/ai-ml" replace />} />
+            <Route path="/solutions/fintech"            element={<Navigate to="/industries/digital-financial-services" replace />} />
+            <Route path="/solutions/egovernance"        element={<Navigate to="/industries/e-governance" replace />} />
             <Route path="/solutions/ai-ml"              element={<AiMlSolutionPage />} />
             <Route path="/solutions/bi-data"            element={<BiDataSolutionPage />} />
-            <Route path="/solutions/it-services"        element={<ItServicesSolutionPage />} />
-            <Route path="/solutions/staff-augmentation" element={<StaffAugSolutionPage />} />
+            <Route path="/solutions/consulting"         element={<ConsultingSolutionPage />} />
+            <Route path="/solutions/bespoke-software"   element={<BespokeSoftwareSolutionPage />} />
+            <Route path="/solutions/managed-services"   element={<ManagedServicesSolutionPage />} />
+            <Route path="/solutions/it-services"        element={<Navigate to="/solutions/bespoke-software" replace />} />
+            <Route path="/solutions/staff-augmentation" element={<Navigate to="/solutions/managed-services" replace />} />
 
             {/* Products */}
             <Route path="/products"                     element={<ComingSoon title="Our Products" />} />
@@ -123,11 +127,14 @@ export default function App() {
             <Route path="/products/groot-pay"           element={<GrootPayPage />} />
             <Route path="/products/pfm"                 element={<PfmPage />} />
             <Route path="/products/loyalty"             element={<LoyaltyPage />} />
-            <Route path="/products/merchant-ai"         element={<MerchantAiPage />} />
+            <Route path="/products/onboarding"          element={<OnboardingPage />} />
+            <Route path="/products/merchant-ai"         element={<Navigate to="/products/onboarding" replace />} />
             <Route path="/products/:slug"               element={<ComingSoon title="Product Detail" />} />
 
             {/* Industries & Use Cases */}
             <Route path="/industries"                   element={<IndustriesPage />} />
+            <Route path="/industries/digital-financial-services" element={<FintechSolutionPage />} />
+            <Route path="/industries/e-governance"      element={<EGovSolutionPage />} />
             <Route path="/industries/:slug"             element={<ComingSoon title="Industry Page" />} />
             <Route path="/use-cases"                    element={<ComingSoon title="Use Cases" />} />
             <Route path="/use-cases/:slug"              element={<ComingSoon title="Use Case" />} />

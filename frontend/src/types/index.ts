@@ -87,8 +87,8 @@ export type BlogCategory =
   | 'E-Governance'
   | 'AI & ML'
   | 'BI & Data'
-  | 'IT Services'
-  | 'Staff Augmentation'
+  | 'Software Engineering'
+  | 'Managed Services'
   | 'Company News'
   | 'Industry Insights'
 
@@ -124,8 +124,9 @@ export type SolutionDomain =
   | 'E-Governance'
   | 'AI & Machine Learning'
   | 'BI & Data Solutions'
-  | 'IT Services'
-  | 'Staff Augmentation'
+  | 'Digital Transformation Consulting'
+  | 'Bespoke Software Development'
+  | 'Managed Services'
 
 export type Industry =
   | 'Banking'

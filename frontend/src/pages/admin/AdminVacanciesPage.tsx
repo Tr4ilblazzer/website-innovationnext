@@ -62,7 +62,7 @@ export default function AdminVacanciesPage() {
         action={
           <button
             onClick={() => navigate('/admin/vacancies/new')}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0072BC] text-white text-sm font-semibold rounded-xl hover:bg-[#005a96] transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0040C1] text-white text-sm font-semibold rounded-xl hover:bg-[#0034A0] transition-colors"
           >
             <Plus className="w-4 h-4" />
             New vacancy
@@ -77,7 +77,7 @@ export default function AdminVacanciesPage() {
             key={f}
             onClick={() => setFilter(f)}
             className={`px-4 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors ${
-              filter === f ? 'bg-white text-[#0072BC] shadow-sm' : 'text-black/40 hover:text-black/60'
+              filter === f ? 'bg-white text-[#0040C1] shadow-sm' : 'text-black/40 hover:text-black/60'
             }`}
           >
             {f}
@@ -98,7 +98,7 @@ export default function AdminVacanciesPage() {
             <p className="text-black/25 text-sm mb-4">No vacancies yet</p>
             <button
               onClick={() => navigate('/admin/vacancies/new')}
-              className="text-xs font-semibold text-[#0072BC] hover:underline"
+              className="text-xs font-semibold text-[#0040C1] hover:underline"
             >
               Post your first vacancy →
             </button>
@@ -134,7 +134,7 @@ export default function AdminVacanciesPage() {
                   <td className="px-5 py-4">
                     <button
                       onClick={() => navigate(`/admin/vacancies/${v.id}/applications`)}
-                      className="flex items-center gap-1 text-xs font-semibold text-black/40 hover:text-[#0072BC] transition-colors"
+                      className="flex items-center gap-1 text-xs font-semibold text-black/40 hover:text-[#0040C1] transition-colors"
                     >
                       <Users className="w-3 h-3" />
                       {v._count?.applications ?? 0}
@@ -155,7 +155,7 @@ export default function AdminVacanciesPage() {
                       </button>
                       <button
                         onClick={() => navigate(`/admin/vacancies/${v.id}`)}
-                        className="p-1.5 rounded-lg text-black/30 hover:text-[#0072BC] hover:bg-[#EBF5FF] transition-colors"
+                        className="p-1.5 rounded-lg text-black/30 hover:text-[#0040C1] hover:bg-[#EBF5FF] transition-colors"
                         title="Edit"
                       >
                         <Pencil className="w-3.5 h-3.5" />

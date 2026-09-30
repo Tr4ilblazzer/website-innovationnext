@@ -6,8 +6,8 @@ export default {
     extend: {
       colors: {
         brand: {
-          blue: '#0072BC',
-          'blue-hover': '#005A96',
+          blue: '#0040C1',
+          'blue-hover': '#0034A0',
           cyan: '#0DFFFF',
           dark: '#FFFFFF',
           surface: '#F5F5F5',
@@ -48,12 +48,12 @@ export default {
         ring: 'rgb(var(--ring) / <alpha-value>)',
       },
       fontFamily: {
-        display: ['"Bricolage Grotesque"', '"General Sans"', 'system-ui', 'sans-serif'],
-        sans: ['"Public Sans"', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],
+        sans: ['Poppins', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'brand-gradient': 'linear-gradient(135deg, #0072BC, #0DFFFF)',
-        'brand-gradient-subtle': 'linear-gradient(135deg, rgba(0,114,188,0.15), rgba(13,255,255,0.05))',
+        'brand-gradient': 'linear-gradient(135deg, #0040C1, #0DFFFF)',
+        'brand-gradient-subtle': 'linear-gradient(135deg, rgba(0,64,193,0.15), rgba(13,255,255,0.05))',
         'grid-pattern': `linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
                          linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)`,
       },
@@ -82,8 +82,8 @@ export default {
         },
       },
       boxShadow: {
-        'brand': '0 0 40px rgba(0,114,188,0.2)',
-        'brand-lg': '0 0 80px rgba(0,114,188,0.3)',
+        'brand': '0 0 40px rgba(0,64,193,0.2)',
+        'brand-lg': '0 0 80px rgba(0,64,193,0.3)',
         'card': '0 4px 24px rgba(0,0,0,0.4)',
         'glass': 'inset 0 1px 0 rgba(255,255,255,0.05)',
       },

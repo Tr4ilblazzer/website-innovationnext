@@ -1,45 +1,44 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { InsightsSection } from '@/components/sections/InsightsSection'
 import { Smartphone, Package, CreditCard, BarChart3, Brain, Shield, Cloud } from 'lucide-react'
 import RadialOrbitalTimeline from '@/components/ui/radial-orbital-timeline'
 
-const ACCENT = '#0072BC'
+const ACCENT = '#0040C1'
 
 const stats = [
-  { value: '13M+', label: 'End users on our platforms' },
-  { value: '$275M+', label: 'Monthly transactions processed' },
-  { value: '52+', label: 'Banks on Fonepay network' },
-  { value: '95%', label: "Nepal's banks connected" },
+  { value: '13M+', label: 'Users on platforms we built' },
+  { value: '3.5M+', label: 'Daily transactions' },
+  { value: '20+', label: 'Remittance corridors' },
+  { value: 'Live', label: 'Nepal and Malaysia' },
 ]
 
 const features = [
-  { title: 'Neo-Banking Platform', desc: 'Full-stack digital bank — consumer app to settlement engine. From contract to live digital bank in months, not years.' },
-  { title: 'Digital Wallet Infrastructure', desc: 'White-label wallet with QR payments, P2P transfers, bill pay, merchant integration, and omnichannel engagement.' },
-  { title: 'Payment Switch & Settlement', desc: 'Interoperable QR, interbank, NFC, and card rails — PCI DSS certified architecture equivalent to DuitNow/PayNet.' },
-  { title: 'Cross-Border Remittance', desc: 'End-to-end remittance platform with 20+ corridor integrations — Remitly, WorldRemit, HomeSend, Western Union.' },
-  { title: 'Personal Finance Manager', desc: 'AI-powered PFM with spend analytics, budget tracking, financial health scoring, and personalised recommendations.' },
-  { title: 'Loyalty Engine', desc: 'Points, cashback, and rewards with real-time issuance, partner merchant network, and AI-driven offer targeting.' },
-  { title: 'Merchant AI', desc: 'AI-powered onboarding, risk scoring, and document verification — reducing merchant onboarding from weeks to hours.' },
-  { title: 'Compliance & Regulatory', desc: 'Built-in AML, KYC/eKYC, transaction monitoring, and reporting designed for central bank regulatory environments.' },
-  { title: 'Settlement Engine', desc: 'Real-time and batch settlement across multi-bank, multi-scheme environments — reconciliation, dispute management, reporting.' },
+  { title: 'Neo-Banking — Groot Neo', desc: 'A pre-integrated digital banking stack — mobile banking, wallet, AI layer, engagement, payments, settlement, onboarding, lending, and virtual accounts — under one vendor.' },
+  { title: 'Digital Wallets — Groot Pay', desc: 'P2P transfers, QR and NFC merchant payments, bill pay, top-up, cardless ATM, agent banking, and a Mini-App SDK so partners list services in the wallet.' },
+  { title: 'Personal Finance — PFM', desc: 'ML-based categorisation, budgets with breach alerts, savings goals, subscription detection, and 7–30 day cash-flow forecasts in plain language.' },
+  { title: 'Loyalty & Rewards', desc: 'Configurable points, tiers, campaigns, and redemption through an open partner API — rules changed from an admin console, not code.' },
+  { title: 'AI Onboarding — KYC / KYB', desc: 'Document intelligence, liveness, business verification, risk scoring, and Video KYC — live for merchant onboarding at Boost (Axiata), Malaysia.' },
+  { title: 'Payment Infrastructure', desc: 'Implementation and integration for DuitNow QR and PayNet RPP — scheme certification, switch integration, merchant onboarding at scale, and dispute and reconciliation frameworks.' },
+  { title: 'Settlement Engine', desc: 'Multi-bank, multi-currency, multi-rail settlement — gross, net, and deferred net — with automated reconciliation and regulatory-grade reporting.' },
+  { title: 'Cross-Border Remittance', desc: 'A remittance gateway integrating 20+ remittance companies, with wallet credit, bank credit, and agent cash-out, and AML/CFT monitoring.' },
 ]
 
 const capabilities = [
-  'NRB / Central bank compliance',
-  'PCI DSS certified infrastructure',
-  'Real-time settlement engine',
+  'Real-time and batch settlement',
   'Multi-bank reconciliation',
-  'eKYC / biometric onboarding',
-  'AML / transaction monitoring',
-  'National QR scheme certification',
-  'Cross-border FX engine',
-  'Merchant risk AI scoring',
-  'Microservices / API-first architecture',
-  'ISO 27001 security framework',
-  'Multi-tenancy SaaS delivery',
+  'eKYC and document OCR with liveness',
+  'AML / CFT transaction monitoring',
+  'DuitNow QR and PayNet RPP',
+  'Real-time FX integration',
+  'Fraud & risk AI — sub-second decisions',
+  'Multi-currency: USD, AED, MYR, NPR and more',
+  'Mini-App Framework and SDK',
+  'REST APIs (OpenAPI 3.0)',
+  'Cloud or on-premise deployment',
+  'PCI DSS-aligned security',
 ]
 
 const PLATFORM_LAYERS = [
@@ -47,7 +46,7 @@ const PLATFORM_LAYERS = [
     id: 1,
     title: 'Consumer & Merchant Apps',
     date: 'Layer 1',
-    content: 'Groot Neo, Groot Pay, Merchant App, Agent App, USSD Channel, Web Portal — delivered across iOS & Android.',
+    content: 'Groot Neo, Groot Pay, Merchant App, Agent App, Web Portal — delivered across iOS & Android.',
     category: 'Applications',
     icon: Smartphone,
     relatedIds: [2],
@@ -58,7 +57,7 @@ const PLATFORM_LAYERS = [
     id: 2,
     title: 'Products & Features',
     date: 'Layer 2',
-    content: 'PFM, Loyalty & Rewards, Merchant AI, Digital Lending, Virtual Card Issuance, Multi-Currency Wallets, Bill & Bulk Payments, International Remittance.',
+    content: 'PFM, Loyalty Engine, Onboarding Platform, Digital Lending, Virtual Accounts, Multi-Currency Wallets, Bill Payments, International Remittance.',
     category: 'Products',
     icon: Package,
     relatedIds: [1, 3],
@@ -69,7 +68,7 @@ const PLATFORM_LAYERS = [
     id: 3,
     title: 'Payments Infrastructure',
     date: 'Layer 3',
-    content: 'QR, NFC / Tap & Pay, Payment Gateway, DuitNow / PayNet RPP, ISO 8583 / API Interbank Switch, RTGS, Cross-Border Remittance Rails, Visa & MC Card Rails, Real-Time FX Engine.',
+    content: 'QR (EMVCo), NFC, Payment Gateway, DuitNow QR / PayNet RPP, RTGS integration, Cross-Border Remittance Rails, Real-Time FX Integration.',
     category: 'Infrastructure',
     icon: CreditCard,
     relatedIds: [2, 4],
@@ -80,7 +79,7 @@ const PLATFORM_LAYERS = [
     id: 4,
     title: 'Settlement & Reconciliation',
     date: 'Layer 4',
-    content: 'Multi-Scheme Settlement, Merchant Hierarchy & Split Settlement, Automated 3-Way Reconciliation, Recurring & Instalment Settlement, RTGS-Linked Settlement Windows, Dispute & Chargeback, Liquidity & Exposure Monitoring.',
+    content: 'Multi-Currency, Multi-Rail Settlement, Automated Reconciliation with Exception Management, T+0 and T+1 Settlement, Dispute Framework, Regulatory-Grade Reporting.',
     category: 'Settlement',
     icon: BarChart3,
     relatedIds: [3, 5],
@@ -102,7 +101,7 @@ const PLATFORM_LAYERS = [
     id: 6,
     title: 'Engagement & Compliance',
     date: 'Layer 6',
-    content: 'Unified CDP, Omnichannel Messaging, Campaign Automation, KYC/KYB Automation, AML / CFT / STR, PCI DSS / PDPA / GDPR, PKI / JWT / MFA / HSM, Regulatory Reporting.',
+    content: 'Customer Data Platform, Omnichannel Messaging, Campaign Automation, KYC/KYB Automation, AML / CFT Monitoring, Audit Trails, Regulatory Reporting.',
     category: 'Compliance',
     icon: Shield,
     relatedIds: [5, 7],
@@ -138,15 +137,15 @@ export default function FintechSolutionPage() {
                 Digital Financial Services
               </p>
               <h1 className="hero-heading text-[#0A0A0A] mb-5">
-                We built the infrastructure
+                Wallets, neo-banking, payments,
                 <br />
-                <span className="gradient-text">nations run on.</span>
+                <span className="gradient-text">in production.</span>
               </h1>
               <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
-                "Not consultants who designed it. Builders who launched it, scaled it, and operated it under central bank oversight."
+                "Platforms we built, launched, and operate — not systems we only designed."
               </p>
               <p className="text-[#0A0A0A]/55 leading-relaxed mb-8">
-                Innovation Next is a full-stack fintech technology company. Our leadership co-founded eSewa — South Asia's first digital wallet serving 13M+ users — and Fonepay — Nepal's national payment switch, connecting 52+ banks and processing $275M+ monthly. We bring that operational depth to every engagement.
+                We design, build, and scale production-grade fintech infrastructure for banks, digital banks, fintechs, telecoms, and microfinance institutions — digital wallets, neo-banking platforms, QR and real-time payments, and cross-border remittance, live in Nepal and Malaysia.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/company" className="btn-secondary">Our Credentials</Link>
@@ -164,11 +163,11 @@ export default function FintechSolutionPage() {
           </div>
 
           {/* Stats strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06] text-center">
             {stats.map(s => (
               <div key={s.label}>
-                <div className="text-3xl font-black mb-1" style={{ color: ACCENT }}>{s.value}</div>
-                <div className="text-sm text-[#0A0A0A]/45 uppercase tracking-wide">{s.label}</div>
+                <div className="text-3xl md:text-4xl font-medium mb-1" style={{ color: ACCENT }}>{s.value}</div>
+                <div className="text-sm text-[#575757]">{s.label}</div>
               </div>
             ))}
           </div>
@@ -184,7 +183,7 @@ export default function FintechSolutionPage() {
               What we <span className="section-accent">deliver.</span>
             </h2>
             <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
-              Every capability has been built and operated in live, regulated environments — not proof-of-concept systems.
+              Platforms we ship as named products, plus the payment infrastructure and integration work around them.
             </p>
           </div>
           <div className="rounded-3xl bg-[#EBF5FF] p-8 md:p-10">
@@ -223,39 +222,36 @@ export default function FintechSolutionPage() {
       <InsightsSection category="Fintech" />
 
       {/* ── Technical depth + CTA ─────────────────────── */}
+      <section className="bg-[#FAFAFA] py-24">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-14">
+          <div className="max-w-3xl text-center">
+            <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Capabilities</p>
+            <h2 className="text-3xl md:text-[38px] md:leading-[46px] font-medium text-[#0A0A0A] mb-4">
+              Built for <span style={{ color: ACCENT }}>production.</span>
+            </h2>
+            <p className="text-base leading-6 text-[#575757]">
+              Every capability listed has been delivered in real, live systems — not in proof-of-concept environments.
+            </p>
+          </div>
+          <div className="w-full flex flex-wrap justify-center gap-x-10 gap-y-5">
+            {capabilities.map(c => (
+              <div key={c} className="flex items-center gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style={{ background: ACCENT }}>
+                  <Check size={14} className="text-white" />
+                </span>
+                <span className="text-base text-[#0A0A0A]">{c}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
 
-          {/* Capabilities checklist */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-            <div>
-              <h2 className="section-heading text-[#0A0A0A] mb-4">
-                Built for production.
-              </h2>
-              <p className="text-[#0A0A0A]/50 text-lg leading-relaxed">
-                Every capability listed has been delivered in real, live systems — not in proof-of-concept environments.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {capabilities.map(c => (
-                <div key={c} className="flex items-center gap-2.5">
-                  <CheckCircle size={14} style={{ color: ACCENT }} className="flex-shrink-0" />
-                  <span className="text-sm text-[#0A0A0A]/60">{c}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* CTA card */}
-          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: ACCENT }}>
+          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: '#0040C1' }}>
             <AnimatedBackground />
-            <img
-              src="/skyline.png"
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-              style={{ mixBlendMode: 'multiply', opacity: 0.35, filter: 'hue-rotate(-30deg) saturate(2) brightness(1.3)' }}
-            />
             <div className="relative z-10">
               <h2 className="section-heading text-white mb-3">Ready to get started?</h2>
               <p className="text-white/70 mb-8 max-w-lg mx-auto leading-relaxed">

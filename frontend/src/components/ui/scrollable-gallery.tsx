@@ -131,7 +131,7 @@ export function ScrollableGallery({
               key={index}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 currentSlide === index
-                  ? "bg-[#0072BC] w-6"
+                  ? "bg-[#0040C1] w-6"
                   : "bg-black/15 w-1.5 hover:bg-black/30"
               }`}
               onClick={() => carouselApi?.scrollTo(index)}

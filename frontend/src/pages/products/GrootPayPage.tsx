@@ -1,38 +1,38 @@
 import { ProductPageTemplate } from '@/components/sections/ProductPageTemplate'
 
 const stats = [
-  { value: '3.5M+', label: 'Daily transactions on underlying platform' },
-  { value: '3M+', label: 'Merchants supported' },
+  { value: '3.5M+', label: 'Daily transactions' },
   { value: '20+', label: 'Remittance corridors' },
-  { value: 'PCI DSS', label: 'Certified infrastructure' },
+  { value: '4', label: 'Currencies — USD, AED, MYR, NPR' },
+  { value: 'National', label: 'Scale, live in Nepal' },
 ]
 
 const features = [
-  { title: 'QR Payments', desc: 'Static and dynamic QR — interoperable with national payment schemes and proprietary merchant networks.' },
-  { title: 'P2P Transfers', desc: 'Instant peer-to-peer transfers via phone number, QR, or account — with real-time notifications and transaction history.' },
-  { title: 'Bill Payments & Top-Ups', desc: 'Pre-integrated biller aggregator connecting utilities, telecoms, insurance, government fees, and subscription services.' },
-  { title: 'Merchant Management', desc: 'Merchant onboarding, QR generation, settlement reporting, and analytics — with AI-powered risk scoring.' },
-  { title: 'Cross-Border Remittance', desc: 'Send and receive across 20+ corridors — integrated with Remitly, WorldRemit, and major international money transfer networks.' },
-  { title: 'Loyalty & Offers', desc: 'Built-in cashback, points, and campaign management — with partner merchant offer targeting and real-time issuance.' },
+  { title: 'P2P & Merchant Payments', desc: 'Instant transfers by mobile number, QR, or NFC, and merchant payments by QR, NFC, or payment gateway.' },
+  { title: 'Bill Payments & Top-Up', desc: 'Utilities, insurance, government fees, telecoms, and airtime recharge across carriers.' },
+  { title: 'Cardless ATM & Agent Banking', desc: 'Cash-out without a physical card, and cash-in / cash-out through an agent network.' },
+  { title: 'International Remittance', desc: 'Receive from 20+ global corridors, with compliance and real-time FX built in.' },
+  { title: 'Savings Pockets & Loyalty', desc: 'Goal-based savings within the wallet, and points earn and redemption at checkout.' },
+  { title: 'Mini-App Framework & SDK', desc: 'Other businesses build mini-apps and list their services in the wallet — the same framework used in the Government Super App.' },
 ]
 
 const capabilities = [
-  'React Native iOS + Android consumer app',
-  'USSD interface for feature-phone access',
-  'National QR scheme certification support',
-  'Real-time settlement via local scheme rails',
-  'PCI DSS compliant architecture',
-  'Biometric + PIN + OTP auth layers',
-  'Webhook-based merchant notification',
-  'REST APIs for third-party integration',
-  'Multi-currency wallet support',
-  'White-label — fully brandable',
+  'RESTful APIs — OpenAPI 3.0',
+  'CBS connectors and payment-switch integration',
+  'Remittance gateway integration',
+  'KYC / eKYC — document OCR and liveness',
+  'FATF-aligned AML and transaction monitoring',
+  'PCI DSS-aligned security',
+  'End-to-end encryption',
+  'Multi-currency support',
+  'Horizontal scaling',
+  'Standalone or embedded in Groot Neo',
 ]
 
 const relatedProducts = [
   { name: 'Groot Neo', href: '/products/groot-neo', desc: 'Full neo-banking platform' },
   { name: 'Loyalty Engine', href: '/products/loyalty', desc: 'Rewards & points platform' },
-  { name: 'Merchant AI', href: '/products/merchant-ai', desc: 'AI-powered merchant tools' },
+  { name: 'Onboarding Platform', href: '/products/onboarding', desc: 'KYC, KYB, and Video KYC' },
 ]
 
 export default function GrootPayPage() {
@@ -41,14 +41,14 @@ export default function GrootPayPage() {
       tag="Digital Wallet Infrastructure"
       headline="White-label wallet."
       headlineAccent="Production-ready."
-      quote="Built on the same infrastructure that powered South Asia's first digital wallet at 13M users."
-      description="Groot Pay covers consumer-facing payments, merchant QR, P2P, bill pay, remittance, and a full omnichannel engagement layer — all under one licence, ready to deploy in months."
+      quote="The wallet engine — standalone, or embedded in Groot Neo."
+      description="A full-featured digital wallet platform for consumers, merchants, and agents — mobile money, QR payments, bill pay, and international remittance — and a mini-app platform that lets partners add their own services."
       mockup="/groot-pay-mockup.png"
       mockupAlt="Groot Pay"
       stats={stats}
-      featuresSubheadline="Every module has been built and operated in live payment environments — not assembled from third-party components."
+      featuresSubheadline="Live at national scale in Nepal, at 3.5M+ transactions a day."
       features={features}
-      capabilitiesSubtext="Every capability listed has been delivered in real, regulated payment environments."
+      capabilitiesSubtext="Each mini-app is built and released independently of the wallet core, so the platform grows one partner at a time."
       capabilities={capabilities}
       relatedProducts={relatedProducts}
       ctaHeadline="Ready to deploy Groot Pay?"

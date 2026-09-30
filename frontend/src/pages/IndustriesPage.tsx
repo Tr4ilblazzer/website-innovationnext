@@ -8,12 +8,12 @@ export default function IndustriesPage() {
       {/* Radial glow */}
       <div
         className="pointer-events-none fixed inset-0"
-        style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(0,114,188,0.07) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(0,64,193,0.07) 0%, transparent 70%)' }}
       />
 
       <div className="relative text-center max-w-xl mx-auto">
 
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: '#0072BC' }}>
+        <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: '#0040C1' }}>
           Industries
         </p>
 
@@ -33,7 +33,7 @@ export default function IndustriesPage() {
             <span
               key={i}
               className="w-2 h-2 rounded-full animate-bounce"
-              style={{ background: '#0072BC', opacity: 0.4 + i * 0.2, animationDelay: `${i * 0.15}s` }}
+              style={{ background: '#0040C1', opacity: 0.4 + i * 0.2, animationDelay: `${i * 0.15}s` }}
             />
           ))}
         </div>
@@ -45,7 +45,7 @@ export default function IndustriesPage() {
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full font-semibold text-sm py-3 px-7 text-white transition-colors hover:opacity-90"
-            style={{ background: '#0072BC' }}
+            style={{ background: '#0040C1' }}
           >
             Get in Touch <ArrowRight size={14} />
           </Link>

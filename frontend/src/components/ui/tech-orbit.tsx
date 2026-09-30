@@ -75,7 +75,7 @@ function OrbitRing({ techs, radius, centerX, centerY, iconSize, offset }: OrbitP
         <path
           d={`M ${centerX - radius} ${centerY} A ${radius} ${radius} 0 0 1 ${centerX + radius} ${centerY}`}
           fill="none"
-          stroke="rgba(0,114,188,0.48)"
+          stroke="rgba(0,64,193,0.48)"
           strokeWidth="1"
           strokeDasharray="4 6"
         />
@@ -96,7 +96,7 @@ function OrbitRing({ techs, radius, centerX, centerY, iconSize, offset }: OrbitP
           >
             <div
               className="w-full h-full rounded-xl flex items-center justify-center p-1.5 transition-transform duration-200 group-hover:scale-125"
-              style={{ background: 'transparent', border: '1px solid rgba(0,114,188,0.35)' }}
+              style={{ background: 'transparent', border: '1px solid rgba(0,64,193,0.35)' }}
             >
               <img
                 src={tech.logo}
@@ -107,11 +107,11 @@ function OrbitRing({ techs, radius, centerX, centerY, iconSize, offset }: OrbitP
             <div
               className={`absolute ${tooltipAbove ? 'bottom-[calc(100%+2px)]' : 'top-[calc(100%+2px)]'}
                 hidden group-hover:flex items-center gap-1.5 whitespace-nowrap
-                px-2.5 py-1 rounded-full text-[10px] font-semibold text-[#0072BC]
+                px-2.5 py-1 rounded-full text-[10px] font-semibold text-[#0040C1]
                 pointer-events-none z-20`}
               style={{
-                background: 'rgba(0,114,188,0.18)',
-                border: '1px solid rgba(0,114,188,0.35)',
+                background: 'rgba(0,64,193,0.18)',
+                border: '1px solid rgba(0,64,193,0.35)',
                 backdropFilter: 'blur(8px)',
               }}
             >
@@ -170,7 +170,7 @@ export function TechOrbit() {
         style={{
           width: width * 0.7,
           height: width * 0.35,
-          background: 'radial-gradient(ellipse at center bottom, rgba(0,114,188,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center bottom, rgba(0,64,193,0.12) 0%, transparent 70%)',
           bottom: 0,
         }}
       />

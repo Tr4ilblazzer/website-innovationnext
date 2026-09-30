@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle } from 'lucide-react'
 import { api, cn } from '@/lib/utils'
 import { GlassLocationCard } from '@/components/ui/glass-location-card'
 
-const ACCENT = '#0072BC'
+const ACCENT = '#0040C1'
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -24,17 +24,17 @@ const interests = [
   'E-Governance',
   'AI & Machine Learning',
   'BI & Data Solutions',
-  'IT Services',
-  'Staff Augmentation',
+  'Digital Transformation Consulting',
+  'Bespoke Software Development',
+  'Managed Services',
   'General Enquiry',
 ]
 
 const offices = [
-  { city: 'Dubai', country: 'United Arab Emirates', flag: '🇦🇪', role: 'Global Headquarters & Business Development', badge: 'HQ', image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80' },
-  { city: 'Kathmandu', country: 'Nepal', flag: '🇳🇵', role: 'Technology & Delivery Hub', image: 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=900&q=80' },
+  { city: 'Kathmandu', country: 'Nepal', flag: '🇳🇵', role: 'Headquarters', badge: 'HQ', image: 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=900&q=80' },
 ]
 
-const inputCls = 'w-full rounded-xl border border-black/[0.12] bg-white px-4 py-2.5 text-sm text-[#0A0A0A] placeholder:text-[#0A0A0A]/30 focus:outline-none focus:ring-2 focus:ring-[#0072BC]/20 focus:border-[#0072BC]/40 transition-colors'
+const inputCls = 'w-full rounded-xl border border-black/[0.12] bg-white px-4 py-2.5 text-sm text-[#0A0A0A] placeholder:text-[#0A0A0A]/30 focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 focus:border-[#0040C1]/40 transition-colors'
 
 export function ContactSection({ compact = false }: { compact?: boolean }) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -112,12 +112,12 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#0072BC] mb-1.5 uppercase tracking-wider">Full Name *</label>
+                  <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Full Name *</label>
                   <input {...register('name')} className={inputCls} placeholder="John Smith" />
                   {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#0072BC] mb-1.5 uppercase tracking-wider">Work Email *</label>
+                  <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Work Email *</label>
                   <input {...register('email')} type="email" className={inputCls} placeholder="john@company.com" />
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                 </div>
@@ -125,11 +125,11 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#0072BC] mb-1.5 uppercase tracking-wider">Company</label>
+                  <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Company</label>
                   <input {...register('company')} className={inputCls} placeholder="Your organisation" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#0072BC] mb-1.5 uppercase tracking-wider">Phone</label>
+                  <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Phone</label>
                   <input {...register('phone')} className={inputCls} placeholder="+971 50 000 0000" />
                 </div>
               </div>
@@ -146,8 +146,8 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
                       className={cn(
                         'text-xs px-3 py-1.5 rounded-full border transition-all',
                         selectedInterest === i
-                          ? 'border-[#0072BC] text-[#0072BC]'
-                          : 'border-black/10 text-[#0A0A0A]/50 hover:border-[#0072BC]/30 hover:text-[#0072BC]'
+                          ? 'border-[#0040C1] text-[#0040C1]'
+                          : 'border-black/10 text-[#0A0A0A]/50 hover:border-[#0040C1]/30 hover:text-[#0040C1]'
                       )}
                     >
                       {i}
@@ -157,7 +157,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#0072BC] mb-1.5 uppercase tracking-wider">Message *</label>
+                <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Message *</label>
                 <textarea
                   {...register('message')}
                   rows={5}
@@ -174,7 +174,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="inline-flex items-center justify-center gap-2 w-full rounded-full font-semibold text-sm py-3.5 px-8 transition-colors disabled:opacity-60 border-[1.5px] border-[#0072BC] text-[#0072BC] bg-transparent hover:bg-[#0072BC] hover:text-white"
+                className="inline-flex items-center justify-center gap-2 w-full rounded-full font-semibold text-sm py-3.5 px-8 transition-colors disabled:opacity-60 border-[1.5px] border-[#0040C1] text-[#0040C1] bg-transparent hover:bg-[#0040C1] hover:text-white"
               >
                 {status === 'loading' ? 'Sending…' : 'Send Message'} <ArrowRight size={16} />
               </button>
