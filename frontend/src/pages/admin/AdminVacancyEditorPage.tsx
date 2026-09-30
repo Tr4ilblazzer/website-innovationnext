@@ -52,7 +52,7 @@ function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0072BC]/20 focus:border-[#0072BC]/40 placeholder:text-black/20"
+      className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 focus:border-[#0040C1]/40 placeholder:text-black/20"
     />
   )
 }
@@ -61,7 +61,7 @@ function Select({ children, ...props }: React.SelectHTMLAttributes<HTMLSelectEle
   return (
     <select
       {...props}
-      className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0072BC]/20 appearance-none cursor-pointer"
+      className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 appearance-none cursor-pointer"
     >
       {children}
     </select>
@@ -112,7 +112,7 @@ function ListEditor({
         <button
           type="button"
           onClick={addItem}
-          className="flex items-center gap-1.5 text-xs font-semibold text-[#0072BC] hover:underline mt-1"
+          className="flex items-center gap-1.5 text-xs font-semibold text-[#0040C1] hover:underline mt-1"
         >
           <Plus className="w-3.5 h-3.5" /> Add item
         </button>
@@ -203,7 +203,7 @@ export default function AdminVacancyEditorPage() {
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex items-center gap-2 px-4 py-2.5 bg-[#0072BC] text-white text-sm font-semibold rounded-xl hover:bg-[#005a96] transition-colors disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2.5 bg-[#0040C1] text-white text-sm font-semibold rounded-xl hover:bg-[#0034A0] transition-colors disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
               {saving ? 'Saving…' : isNew ? 'Post vacancy' : 'Save changes'}
@@ -229,7 +229,7 @@ export default function AdminVacancyEditorPage() {
                 onChange={e => set('description', e.target.value)}
                 placeholder="Describe the role, responsibilities, and what success looks like…"
                 rows={8}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0072BC]/20 focus:border-[#0072BC]/40 placeholder:text-black/20 resize-none"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 focus:border-[#0040C1]/40 placeholder:text-black/20 resize-none"
               />
             </Field>
           </div>
@@ -258,7 +258,7 @@ export default function AdminVacancyEditorPage() {
                 type="checkbox"
                 checked={form.active}
                 onChange={e => set('active', e.target.checked)}
-                className="w-4 h-4 rounded accent-[#0072BC]"
+                className="w-4 h-4 rounded accent-[#0040C1]"
               />
               <span className="text-sm font-semibold text-black/70">Active / Accepting applications</span>
             </label>

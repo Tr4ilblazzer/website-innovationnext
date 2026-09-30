@@ -8,7 +8,7 @@ import { api, cn } from '@/lib/utils'
 import { getVacancies } from '@/services/api'
 import type { Vacancy } from '@/types'
 
-const ACCENT = '#0072BC'
+const ACCENT = '#0040C1'
 
 const MOCK_VACANCIES: Vacancy[] = [
   {
@@ -74,7 +74,7 @@ const appSchema = z.object({
 })
 type AppValues = z.infer<typeof appSchema>
 
-const inputCls = 'w-full rounded-xl border border-black/[0.12] bg-white px-4 py-2.5 text-sm text-[#0A0A0A] placeholder-[#0A0A0A]/30 focus:outline-none focus:border-[#0072BC] transition-colors'
+const inputCls = 'w-full rounded-xl border border-black/[0.12] bg-white px-4 py-2.5 text-sm text-[#0A0A0A] placeholder-[#0A0A0A]/30 focus:outline-none focus:border-[#0040C1] transition-colors'
 
 function ApplicationForm({ vacancy, onClose }: { vacancy: Vacancy; onClose: () => void }) {
   const [cvFile, setCvFile] = useState<File | null>(null)
@@ -184,9 +184,9 @@ function ApplicationForm({ vacancy, onClose }: { vacancy: Vacancy; onClose: () =
         <label className="block text-xs text-[#0A0A0A]/50 uppercase tracking-wider mb-1.5">Upload CV *</label>
         <label className={cn(
           'flex flex-col items-center justify-center gap-3 p-6 rounded-xl border-2 border-dashed cursor-pointer transition-all',
-          cvFile ? 'border-[#0072BC]/40 bg-[#EBF5FF]' : 'border-black/[0.10] hover:border-[#0072BC]/30'
+          cvFile ? 'border-[#0040C1]/40 bg-[#EBF5FF]' : 'border-black/[0.10] hover:border-[#0040C1]/30'
         )}>
-          <Upload size={24} className={cvFile ? 'text-[#0072BC]' : 'text-[#0A0A0A]/30'} />
+          <Upload size={24} className={cvFile ? 'text-[#0040C1]' : 'text-[#0A0A0A]/30'} />
           <div className="text-center">
             <p className="text-sm text-[#0A0A0A]/60">
               {cvFile ? cvFile.name : 'Click to upload or drag & drop'}
@@ -301,8 +301,8 @@ export default function CareersPage() {
                 className={cn(
                   'text-xs px-4 py-2 rounded-full border transition-all',
                   filter === d
-                    ? 'border-[#0072BC] text-[#0072BC] font-semibold'
-                    : 'border-black/[0.10] text-[#0A0A0A]/40 hover:border-[#0072BC]/30'
+                    ? 'border-[#0040C1] text-[#0040C1] font-semibold'
+                    : 'border-black/[0.10] text-[#0A0A0A]/40 hover:border-[#0040C1]/30'
                 )}
               >
                 {d}
@@ -318,7 +318,7 @@ export default function CareersPage() {
           ) : (
             <div className="space-y-4">
               {filtered.map(v => (
-                <div key={v.id} className="border border-black/[0.08] rounded-2xl p-7 hover:border-[#0072BC]/25 transition-colors">
+                <div key={v.id} className="border border-black/[0.08] rounded-2xl p-7 hover:border-[#0040C1]/25 transition-colors">
                   <div className="flex flex-col md:flex-row md:items-start gap-5">
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -339,7 +339,7 @@ export default function CareersPage() {
                       <p className="text-sm text-[#0A0A0A]/50 leading-relaxed mb-4">{v.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {v.requirements.map(r => (
-                          <span key={r} className="text-xs px-2.5 py-1 rounded-full border border-[#0072BC]/30 text-[#0072BC]">{r}</span>
+                          <span key={r} className="text-xs px-2.5 py-1 rounded-full border border-[#0040C1]/30 text-[#0040C1]">{r}</span>
                         ))}
                       </div>
                     </div>
@@ -371,7 +371,7 @@ export default function CareersPage() {
             </p>
             <a
               href="mailto:careers@innovationnext.com"
-              className="inline-flex items-center gap-2 rounded-full border border-black/15 text-[#0A0A0A] font-semibold text-sm py-3 px-7 hover:border-[#0072BC] hover:text-[#0072BC] transition-colors mx-auto"
+              className="inline-flex items-center gap-2 rounded-full border border-black/15 text-[#0A0A0A] font-semibold text-sm py-3 px-7 hover:border-[#0040C1] hover:text-[#0040C1] transition-colors mx-auto"
             >
               Send speculative application <ArrowRight size={14} />
             </a>

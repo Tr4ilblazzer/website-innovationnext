@@ -39,7 +39,7 @@ export function ProductFeatureCard({ name, tagline, desc, href, accent, image, f
       {/* Content */}
       <div className="p-6 flex flex-col gap-4 flex-1">
         <div className="flex items-start justify-between">
-          <h3 className="text-lg font-black text-white group-hover:text-[#0072BC] transition-colors">
+          <h3 className="text-lg font-black text-white group-hover:text-[#0040C1] transition-colors">
             {name}
           </h3>
           <ArrowRight

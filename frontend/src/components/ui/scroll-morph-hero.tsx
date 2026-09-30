@@ -247,7 +247,7 @@ export default function IntroAnimation({ isDark = true }: IntroAnimationProps) {
             }
             transition={{ duration: 1 }}
             style={{
-              fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
+              fontFamily: 'Poppins, system-ui, sans-serif',
               fontWeight: 800,
               fontSize: 'clamp(1.2rem, 2.5vw, 2rem)',
               letterSpacing: '-0.03em',

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, MotionConfig } from 'framer-motion'
 
 export type IMenu = {
@@ -17,9 +17,13 @@ type MenuProps = {
 
 export default function Menu({ list, theme = 'light' }: MenuProps) {
   const [hovered, setHovered] = useState<number | null>(null)
+  const { pathname } = useLocation()
+  const isActive = (item: IMenu) =>
+    [item.url, ...(item.items?.map(i => i.url) ?? [])].some(u => u !== '/' && pathname.startsWith(u.split('/').slice(0, 2).join('/')))
 
-  const linkBase  = theme === 'dark' ? 'text-white/70 hover:text-white'       : 'text-[#0A0A0A]/70 hover:text-[#0A0A0A]'
-  const linkHover = theme === 'dark' ? 'bg-white/[0.07] text-white'           : 'bg-black/[0.05] text-[#0A0A0A]'
+  const linkBase  = theme === 'dark' ? 'text-white/70 hover:text-white'       : 'text-black'
+  const linkHover = theme === 'dark' ? 'bg-white/[0.07] text-white'           : 'bg-[#EFF4FF] text-[#0040C1]'
+  const linkActive = theme === 'dark' ? 'bg-white/[0.07] text-white'          : 'bg-[#EFF4FF] text-[#0040C1]'
 
   return (
     <MotionConfig transition={{ bounce: 0, type: 'tween' }}>
@@ -31,21 +35,14 @@ export default function Menu({ list, theme = 'light' }: MenuProps) {
                 to={item.url}
                 onMouseEnter={() => setHovered(item.id)}
                 onMouseLeave={() => setHovered(null)}
-                className={`relative flex items-center justify-center rounded px-5 py-2.5 text-sm font-medium transition-colors ${linkBase} ${
-                  hovered === item.id ? linkHover : ''
+                className={`relative flex items-center justify-center rounded-3xl px-5 py-2 text-base font-normal transition-colors ${linkBase} ${
+                  hovered === item.id ? linkHover : isActive(item) ? linkActive : ''
                 }`}
               >
                 {item.title}
               </Link>
 
               {/* Animated underline for non-dropdown items */}
-              {hovered === item.id && !item.dropdown && (
-                <motion.div
-                  layout
-                  layoutId="cursor"
-                  className="absolute bottom-0 h-0.5 w-full bg-[#0072BC]"
-                />
-              )}
 
               {/* Dropdown */}
               {item.dropdown && hovered === item.id && (
@@ -61,7 +58,7 @@ export default function Menu({ list, theme = 'light' }: MenuProps) {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
-                    className="mt-3 flex w-56 flex-col rounded-2xl bg-white border border-black/[0.08] shadow-lg shadow-black/[0.06] overflow-hidden py-1.5"
+                    className="mt-3 flex w-64 flex-col rounded-2xl bg-white border border-black/[0.08] shadow-lg shadow-black/[0.06] overflow-hidden py-1.5"
                   >
                     {item.items?.map((nav) => (
                       <Link

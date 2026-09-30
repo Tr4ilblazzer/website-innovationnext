@@ -1,11 +1,6 @@
-/* Plus Jakarta Sans — Google Fonts (hero heading) */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-/* Bricolage Grotesque — Google Fonts (section headings) */
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
-/* General Sans — Fontshare */
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700,800&display=swap');
-/* Public Sans — Google Fonts (body) */
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap');
+/* Poppins — Google Fonts (all text) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,7 +9,7 @@
 :root {
   --background: 255 255 255;
   --foreground: 10 10 10;
-  --primary: 0 114 188;
+  --primary: 0 64 193;
   --primary-foreground: 255 255 255;
   --secondary: 0 0 0 / 0.06;
   --secondary-foreground: 10 10 10;
@@ -26,20 +21,20 @@
   --card-foreground: 10 10 10;
   --border: 0 0 0 / 0.1;
   --input: 0 0 0 / 0.1;
-  --ring: 0 114 188;
+  --ring: 0 64 193;
   --destructive: 239 68 68;
   --destructive-foreground: 255 255 255;
   --radius: 0.5rem;
 
-  --brand-blue: #0072BC;
-  --brand-blue-hover: #005A96;
+  --brand-blue: #0040C1;
+  --brand-blue-hover: #0034A0;
   --brand-cyan: #0DFFFF;
-  --brand-gradient: linear-gradient(135deg, #0072BC, #0DFFFF);
+  --brand-gradient: linear-gradient(135deg, #0040C1, #0DFFFF);
   --bg-dark: #FFFFFF;
   --bg-surface: #F5F5F5;
   --bg-card: #FAFAFA;
   --border-color: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 114, 188, 0.4);
+  --border-hover: rgba(0,64,193, 0.4);
   --text-primary: #0A0A0A;
   --text-secondary: rgba(10, 10, 10, 0.6);
   --text-muted: rgba(10, 10, 10, 0.3);
@@ -56,7 +51,7 @@ html {
 body {
   background-color: #FFFFFF;
   color: #0A0A0A;
-  font-family: 'Public Sans', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -65,11 +60,11 @@ body {
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #FFFFFF; }
-::-webkit-scrollbar-thumb { background: rgba(0,114,188,0.3); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0,114,188,0.6); }
+::-webkit-scrollbar-thumb { background: rgba(0,64,193,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,64,193,0.6); }
 
 /* ── Selection ── */
-::selection { background: rgba(0,114,188,0.15); color: #0A0A0A; }
+::selection { background: rgba(0,64,193,0.15); color: #0A0A0A; }
 
 /* ── Glass Card ── */
 .glass-card {
@@ -82,26 +77,23 @@ body {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .glass-card:hover {
-  border-color: rgba(0,114,188,0.25);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,114,188,0.1);
+  border-color: rgba(0,64,193,0.25);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,64,193,0.1);
 }
 
 /* ── Brand Gradient Text (hero h1 only) ── */
 .gradient-text {
-  background: linear-gradient(90deg, #0072BC 0%, #0DFFFF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #0040C1;
 }
 
 /* ── Section Accent Text (h2 sections) ── */
 .section-accent {
-  color: #0072BC;
+  color: #0040C1;
 }
 
 /* ── Brand Gradient Background ── */
 .gradient-bg {
-  background: linear-gradient(135deg, #0072BC, #0DFFFF);
+  background: linear-gradient(135deg, #0040C1, #0DFFFF);
 }
 
 /* ── Grid Background ── */
@@ -119,7 +111,7 @@ body {
   filter: blur(80px);
   pointer-events: none;
 }
-.glow-blue { background: radial-gradient(circle, rgba(0,114,188,0.25), transparent 70%); }
+.glow-blue { background: radial-gradient(circle, rgba(0,64,193,0.25), transparent 70%); }
 .glow-cyan { background: radial-gradient(circle, rgba(13,255,255,0.15), transparent 70%); }
 
 /* ── Animations ── */
@@ -136,9 +128,9 @@ body {
   100% { background-position: 200% 0; }
 }
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0,114,188,0.4); }
-  70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(0,114,188,0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0,114,188,0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0,64,193,0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(0,64,193,0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0,64,193,0); }
 }
 
 .animate-float { animation: float 6s ease-in-out infinite; }
@@ -159,8 +151,8 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.35rem 0.85rem;
-  background: rgba(0,114,188,0.08);
-  border: 1px solid rgba(0,114,188,0.2);
+  background: rgba(0,64,193,0.08);
+  border: 1px solid rgba(0,64,193,0.2);
   border-radius: 9999px;
   font-size: 0.7rem;
   font-weight: 600;
@@ -183,7 +175,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.75rem;
-  background: linear-gradient(135deg, #0072BC, #0DFFFF);
+  background: linear-gradient(135deg, #0040C1, #0DFFFF);
   color: #040404;
   font-weight: 700;
   font-size: 0.875rem;
@@ -191,13 +183,13 @@ body {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 30px rgba(0,114,188,0.3);
+  box-shadow: 0 0 30px rgba(0,64,193,0.3);
   text-decoration: none;
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 50px rgba(0,114,188,0.5);
-  background: linear-gradient(135deg, #005A96, #0072BC);
+  box-shadow: 0 0 50px rgba(0,64,193,0.5);
+  background: linear-gradient(135deg, #0034A0, #0040C1);
 }
 
 .btn-secondary {
@@ -216,8 +208,8 @@ body {
   text-decoration: none;
 }
 .btn-secondary:hover {
-  border-color: #0072BC;
-  background: #0072BC;
+  border-color: #0040C1;
+  background: #0040C1;
   color: #ffffff;
   transform: translateY(-2px);
 }
@@ -231,12 +223,12 @@ body {
   border-radius: 0.75rem;
   color: #0A0A0A;
   font-size: 0.9rem;
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   transition: border-color 0.3s ease;
   outline: none;
 }
 .input-field::placeholder { color: rgba(10,10,10,0.3); }
-.input-field:focus { border-color: rgba(0,114,188,0.5); }
+.input-field:focus { border-color: rgba(0,64,193,0.5); }
 
 /* ── Noise overlay ── */
 .noise-overlay::after {
@@ -249,7 +241,7 @@ body {
 }
 
 /* ── Domain card hover gradient ── */
-.domain-card-fintech:hover { box-shadow: 0 0 40px rgba(0,114,188,0.15); }
+.domain-card-fintech:hover { box-shadow: 0 0 40px rgba(0,64,193,0.15); }
 .domain-card-egov:hover { box-shadow: 0 0 40px rgba(16,185,129,0.15); }
 .domain-card-ai:hover { box-shadow: 0 0 40px rgba(139,92,246,0.15); }
 .domain-card-bi:hover { box-shadow: 0 0 40px rgba(245,158,11,0.15); }
@@ -271,7 +263,7 @@ body {
   position: relative;
   border-radius: 9999px;
   padding: 1.5px;
-  background: conic-gradient(from var(--border-angle), #0072BC, #0DFFFF, #0072BC);
+  background: conic-gradient(from var(--border-angle), #0040C1, #0DFFFF, #0040C1);
   animation: border-spin 3s linear infinite;
   display: inline-flex;
   text-decoration: none;
@@ -298,14 +290,14 @@ body {
 
 /* ── Responsive typography ── */
 .hero-heading {
-  font-family: 'Bricolage Grotesque', 'General Sans', system-ui, sans-serif;
-  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: clamp(2rem, 4.5vw, 4.25rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.0;
 }
 .section-heading {
-  font-family: 'Bricolage Grotesque', 'General Sans', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -315,10 +307,7 @@ body {
 /* ── Heading accent word — italic + brand gradient (like "faster" in the reference) ── */
 .heading-accent {
   font-style: italic;
-  background: linear-gradient(120deg, #0072BC 0%, #00B4D8 60%, #0DFFFF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #0040C1;
   padding-bottom: 0.05em;
 }
 

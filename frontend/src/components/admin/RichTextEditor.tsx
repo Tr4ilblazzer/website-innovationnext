@@ -31,7 +31,7 @@ function ToolbarButton({
       title={title}
       className={`p-1.5 rounded-lg transition-colors ${
         active
-          ? 'bg-[#0072BC] text-white'
+          ? 'bg-[#0040C1] text-white'
           : 'text-black/50 hover:bg-black/[0.06] hover:text-black/80'
       }`}
     >
@@ -44,7 +44,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
   const editor = useEditor({
     extensions: [
       StarterKit.configure({ heading: { levels: [2, 3] } }),
-      Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-[#0072BC] underline' } }),
+      Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-[#0040C1] underline' } }),
       Placeholder.configure({ placeholder: placeholder || 'Start writing...' }),
     ],
     content,
@@ -61,7 +61,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
   }
 
   return (
-    <div className="border border-black/[0.1] rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#0072BC]/20 focus-within:border-[#0072BC]/40">
+    <div className="border border-black/[0.1] rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#0040C1]/20 focus-within:border-[#0040C1]/40">
       {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-0.5 px-3 py-2 border-b border-black/[0.08] bg-[#FAFAFA]">
         <ToolbarButton onClick={() => editor.chain().focus().toggleBold().run()} active={editor.isActive('bold')} title="Bold">
@@ -127,7 +127,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
           [&_.ProseMirror_p]:mb-3 [&_.ProseMirror_p]:leading-relaxed
           [&_.ProseMirror_ul]:pl-5 [&_.ProseMirror_ul]:mb-3 [&_.ProseMirror_ul_li]:list-disc [&_.ProseMirror_ul_li]:mb-1
           [&_.ProseMirror_ol]:pl-5 [&_.ProseMirror_ol]:mb-3 [&_.ProseMirror_ol_li]:list-decimal [&_.ProseMirror_ol_li]:mb-1
-          [&_.ProseMirror_blockquote]:border-l-4 [&_.ProseMirror_blockquote]:border-[#0072BC]/30 [&_.ProseMirror_blockquote]:pl-4 [&_.ProseMirror_blockquote]:italic [&_.ProseMirror_blockquote]:text-black/50 [&_.ProseMirror_blockquote]:my-3
+          [&_.ProseMirror_blockquote]:border-l-4 [&_.ProseMirror_blockquote]:border-[#0040C1]/30 [&_.ProseMirror_blockquote]:pl-4 [&_.ProseMirror_blockquote]:italic [&_.ProseMirror_blockquote]:text-black/50 [&_.ProseMirror_blockquote]:my-3
           [&_.ProseMirror_code]:bg-black/[0.06] [&_.ProseMirror_code]:px-1 [&_.ProseMirror_code]:rounded
           [&_.ProseMirror_hr]:border-black/[0.1] [&_.ProseMirror_hr]:my-4
           [&_.ProseMirror_.is-empty::before]:content-[attr(data-placeholder)] [&_.ProseMirror_.is-empty::before]:text-black/25 [&_.ProseMirror_.is-empty::before]:float-left [&_.ProseMirror_.is-empty::before]:pointer-events-none"

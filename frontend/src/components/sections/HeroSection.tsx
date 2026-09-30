@@ -51,7 +51,7 @@ export function HeroSection() {
         <button
           onClick={() => setIsDark(!isDark)}
           aria-label="Toggle hero background"
-          className="relative flex items-center p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0072BC]"
+          className="relative flex items-center p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0040C1]"
           style={{
             background:  isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)',
             border:     `1px solid ${isDark ? 'rgba(255,255,255,0.16)' : 'rgba(0,0,0,0.13)'}`,

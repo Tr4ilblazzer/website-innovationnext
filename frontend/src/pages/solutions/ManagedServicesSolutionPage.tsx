@@ -1,71 +1,71 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { InsightsSection } from '@/components/sections/InsightsSection'
 import { TechOrbit } from '@/components/ui/tech-orbit'
 
-const ACCENT = '#0072BC'
+const ACCENT = '#0040C1'
 
 const stats = [
-  { value: '2–4 wks', label: 'Average onboarding time' },
-  { value: '< 1 wk', label: 'Average time to match' },
-  { value: '100%', label: 'Pre-screened talent' },
-  { value: '4', label: 'Engagement models available' },
+  { value: '10', label: 'Government systems under maintenance' },
+  { value: '36 mo', label: 'SLA term, Sri Lanka' },
+  { value: '99.99%', label: 'Availability SLA, Sri Lanka' },
+  { value: '2–4 wks', label: 'Team onboarding time' },
 ]
 
 const features = [
-  { title: 'AI & Data Engineers', desc: 'Python, PyTorch, TensorFlow, MLOps, data engineering, computer vision, NLP, and LLM integration specialists.' },
-  { title: 'Frontend Developers', desc: 'React, Next.js, Vue.js, TypeScript, React Native — senior engineers who ship clean, production-grade UIs.' },
-  { title: 'Backend Engineers', desc: 'Node.js, Go, Java, Python, .NET, Laravel — API design, microservices, payment systems, and high-throughput backends.' },
-  { title: 'Mobile Developers', desc: 'Flutter, React Native, iOS (Swift), Android (Kotlin) — cross-platform and native mobile with fintech and enterprise experience.' },
-  { title: 'Cloud & DevOps', desc: 'AWS, Azure, GCP, Kubernetes, Docker, CI/CD, infrastructure-as-code, and security hardening specialists.' },
-  { title: 'Data & BI Engineers', desc: 'Power BI, Tableau, data warehousing, ETL pipelines, big data (Spark, Kafka), and master data management.' },
+  { title: 'Dedicated Engineers', desc: 'Pre-vetted engineers from Kathmandu embedded in your team — backend, frontend, mobile, data, QA, DevOps, and fintech specialists.' },
+  { title: 'Team Pods', desc: 'A complete pod of engineering, QA, and project management, managed by Innovation Next for product squads.' },
+  { title: 'Embedded Leadership', desc: 'A senior architect or tech lead embedded to lead your engineering work.' },
+  { title: 'Application Management', desc: 'Tiered L1–L3 support, annual maintenance contracts, incident and release management, and monthly SLA reporting.' },
+  { title: 'Infrastructure Management', desc: 'Cloud and hybrid operations, managed Kubernetes, backup and disaster recovery, monitoring, and sovereign-cloud environments.' },
+  { title: 'Managed Security', desc: 'SIEM operation, incident response, and security training for development and operations teams.' },
 ]
 
 const engagements = [
   {
-    title: 'Monthly Contract',
-    desc: 'A dedicated developer on your payroll rhythm — billed monthly, with full integration into your team workflow, tools, and stand-ups.',
-    tags: ['Flexible hours', 'Full integration', 'Cancel anytime'],
+    title: 'Dedicated Engineer(s)',
+    desc: 'Individual engineers embedded in your team, billed per resource per month, integrated into your tools and stand-ups.',
+    tags: ['Per resource per month', 'Full integration', 'Ongoing extension'],
     image: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&q=80',
   },
   {
-    title: 'Dedicated Team Model',
-    desc: 'A full embedded team — engineers, a tech lead, and QA — working exclusively on your product as an extension of your organisation.',
-    tags: ['Full team', 'Tech lead included', 'Aligned timezone'],
+    title: 'Dedicated Team Pod',
+    desc: 'A complete pod — engineering, QA, and project management — managed by Innovation Next, working on your product.',
+    tags: ['Monthly team rate', 'Tech lead included', 'Product squads'],
     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
   },
   {
-    title: 'Project-Based',
-    desc: 'Fixed-scope delivery for defined milestones. We scope, staff, build, and deliver — from discovery to handover.',
-    tags: ['Fixed scope', 'Milestone delivery', 'Full accountability'],
+    title: 'Embedded Leadership',
+    desc: 'A senior architect or tech lead embedded to lead your engineering, where you need technical leadership.',
+    tags: ['Senior rate', 'Architecture', 'Technical direction'],
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
   },
   {
-    title: 'On-Demand Support',
-    desc: 'Ad-hoc technical resource for peak periods, specialist needs, or short-term gaps. Available within days.',
-    tags: ['Fast activation', 'Short-term', 'Specialist roles'],
+    title: 'Application & Infrastructure Management',
+    desc: 'We operate your live systems against an agreed SLA — support, maintenance, infrastructure, and reporting. We own the outcome.',
+    tags: ['SLA-governed', 'AMC', 'L1–L3 support'],
     image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
   },
 ]
 
 const capabilities = [
-  'React / Next.js / Vue.js',
-  'Node.js / Go / Python / Java',
-  'Flutter / React Native',
+  'Node.js / Python / Java / Go / .NET',
+  'React / Vue.js / Angular / Next.js',
+  'React Native / Flutter / Swift / Kotlin',
   'AWS / Azure / GCP',
-  'Kubernetes / Docker',
-  'PostgreSQL / MongoDB / Redis',
-  'Power BI / Tableau',
-  'PyTorch / TensorFlow',
-  'Solidity / Web3',
-  'Odoo / ERP development',
-  'DevSecOps',
-  'Payment systems experience',
+  'Kubernetes / Terraform / CI/CD',
+  'Power BI / Tableau / data engineering',
+  'TensorFlow / PyTorch / MLOps',
+  'Payment switch and QR / card rails',
+  'Core banking integration',
+  'SIEM and incident response',
+  'PCI DSS / KYC-AML compliance engineering',
+  'Replacement guarantee',
 ]
 
-export default function StaffAugSolutionPage() {
+export default function ManagedServicesSolutionPage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────── */}
@@ -76,18 +76,18 @@ export default function StaffAugSolutionPage() {
 
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: ACCENT }}>
-                Staff Augmentation
+                Managed Services
               </p>
               <h1 className="hero-heading text-[#0A0A0A] mb-5">
-                Nepal's top tech talent,
+                Managed teams and
                 <br />
-                <span className="gradient-text">on your team fast.</span>
+                <span className="gradient-text">managed operations.</span>
               </h1>
               <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
-                "Skip the hiring hassles. Work with vetted senior developers. Onboard in 2–4 weeks."
+                "We keep national systems running — and put the engineers you need on your team."
               </p>
               <p className="text-[#0A0A0A]/55 leading-relaxed mb-8">
-                Put pre-screened senior engineers from Nepal's top talent pool directly on your team. Every developer is evaluated for technical proficiency, industry experience, and reliability. We match you to the right engineer within days — and our flexible contract terms let you ramp up or down as your project evolves.
+                Managed Services has two service lines. Managed Teams: dedicated engineers and pods from Kathmandu work inside your programme while you direct the work. Application & Infrastructure Management: we operate your live systems against an agreed SLA and own the outcome. Our team works from Kathmandu (UTC+5:45), overlapping the Middle East and Asia.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/company" className="btn-secondary">Our Credentials</Link>
@@ -97,17 +97,17 @@ export default function StaffAugSolutionPage() {
             <div>
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80"
-                alt="Staff augmentation team"
+                alt="Managed services team"
                 className="w-full h-[520px] object-cover rounded-3xl"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06] text-center">
             {stats.map(s => (
               <div key={s.label}>
-                <div className="text-3xl font-black mb-1" style={{ color: ACCENT }}>{s.value}</div>
-                <div className="text-sm text-[#0A0A0A]/45 uppercase tracking-wide">{s.label}</div>
+                <div className="text-3xl md:text-4xl font-medium mb-1" style={{ color: ACCENT }}>{s.value}</div>
+                <div className="text-sm text-[#575757]">{s.label}</div>
               </div>
             ))}
           </div>
@@ -120,10 +120,10 @@ export default function StaffAugSolutionPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-14 grid md:grid-cols-2 md:items-end gap-6">
             <h2 className="section-heading text-[#0A0A0A]">
-              Roles we <span className="section-accent">place.</span>
+              What we <span className="section-accent">deliver.</span>
             </h2>
             <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
-              Every engineer has been evaluated against real production codebases — not just resumes and coding tests.
+              Two service lines under one roof — people for your programme, and operations for your live systems.
             </p>
           </div>
           <div className="rounded-3xl bg-[#EBF5FF] p-8 md:p-10">
@@ -148,7 +148,7 @@ export default function StaffAugSolutionPage() {
               How we <span className="section-accent">engage.</span>
             </h2>
             <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
-              Four flexible models — from a single embedded engineer to a full dedicated product team.
+              From a single embedded engineer to full operation of a live system.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
@@ -168,7 +168,7 @@ export default function StaffAugSolutionPage() {
                   <p className="text-sm text-[#0A0A0A]/55 leading-relaxed mb-4">{e.desc}</p>
                   <div className="flex flex-wrap gap-2">
                     {e.tags.map(t => (
-                      <span key={t} className="text-xs px-2.5 py-1 rounded-full bg-white/80 text-[#0072BC] font-medium border border-[#0072BC]/15">{t}</span>
+                      <span key={t} className="text-xs px-2.5 py-1 rounded-full bg-white/80 text-[#0040C1] font-medium border border-[#0040C1]/15">{t}</span>
                     ))}
                   </div>
                 </div>
@@ -183,11 +183,11 @@ export default function StaffAugSolutionPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-6">
             <h2 className="section-heading text-[#0A0A0A] mb-4">
-              Stacks our engineers{' '}
-              <span style={{ color: ACCENT }}>ship with.</span>
+              Stacks we work{' '}
+              <span style={{ color: ACCENT }}>with.</span>
             </h2>
             <p className="text-[#0A0A0A]/50 max-w-xl mx-auto">
-              36 technologies across frontend, backend, data, and cloud — every engineer is evaluated against real production codebases.
+              36 technologies across frontend, backend, data, and cloud.
             </p>
           </div>
           <TechOrbit />
@@ -197,32 +197,37 @@ export default function StaffAugSolutionPage() {
 
       {/* ── Trusted By ── */}
       <TrustedBySection />
-      <InsightsSection category="Staff Augmentation" />
+      <InsightsSection category="Managed Services" />
 
       {/* ── Technical depth + CTA ─────────────────────── */}
+      <section className="bg-[#FAFAFA] py-24">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-14">
+          <div className="max-w-3xl text-center">
+            <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Capabilities</p>
+            <h2 className="text-3xl md:text-[38px] md:leading-[46px] font-medium text-[#0A0A0A] mb-4">
+              Built for <span style={{ color: ACCENT }}>production.</span>
+            </h2>
+            <p className="text-base leading-6 text-[#575757]">
+              Our engineers and operators work with the stacks that run production systems.
+            </p>
+          </div>
+          <div className="w-full flex flex-wrap justify-center gap-x-10 gap-y-5">
+            {capabilities.map(c => (
+              <div key={c} className="flex items-center gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center" style={{ background: ACCENT }}>
+                  <Check size={14} className="text-white" />
+                </span>
+                <span className="text-base text-[#0A0A0A]">{c}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-            <div>
-              <h2 className="section-heading text-[#0A0A0A] mb-4">
-                Built for production.
-              </h2>
-              <p className="text-[#0A0A0A]/50 text-lg leading-relaxed">
-                Every engineer we place has hands-on experience with the stacks that run production systems.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {capabilities.map(c => (
-                <div key={c} className="flex items-center gap-2.5">
-                  <CheckCircle size={14} style={{ color: ACCENT }} className="flex-shrink-0" />
-                  <span className="text-sm text-[#0A0A0A]/60">{c}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: ACCENT }}>
+          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: '#0040C1' }}>
             <AnimatedBackground />
             <div className="relative z-10">
               <h2 className="section-heading text-white mb-3">Ready to get started?</h2>

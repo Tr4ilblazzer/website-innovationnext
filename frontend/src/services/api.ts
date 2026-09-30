@@ -27,14 +27,14 @@ interface BackendPost {
 }
 
 const CATEGORY_ACCENT: Record<string, string> = {
-  'Fintech':            '#0072BC',
-  'E-Governance':       '#10b981',
-  'AI & ML':            '#8b5cf6',
-  'BI & Data':          '#f59e0b',
-  'IT Services':        '#ef4444',
-  'Staff Augmentation': '#ec4899',
+  'Fintech':            '#0040C1',
+  'E-Governance':       '#0040C1',
+  'AI & ML':            '#0040C1',
+  'BI & Data':          '#0040C1',
+  'Software Engineering': '#0040C1',
+  'Managed Services':   '#0040C1',
 }
-const DEFAULT_ACCENT = '#0072BC'
+const DEFAULT_ACCENT = '#0040C1'
 const DEFAULT_IMAGE  = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80'
 
 function toInsightPost(p: BackendPost): InsightPost {

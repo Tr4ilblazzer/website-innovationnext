@@ -1,32 +1,31 @@
 import { ProductPageTemplate } from '@/components/sections/ProductPageTemplate'
 
 const stats = [
-  { value: 'Real-time', label: 'Transaction categorisation' },
-  { value: '85%+', label: 'Categorisation accuracy in production' },
-  { value: 'AI-driven', label: 'Personalised recommendations' },
-  { value: 'Plug-in', label: 'Works with any core banking system' },
+  { value: '10+', label: 'Spend categories, ML-based' },
+  { value: '7–30 day', label: 'Cash-flow forecast' },
+  { value: 'iOS + Android', label: 'Embedded SDKs' },
+  { value: 'API-first', label: 'Works with any CBS or banking app' },
 ]
 
 const features = [
-  { title: 'Spend Analytics', desc: 'Automatic transaction categorisation across 40+ spend categories — with monthly trends, merchant-level breakdown, and peer benchmarking.' },
-  { title: 'Budget Tracking', desc: 'User-defined and AI-suggested budgets per category — with real-time progress, alerts, and overspend notifications.' },
-  { title: 'Savings Goals', desc: 'Goal-based savings with automated round-ups, recurring transfers, and milestone notifications to keep users on track.' },
-  { title: 'Financial Health Score', desc: 'Holistic scoring model combining spending behaviour, savings rate, bill payment consistency, and debt load.' },
-  { title: 'AI Recommendations', desc: 'Contextual in-app financial nudges — identify subscriptions to cancel, bills to optimise, and savings opportunities based on actual behaviour.' },
-  { title: 'Net Worth Dashboard', desc: 'Consolidated view of assets and liabilities — accounts, loans, and investment balances — updated in real time.' },
+  { title: 'Transaction Categorisation', desc: 'ML-based classification across 10+ spend categories.' },
+  { title: 'Spending Trend Detection', desc: 'Automated weekly and monthly pattern identification, with anomaly alerts for unusual spend.' },
+  { title: 'Budget Management', desc: 'User-defined budgets with real-time breach alerts and a breach predictor.' },
+  { title: 'Natural Language Summaries', desc: 'Daily, weekly, and monthly summaries in plain language.' },
+  { title: 'Savings Goal Tracking', desc: 'Goal creation with progress visualisation.' },
+  { title: 'Subscription & Cash-Flow Insight', desc: 'Detects recurring charges and forecasts cash position 7–30 days ahead.' },
 ]
 
 const capabilities = [
-  'White-label SDK — embed into any app',
-  'REST API integration with any core banking',
-  'ML categorisation model — fine-tuned per market',
-  'Real-time event-driven architecture',
-  'GDPR / data privacy compliant',
-  'Multi-currency and multi-account support',
-  'Configurable category taxonomy',
-  'React Native UI kit included',
-  '40+ spend categories out of the box',
-  'Peer benchmarking engine',
+  'API-first integration with any CBS',
+  'Embedded SDK for iOS and Android',
+  'White-label — bank branding throughout',
+  'Transaction categorisation model',
+  'Spending pattern model',
+  'Budget breach predictor',
+  'Cash-flow forecast model',
+  'Natural-language generation engine',
+  'Ships inside Groot Neo, or standalone',
 ]
 
 const relatedProducts = [
@@ -41,14 +40,14 @@ export default function PfmPage() {
       tag="Personal Finance Manager"
       headline="Financial clarity,"
       headlineAccent="not just history."
-      quote="Give your users the financial intelligence they actually need — not just a list of transactions."
-      description="PFM is an AI-powered personal finance layer that plugs into any digital banking or wallet platform. It transforms raw transaction data into spend analytics, budgets, savings goals, and personalised recommendations — without users needing to do the heavy lifting."
+      quote="Money intelligence for any bank or wallet, as a deployable module."
+      description="An AI-powered financial wellness module that transforms raw transaction data into personalised financial insights — live and embedded in banking platforms."
       mockup="/pfm-mockup.png"
       mockupAlt="PFM"
       stats={stats}
-      featuresSubheadline="Every feature is designed to increase engagement and lifetime value for digital banking customers."
+      featuresSubheadline="Powered by five models: categorisation, spending patterns, budget breach, cash-flow forecast, and natural-language generation."
       features={features}
-      capabilitiesSubtext="Plug into any core banking system via REST API — no rip-and-replace required."
+      capabilitiesSubtext="Integrates through an API or an embedded SDK — no rip-and-replace required."
       capabilities={capabilities}
       relatedProducts={relatedProducts}
       ctaHeadline="Ready to deploy PFM?"

@@ -9,15 +9,14 @@ const menuItems: IMenu[] = [
   {
     id: 1,
     title: 'Solutions',
-    url: '/solutions/fintech',
+    url: '/solutions/ai-ml',
     dropdown: true,
     items: [
-      { id: 11, title: 'Digital Financial Services', url: '/solutions/fintech' },
-      { id: 12, title: 'E-Governance', url: '/solutions/egovernance' },
       { id: 13, title: 'AI & Machine Learning', url: '/solutions/ai-ml' },
       { id: 14, title: 'BI & Data Solutions', url: '/solutions/bi-data' },
-      { id: 15, title: 'IT Services', url: '/solutions/it-services' },
-      { id: 16, title: 'Staff Augmentation', url: '/solutions/staff-augmentation' },
+      { id: 15, title: 'Digital Transformation Consulting', url: '/solutions/consulting' },
+      { id: 16, title: 'Bespoke Software Development', url: '/solutions/bespoke-software' },
+      { id: 17, title: 'Managed Services', url: '/solutions/managed-services' },
     ],
   },
   {
@@ -30,7 +29,7 @@ const menuItems: IMenu[] = [
       { id: 22, title: 'Groot Pay', url: '/products/groot-pay' },
       { id: 23, title: 'PFM', url: '/products/pfm' },
       { id: 24, title: 'Loyalty Engine', url: '/products/loyalty' },
-      { id: 25, title: 'Merchant AI', url: '/products/merchant-ai' },
+      { id: 25, title: 'Onboarding Platform', url: '/products/onboarding' },
     ],
   },
   {
@@ -39,6 +38,8 @@ const menuItems: IMenu[] = [
     url: '/industries',
     dropdown: true,
     items: [
+      { id: 36, title: 'Digital Financial Services', url: '/industries/digital-financial-services' },
+      { id: 37, title: 'E-Governance', url: '/industries/e-governance' },
       { id: 31, title: 'Banks & Digital Banks', url: '/industries/banking' },
       { id: 32, title: 'Governments & Public Sector', url: '/industries/government' },
       { id: 33, title: 'Telecoms & MFIs', url: '/industries/telecom' },
@@ -52,12 +53,21 @@ const menuItems: IMenu[] = [
 ]
 
 const mobileSolutions = [
-  { label: 'Digital Financial Services', href: '/solutions/fintech' },
-  { label: 'E-Governance', href: '/solutions/egovernance' },
   { label: 'AI & Machine Learning', href: '/solutions/ai-ml' },
   { label: 'BI & Data Solutions', href: '/solutions/bi-data' },
-  { label: 'IT Services', href: '/solutions/it-services' },
-  { label: 'Staff Augmentation', href: '/solutions/staff-augmentation' },
+  { label: 'Digital Transformation Consulting', href: '/solutions/consulting' },
+  { label: 'Bespoke Software Development', href: '/solutions/bespoke-software' },
+  { label: 'Managed Services', href: '/solutions/managed-services' },
+]
+
+const mobileIndustries = [
+  { label: 'Digital Financial Services', href: '/industries/digital-financial-services' },
+  { label: 'E-Governance', href: '/industries/e-governance' },
+  { label: 'Banks & Digital Banks', href: '/industries/banking' },
+  { label: 'Governments & Public Sector', href: '/industries/government' },
+  { label: 'Telecoms & MFIs', href: '/industries/telecom' },
+  { label: 'Enterprises & Corporates', href: '/industries/enterprise' },
+  { label: 'Fintechs & Startups', href: '/industries/fintech-startups' },
 ]
 
 const mobileProducts = [
@@ -65,7 +75,7 @@ const mobileProducts = [
   { label: 'Groot Pay', href: '/products/groot-pay' },
   { label: 'PFM', href: '/products/pfm' },
   { label: 'Loyalty Engine', href: '/products/loyalty' },
-  { label: 'Merchant AI', href: '/products/merchant-ai' },
+  { label: 'Onboarding Platform', href: '/products/onboarding' },
 ]
 
 export function Navbar() {
@@ -107,11 +117,11 @@ export function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-white/90 backdrop-blur-xl border-b border-black/[0.06] py-3'
-            : 'bg-transparent py-5'
+            ? 'bg-white/90 backdrop-blur-xl border-b border-black/[0.06] py-[18px]'
+            : 'bg-white py-[18px]'
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-[1312px] mx-auto px-6 flex items-center justify-between gap-6">
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
@@ -123,7 +133,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center px-2 py-1">
+          <div className="hidden lg:flex items-center rounded-3xl bg-[#FAFAFA]">
             <Menu list={menuItems} theme={menuTheme} />
           </div>
 
@@ -131,9 +141,9 @@ export function Navbar() {
           <div className="hidden lg:flex items-center">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#0072BC] text-white text-sm font-semibold border border-[#0072BC] hover:bg-white hover:text-[#0072BC] transition-all duration-200"
+              className="inline-flex items-center justify-center h-11 px-5 rounded-full bg-[#0040C1] text-[#FAFAFA] text-base font-medium border border-[#0040C1] hover:bg-white hover:text-[#0040C1] transition-all duration-200"
             >
-              Get in Touch <ArrowRight size={14} />
+              Get in touch
             </Link>
           </div>
 
@@ -171,9 +181,18 @@ export function Navbar() {
                 ))}
               </div>
             </div>
+            <div>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/30 mb-3">Industries</p>
+              <div className="space-y-1">
+                {mobileIndustries.map(i => (
+                  <Link key={i.href} to={i.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
+                    {i.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <div className="space-y-3">
               {[
-                { label: 'Industries', href: '/industries' },
                 { label: 'Company', href: '/company' },
                 { label: 'Insights', href: '/insights' },
                 { label: 'Careers', href: '/careers' },
@@ -183,7 +202,7 @@ export function Navbar() {
                 </Link>
               ))}
             </div>
-            <Link to="/contact" className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-full bg-[#0072BC] text-white font-semibold hover:bg-[#005A96] transition-colors">
+            <Link to="/contact" className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-full bg-[#0040C1] text-white font-semibold hover:bg-[#0034A0] transition-colors">
               Get in Touch <ArrowRight size={14} />
             </Link>
           </div>

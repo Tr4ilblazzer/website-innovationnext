@@ -69,7 +69,7 @@ export function CredentialsSection() {
                   { v: '3.5M+', l: 'Daily txns' },
                 ].map(s => (
                   <div key={s.l} className="bg-black/[0.02] rounded-xl p-3.5 border border-black/[0.06]">
-                    <div className="text-[#0072BC] text-lg font-black">{s.v}</div>
+                    <div className="text-[#0040C1] text-lg font-black">{s.v}</div>
                     <div className="text-[#0A0A0A]/40 text-xs mt-0.5">{s.l}</div>
                   </div>
                 ))}
@@ -90,7 +90,7 @@ export function CredentialsSection() {
                   { v: 'PCI DSS', l: 'Certified' },
                 ].map(s => (
                   <div key={s.l} className="bg-black/[0.02] rounded-xl p-3.5 border border-black/[0.06]">
-                    <div className="text-[#0072BC] text-lg font-black">{s.v}</div>
+                    <div className="text-[#0040C1] text-lg font-black">{s.v}</div>
                     <div className="text-[#0A0A0A]/40 text-xs mt-0.5">{s.l}</div>
                   </div>
                 ))}

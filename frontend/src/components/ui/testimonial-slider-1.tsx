@@ -139,7 +139,7 @@ export const TestimonialSlider = ({ reviews, className }: TestimonialSliderProps
             <Button
               variant="default"
               size="icon"
-              className="rounded-full w-12 h-12 bg-[#0072BC] hover:bg-[#005A96] text-white"
+              className="rounded-full w-12 h-12 bg-[#0040C1] hover:bg-[#0034A0] text-white"
               onClick={handleNext}
               aria-label="Next"
             >

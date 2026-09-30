@@ -95,22 +95,22 @@ return (
       >
         {/* Radial glow */}
         <div className="absolute w-[340px] h-[340px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(0,114,188,0.12) 0%, transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle, rgba(0,64,193,0.12) 0%, transparent 70%)' }} />
 
         {/* Centre orb */}
         <div className="absolute w-16 h-16 rounded-full flex items-center justify-center z-10"
-          style={{ background: 'linear-gradient(135deg,#0072BC,#0DFFFF)' }}>
-          <div className="absolute w-20 h-20 rounded-full border border-[#0072BC]/30 animate-ping opacity-60" />
+          style={{ background: 'linear-gradient(135deg,#0040C1,#0DFFFF)' }}>
+          <div className="absolute w-20 h-20 rounded-full border border-[#0040C1]/30 animate-ping opacity-60" />
           <div className="absolute w-24 h-24 rounded-full border border-[#0DFFFF]/20 animate-ping opacity-40" style={{ animationDelay: '0.5s' }} />
           <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md" />
         </div>
 
         {/* Outer ring — dotted */}
-        <div className="absolute w-[560px] h-[560px] rounded-full border border-dashed border-[#0072BC]/25" />
+        <div className="absolute w-[560px] h-[560px] rounded-full border border-dashed border-[#0040C1]/25" />
         {/* Inner orbit ring — dotted */}
-        <div className="absolute w-[420px] h-[420px] rounded-full border border-dashed border-[#0072BC]/50" />
+        <div className="absolute w-[420px] h-[420px] rounded-full border border-dashed border-[#0040C1]/50" />
         {/* Decorative inner ring — dotted */}
-        <div className="absolute w-[240px] h-[240px] rounded-full border border-dashed border-[#0072BC]/30" />
+        <div className="absolute w-[240px] h-[240px] rounded-full border border-dashed border-[#0040C1]/30" />
 
         {timelineData.map((item, index) => {
           const pos        = calcPos(index)
@@ -134,23 +134,23 @@ return (
               {/* Pulse halo */}
               {pulsing && (
                 <div className="absolute inset-0 rounded-full animate-pulse"
-                  style={{ background: 'radial-gradient(circle,rgba(0,114,188,0.25) 0%,transparent 70%)', width: 80, height: 80, left: -10, top: -10 }} />
+                  style={{ background: 'radial-gradient(circle,rgba(0,64,193,0.25) 0%,transparent 70%)', width: 80, height: 80, left: -10, top: -10 }} />
               )}
 
               {/* Node circle */}
-              <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0072BC] group-hover:border-[#0072BC] group-hover:text-white group-hover:shadow-[0_0_20px_rgba(0,114,188,0.35)] ${
+              <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0040C1] group-hover:border-[#0040C1] group-hover:text-white group-hover:shadow-[0_0_20px_rgba(0,64,193,0.35)] ${
                 isExpanded
-                  ? 'scale-125 bg-[#0072BC] border-[#0072BC] text-white shadow-[0_0_24px_rgba(0,114,188,0.5)]'
+                  ? 'scale-125 bg-[#0040C1] border-[#0040C1] text-white shadow-[0_0_24px_rgba(0,64,193,0.5)]'
                   : related
-                  ? 'bg-[#0072BC]/20 border-[#0072BC] text-[#0072BC] animate-pulse'
-                  : 'bg-[#EBF5FF] border-[#0072BC]/60 text-[#0072BC]'
+                  ? 'bg-[#0040C1]/20 border-[#0040C1] text-[#0040C1] animate-pulse'
+                  : 'bg-[#EBF5FF] border-[#0040C1]/60 text-[#0040C1]'
               }`}>
                 <Icon size={22} />
               </div>
 
               {/* Label */}
               <div className={`absolute top-16 whitespace-nowrap text-[11px] font-semibold tracking-wider text-center transition-all duration-300 left-1/2 -translate-x-1/2 ${
-                isExpanded ? 'text-[#0072BC] scale-110' : 'text-[#0A0A0A]/50'
+                isExpanded ? 'text-[#0040C1] scale-110' : 'text-[#0A0A0A]/50'
               }`}>
                 {item.title}
               </div>
@@ -158,7 +158,7 @@ return (
               {/* Expanded card */}
               {isExpanded && (
                 <Card className="absolute top-20 left-1/2 -translate-x-1/2 w-72 bg-white border border-black/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.10)] overflow-visible">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-[#0072BC]/40" />
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-[#0040C1]/40" />
                   <CardHeader className="pb-2 pt-4 px-4">
                     <div className="flex justify-between items-center mb-1">
                       <span className="text-[10px] font-mono text-[#0A0A0A]/35">{item.date}</span>

@@ -1,4 +1,4 @@
-const ACCENT = '#0072BC'
+const ACCENT = '#0040C1'
 
 interface GlassLocationCardProps {
   city: string

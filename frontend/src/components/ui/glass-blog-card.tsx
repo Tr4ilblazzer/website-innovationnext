@@ -23,7 +23,7 @@ export function GlassBlogCard({
   date = 'Apr 2026',
   readTime = '5 min read',
   tags = ['Fintech'],
-  accentColor = '#0072BC',
+  accentColor = '#0040C1',
   className,
   onClick,
 }: GlassBlogCardProps) {

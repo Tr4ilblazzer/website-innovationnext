@@ -64,7 +64,7 @@ export default function InsightDetailPage() {
   if (post === 'loading') {
     return (
       <main className="pt-40 pb-24 text-center bg-white">
-        <div className="w-8 h-8 border-2 border-[#0072BC] border-t-transparent rounded-full animate-spin mx-auto" />
+        <div className="w-8 h-8 border-2 border-[#0040C1] border-t-transparent rounded-full animate-spin mx-auto" />
       </main>
     )
   }
@@ -181,7 +181,7 @@ export default function InsightDetailPage() {
               </div>
               <button
                 onClick={() => navigate('/insights')}
-                className="hidden md:flex items-center gap-2 text-sm font-semibold text-[#0072BC] hover:gap-3 transition-all"
+                className="hidden md:flex items-center gap-2 text-sm font-semibold text-[#0040C1] hover:gap-3 transition-all"
               >
                 All insights <ArrowRight className="h-4 w-4" />
               </button>
@@ -209,7 +209,7 @@ export default function InsightDetailPage() {
       {/* ── CTA ─────────────────────────────────────────────── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="relative overflow-hidden rounded-3xl bg-[#0072BC] p-12 text-center">
+          <div className="relative overflow-hidden rounded-3xl bg-[#0040C1] p-12 text-center">
             <div
               className="pointer-events-none absolute inset-0 opacity-10"
               style={{
