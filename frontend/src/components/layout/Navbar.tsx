@@ -1,5 +1,8 @@
+'use client'
+
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu as MenuIcon, X, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Menu, { type IMenu } from '@/components/ui/navbar'
@@ -81,11 +84,11 @@ const mobileProducts = [
 export function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const location                    = useLocation()
+  const pathname                    = usePathname()
   const { isDark }                  = useHeroTheme()
 
   // Hero theme only applies on the home page before the user has scrolled
-  const isHome           = location.pathname === '/'
+  const isHome           = pathname === '/'
   const heroThemeActive  = isHome && !scrolled
 
   // Derived tokens
@@ -109,7 +112,7 @@ export function Navbar() {
 
   useEffect(() => {
     setMobileOpen(false)
-  }, [location])
+  }, [pathname])
 
   return (
     <>
@@ -124,7 +127,7 @@ export function Navbar() {
         <div className="max-w-[1312px] mx-auto px-6 flex items-center justify-between gap-6">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5">
             <img
               src={logoSrc}
               alt="Innovation Next"
@@ -140,7 +143,7 @@ export function Navbar() {
           {/* CTA */}
           <div className="hidden lg:flex items-center">
             <Link
-              to="/contact"
+              href="/contact"
               className="inline-flex items-center justify-center h-11 px-5 rounded-full bg-[#0040C1] text-[#FAFAFA] text-base font-medium border border-[#0040C1] hover:bg-white hover:text-[#0040C1] transition-all duration-200"
             >
               Get in touch
@@ -165,7 +168,7 @@ export function Navbar() {
               <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/30 mb-3">Solutions</p>
               <div className="space-y-1">
                 {mobileSolutions.map(s => (
-                  <Link key={s.href} to={s.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
+                  <Link key={s.href} href={s.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
                     {s.label}
                   </Link>
                 ))}
@@ -175,7 +178,7 @@ export function Navbar() {
               <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/30 mb-3">Products</p>
               <div className="space-y-1">
                 {mobileProducts.map(p => (
-                  <Link key={p.href} to={p.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
+                  <Link key={p.href} href={p.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
                     {p.label}
                   </Link>
                 ))}
@@ -185,7 +188,7 @@ export function Navbar() {
               <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/30 mb-3">Industries</p>
               <div className="space-y-1">
                 {mobileIndustries.map(i => (
-                  <Link key={i.href} to={i.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
+                  <Link key={i.href} href={i.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
                     {i.label}
                   </Link>
                 ))}
@@ -197,12 +200,12 @@ export function Navbar() {
                 { label: 'Insights', href: '/insights' },
                 { label: 'Careers', href: '/careers' },
               ].map(item => (
-                <Link key={item.href} to={item.href} className="block py-2 text-[#0A0A0A]/70 font-medium text-lg">
+                <Link key={item.href} href={item.href} className="block py-2 text-[#0A0A0A]/70 font-medium text-lg">
                   {item.label}
                 </Link>
               ))}
             </div>
-            <Link to="/contact" className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-full bg-[#0040C1] text-white font-semibold hover:bg-[#0034A0] transition-colors">
+            <Link href="/contact" className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-full bg-[#0040C1] text-white font-semibold hover:bg-[#0034A0] transition-colors">
               Get in Touch <ArrowRight size={14} />
             </Link>
           </div>

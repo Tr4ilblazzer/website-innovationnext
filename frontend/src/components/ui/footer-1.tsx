@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { LucideIcon } from 'lucide-react'
 
 interface FooterLink {
@@ -44,7 +44,7 @@ export const Footer: FC<FooterProps> = ({
 
           {/* Logo + Description + Social */}
           <div className="flex flex-col gap-4 md:w-1/3 md:pr-16">
-            <Link to="/">
+            <Link href="/">
               <img src={logoSrc} alt={logoAlt} className="h-9 w-auto object-contain" />
             </Link>
             <p className="text-[#0A0A0A]/50 text-sm leading-relaxed">{description}</p>
@@ -74,7 +74,7 @@ export const Footer: FC<FooterProps> = ({
                 {col.links.map(({ label, href, badge }) => (
                   <Link
                     key={label}
-                    to={href}
+                    href={href}
                     className="text-sm text-[#0A0A0A]/50 hover:text-[#0A0A0A] flex items-center gap-1.5 transition-colors"
                   >
                     {label}
@@ -94,9 +94,9 @@ export const Footer: FC<FooterProps> = ({
         <div className="mt-14 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#0A0A0A]/30">
           <p>{copyright}</p>
           <div className="flex items-center gap-6">
-            <Link to="/privacy" className="hover:text-[#0A0A0A]/60 transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-[#0A0A0A]/60 transition-colors">Terms of Service</Link>
-            <Link to="/cookies" className="hover:text-[#0A0A0A]/60 transition-colors">Cookie Settings</Link>
+            <Link href="/privacy" className="hover:text-[#0A0A0A]/60 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#0A0A0A]/60 transition-colors">Terms of Service</Link>
+            <Link href="/cookies" className="hover:text-[#0A0A0A]/60 transition-colors">Cookie Settings</Link>
           </div>
         </div>
       </div>

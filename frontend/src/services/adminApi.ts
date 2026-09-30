@@ -1,4 +1,4 @@
-const BASE = (import.meta.env.VITE_API_URL as string) ?? ''
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? ''
 
 function getToken(): string | null {
   try {

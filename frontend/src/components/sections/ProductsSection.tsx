@@ -1,5 +1,7 @@
+'use client'
+
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
 import { ArrowRight, CreditCard, Smartphone } from 'lucide-react'
 
@@ -199,7 +201,7 @@ export function ProductsSection() {
                       </div>
                     </div>
                     <Link
-                      to={p.href}
+                      href={p.href}
                       className="self-start inline-flex items-center gap-1.5 px-4 py-2 rounded-3xl text-xs leading-[18px] font-medium transition-colors text-[#0040C1] border border-[#0040C1] hover:bg-[#0040C1] hover:text-white"
                     >
                       Explore {p.label} <ArrowRight size={20} strokeWidth={1.5} />

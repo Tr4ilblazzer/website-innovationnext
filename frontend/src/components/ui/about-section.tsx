@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
+import Link from 'next/link'
 
 const pillars = [
   {
@@ -63,7 +63,7 @@ export function AboutSection() {
                 </p>
               </div>
               <Button variant="outline" className="mr-auto rounded-full border-black/15 text-[#0A0A0A] hover:border-[#0040C1] hover:text-[#0040C1]" asChild>
-                <Link to="/company">Learn about us</Link>
+                <Link href="/company">Learn about us</Link>
               </Button>
             </div>
             <div className="relative rounded-2xl overflow-hidden flex-1 min-h-[160px]">

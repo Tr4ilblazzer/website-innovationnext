@@ -8,7 +8,7 @@ Full-stack corporate website for **Innovation Next** (also known as Four Symmetr
 ## Tech Stack
 | Layer | Technology |
 |-------|-----------|
-| Frontend | React 18 + TypeScript + Vite |
+| Frontend | Next.js 16 (App Router) + React 19 + TypeScript |
 | Styling | Tailwind CSS v3 + shadcn/ui |
 | State | Zustand (admin auth only — `useAdminStore`) |
 | Forms | React Hook Form + Zod |
@@ -31,7 +31,8 @@ npm run install:all
 
 # Frontend only
 cd frontend && npm run dev
-cd frontend && npm run build      # tsc + vite build
+cd frontend && npm run build      # next build (also type-checks)
+cd frontend && npm run typecheck  # tsc --noEmit
 
 # Backend only
 cd backend && npm run dev         # ts-node-dev with hot reload
@@ -46,14 +47,14 @@ cd backend && npm run seed:admin    # create the first admin login
 npm run db:studio     # open Prisma Studio visual browser
 ```
 
-There is no lint or test script in any package — `cd frontend && npm run build` (runs `tsc`) is the only correctness check. The Vercel project is linked from `frontend/` (`frontend/.vercel`), so run `vercel` from there; `frontend/vercel.json` is just the SPA rewrite.
+There is no lint or test script in any package — `cd frontend && npm run build` (runs `next build`, which type-checks) is the only correctness check. The Vercel project is linked from `frontend/` (`frontend/.vercel`), so run `vercel` from there. The Vercel project's framework preset must be **Next.js** (it was Vite), and its env var must be `NEXT_PUBLIC_API_URL`.
 
 ## Project Structure
 
 ```
 innovation-next/
 ├── frontend/src/
-│   ├── App.tsx              Router — all routes, lazy loading, PublicLayout vs AdminLayout split
+│   ├── app/                 Next.js App Router — layout.tsx (metadata, fonts), (site)/ public routes with Navbar/Footer, admin/ routes, sitemap.ts, robots.ts, globals.css
 │   ├── context/
 │   │   └── HeroThemeContext.tsx   isDark flag toggled by hero sections to switch Navbar style
 │   ├── components/
@@ -61,9 +62,9 @@ innovation-next/
 │   │   ├── layout/          Navbar, Footer
 │   │   ├── sections/        Reusable page sections (SolutionPageTemplate, ProductPageTemplate, etc.)
 │   │   └── admin/           AdminLayout, AdminRoute (JWT guard), RichTextEditor
-│   ├── pages/
-│   │   ├── solutions/       7 individual solution pages (lazy-loaded)
-│   │   ├── products/        5 individual product pages (lazy-loaded)
+│   ├── views/
+│   │   ├── solutions/       7 individual solution pages (rendered by thin `app/(site)/**/page.tsx` route files)
+│   │   ├── products/        5 individual product pages
 │   │   └── admin/           AdminDashboard, AdminContacts, AdminInsights, AdminBlogEditor,
 │   │                        AdminVacancies, AdminVacancyEditor, AdminApplications, AdminLogin
 │   ├── hooks/               useScrollY, useIntersection, useMediaQuery
@@ -137,11 +138,19 @@ Prisma schema at `backend/src/prisma/schema.prisma`. Models:
 - **`InsightDetailPage`** — reads `slug` from `useParams()`, renders `body` blocks, shows related posts from the same category, then a CTA.
 - **Backend shape vs. frontend shape:** `api.ts` has a `toInsightPost()` function that normalises `BackendPost` → `InsightPost`. When the backend is live, only `api.ts` changes; pages stay untouched.
 
+### Routing, SEO & metadata (Next.js)
+- Public routes live in `frontend/src/app/(site)/` (Navbar + Footer layout); admin in `app/admin/` (`(panel)` group adds `AdminRoute` + `AdminLayout`, `login` sits outside it). Route files are thin: they export `metadata = pageMeta({ title, description, path })` from `lib/seo.ts` and render the component from `src/views/`.
+- Every new public page needs a `pageMeta` entry and a line in `app/sitemap.ts`. Stubs use `noindex: true`.
+- Anything using hooks, browser APIs or event handlers needs `'use client'`; views are all client components (they still server-render to HTML).
+- `/insights` and `/insights/[slug]` fetch on the server (`revalidate = 300`), set per-post metadata and emit Article JSON-LD. `api.ts` still falls back to mock data if the backend is unreachable, so a build without the backend bakes in mock posts until the next revalidation.
+- Redirects (old solution/product URLs) are in `next.config.ts`. Unknown URLs 404 via `app/(site)/[...notfound]`. `/products/[slug]`, `/industries/[slug]` and `/use-cases/[slug]` catch-all stubs were dropped.
+- Site URL comes from `NEXT_PUBLIC_SITE_URL` (defaults to a placeholder in `lib/seo.ts`).
+
 ### HeroThemeContext
 `HeroThemeProvider` wraps the entire app. Hero sections call `setIsDark(true/false)` on mount to signal whether they're dark-background — the Navbar uses `isDark` to switch between light and dark logo/link styles. Currently only the legacy `components/sections/HeroSection.tsx` (no longer used by any route) calls `setIsDark` — no live page sets it, so `isDark` stays `false` and the Navbar always renders its light variant on Home until a hero wires this back up.
 
 ### Solution Pages
-Each of the 7 solution pages is in `frontend/src/pages/solutions/` and lazy-loaded in `App.tsx`. Layout: hero → features/capabilities → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each page uses `<SolutionPageTemplate>` — except `FintechSolutionPage` and `ManagedServicesSolutionPage` which are hand-written.
+Each of the 7 solution pages is in `frontend/src/views/solutions/` and mounted by a route file under `frontend/src/app/(site)/`. Layout: hero → features/capabilities → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each page uses `<SolutionPageTemplate>` — except `FintechSolutionPage` and `ManagedServicesSolutionPage` which are hand-written.
 
 ### Closing CTA card
 The "Ready to get started?" card is copy-pasted (not a shared component) in `SolutionPageTemplate`, `ProductPageTemplate`, `FintechSolutionPage`, `ManagedServicesSolutionPage`, `CompanyPage` and `CareersPage`. It must stay fixed brand blue `#0040C1` — never bind it to a page's `accentColor` — so change all copies together.
@@ -183,7 +192,8 @@ Each route file in `backend/src/routes/` is self-contained. Form routes use `for
 
 Frontend (`frontend/.env`):
 ```
-VITE_API_URL=http://localhost:3001
+NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_SITE_URL=http://localhost:5173   # canonical URLs, sitemap, Open Graph
 ```
 
 Backend (`backend/.env`):
@@ -238,7 +248,7 @@ Tailwind token aliases (from `tailwind.config.js`):
 
 `tailwind.config.js` also wires shadcn-convention semantic tokens (`background`, `foreground`, `primary`, `secondary`, `accent`, `muted`, `card`, `destructive`, `border`, `input`, `ring`) to the CSS custom properties already defined in `index.css`. Those vars are **space-separated RGB triplets** (e.g. `--background: 255 255 255`), not HSL — some (`--secondary`, `--accent`, `--muted`, `--border`, `--input`) already embed their own alpha (`0 0 0 / 0.06`) and are mapped as plain `rgb(var(--x))` rather than `rgb(var(--x) / <alpha-value>)`, so they won't respond to Tailwind opacity modifiers like `/50`. Use these tokens (`bg-background`, `text-muted-foreground`, etc.) when dropping in third-party/shadcn-registry components that expect them; hand-written components in this codebase use the `brand-*` tokens and raw hex instead.
 
-Path alias: `@/` maps to `frontend/src/` (configured in `vite.config.ts` and `tsconfig.json`).
+Path alias: `@/` maps to `frontend/src/` (configured in `tsconfig.json`).
 
 ### Third-party shader library
 `@paper-design/shaders-react` `<Warp>` component (`DomainsSection`). Its `shape` prop only accepts `"checks" | "stripes" | "edge"`.

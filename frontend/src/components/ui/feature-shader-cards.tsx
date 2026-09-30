@@ -1,3 +1,5 @@
+'use client'
+
 import { Warp } from '@paper-design/shaders-react'
 
 interface FeatureItem {

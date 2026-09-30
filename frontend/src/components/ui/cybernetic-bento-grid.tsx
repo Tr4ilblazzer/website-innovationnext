@@ -1,5 +1,7 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 interface Domain {
@@ -60,7 +62,7 @@ export function CyberneticBentoGrid({ domains }: CyberneticBentoGridProps) {
         <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40">{d.short}</span>
         <div>
           <h3 className="text-base font-bold text-white leading-snug mb-3">{d.label}</h3>
-          <Link to={d.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
+          <Link href={d.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
             Explore <ArrowRight size={11} />
           </Link>
         </div>
@@ -80,7 +82,7 @@ export function CyberneticBentoGrid({ domains }: CyberneticBentoGridProps) {
           <div>
             <h3 className="text-2xl font-bold text-white leading-snug mb-2">{fintech.label}</h3>
             <p className="text-white/55 text-sm leading-relaxed mb-5">{fintech.desc}</p>
-            <Link to={fintech.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/70 hover:text-white transition-colors">
+            <Link href={fintech.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/70 hover:text-white transition-colors">
               Explore <ArrowRight size={13} />
             </Link>
           </div>
@@ -98,7 +100,7 @@ export function CyberneticBentoGrid({ domains }: CyberneticBentoGridProps) {
           <div>
             <h3 className="text-base font-bold text-white leading-snug mb-2">{ai.label}</h3>
             <p className="text-white/55 text-xs leading-relaxed mb-3">{ai.desc}</p>
-            <Link to={ai.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
+            <Link href={ai.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
               Explore <ArrowRight size={11} />
             </Link>
           </div>
@@ -115,7 +117,7 @@ export function CyberneticBentoGrid({ domains }: CyberneticBentoGridProps) {
           <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40">{bespoke.short}</span>
           <div>
             <h3 className="text-base font-bold text-white leading-snug mb-3">{bespoke.label}</h3>
-            <Link to={bespoke.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
+            <Link href={bespoke.href} className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors">
               Explore <ArrowRight size={11} />
             </Link>
           </div>

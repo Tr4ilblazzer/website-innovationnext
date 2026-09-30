@@ -15,7 +15,7 @@ interface UseIntersectionOptions extends IntersectionObserverInit {
  */
 export function useIntersection<T extends Element = HTMLDivElement>(
   options?: UseIntersectionOptions,
-): [React.RefObject<T>, boolean] {
+): [React.RefObject<T | null>, boolean] {
   const ref = useRef<T>(null)
   const [isIntersecting, setIsIntersecting] = useState(false)
 

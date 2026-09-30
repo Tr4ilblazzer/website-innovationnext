@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
@@ -59,7 +59,7 @@ export function ProductPageTemplate({
                 {description}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link to="/contact" className="btn-secondary">Request a Demo</Link>
+                <Link href="/contact" className="btn-secondary">Request a Demo</Link>
               </div>
             </div>
             <div className="flex items-center justify-center min-h-[520px]">
@@ -142,7 +142,7 @@ export function ProductPageTemplate({
                 {relatedProducts.map(p => (
                   <Link
                     key={p.name}
-                    to={p.href}
+                    href={p.href}
                     className="bg-white rounded-2xl p-5 flex items-center justify-between group hover:border-[#0040C1]/20 border border-transparent transition-colors"
                   >
                     <div>
@@ -165,7 +165,7 @@ export function ProductPageTemplate({
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
                 >
                   Get in Touch <ArrowRight size={14} />

@@ -1,3 +1,5 @@
+'use client'
+
 import { motion, AnimatePresence } from 'framer-motion'
 import IntroAnimation from '@/components/ui/scroll-morph-hero'
 import { useHeroTheme } from '@/context/HeroThemeContext'

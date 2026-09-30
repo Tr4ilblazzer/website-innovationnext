@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
@@ -58,7 +58,7 @@ export function SolutionPageTemplate({
                 {description}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link to="/company" className="btn-secondary">Our Credentials</Link>
+                <Link href="/company" className="btn-secondary">Our Credentials</Link>
               </div>
             </div>
             <div>
@@ -162,13 +162,13 @@ export function SolutionPageTemplate({
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
                 >
                   Get in Touch <ArrowRight size={14} />
                 </Link>
                 <Link
-                  to="/insights/case-studies"
+                  href="/insights/case-studies"
                   className="inline-flex items-center gap-2 rounded-full border border-white/40 text-white font-semibold text-sm py-3.5 px-8 hover:bg-white/10 transition-colors"
                 >
                   View Case Studies

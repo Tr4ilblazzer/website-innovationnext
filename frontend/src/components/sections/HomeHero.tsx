@@ -1,6 +1,7 @@
+'use client'
+
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import roomLines from '@/assets/hero-room-lines.svg'
+import Link from 'next/link'
 import { LogoMarquee } from '@/components/sections/TrustedBySection'
 
 const ACCENT = '#0040C1'
@@ -17,7 +18,7 @@ function RoomBackdrop() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-50">
       <img
-        src={roomLines}
+        src="/hero-room-lines.svg"
         alt=""
         className="absolute max-w-none"
         style={{ left: '-20.76%', right: '-20.76%', top: 0, bottom: '-0.13%', width: '141.52%', height: '100.13%' }}
@@ -54,14 +55,14 @@ export function HomeHero() {
 
         <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-4">
           <Link
-            to="/contact"
+            href="/contact"
             className="inline-flex h-11 items-center justify-center rounded-full px-5 text-base font-medium text-[#FAFAFA] transition-colors hover:bg-[#0034A0]"
             style={{ background: ACCENT, ...PUBLIC_SANS }}
           >
             Talk To Our Team
           </Link>
           <Link
-            to="/solutions/ai-ml"
+            href="/solutions/ai-ml"
             className="inline-flex h-11 items-center justify-center rounded-full border border-[#3C53FF] bg-[#FAFAFA] px-5 text-base font-medium transition-colors hover:bg-[#EFF4FF]"
             style={{ color: ACCENT, ...PUBLIC_SANS }}
           >
