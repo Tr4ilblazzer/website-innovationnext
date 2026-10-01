@@ -1,6 +1,8 @@
+'use client'
+
 import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, useTransform, useSpring, useMotionValue } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/navigation'
 
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
 
@@ -90,7 +92,7 @@ interface IntroAnimationProps {
 }
 
 export default function IntroAnimation({ isDark = true }: IntroAnimationProps) {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [introPhase, setIntroPhase] = useState<AnimationPhase>("scatter");
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -344,7 +346,7 @@ export default function IntroAnimation({ isDark = true }: IntroAnimationProps) {
                 industry={industry}
                 phase={introPhase}
                 target={target}
-                onClick={() => navigate(industry.route)}
+                onClick={() => router.push(industry.route)}
                 isDark={isDark}
               />
             );

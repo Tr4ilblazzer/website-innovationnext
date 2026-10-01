@@ -1,8 +1,10 @@
+'use client'
+
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight, CheckCircle, Mail, MapPin } from 'lucide-react'
 import { api, cn } from '@/lib/utils'
 import { GlassLocationCard } from '@/components/ui/glass-location-card'
 
@@ -29,6 +31,8 @@ const interests = [
   'Managed Services',
   'General Enquiry',
 ]
+
+const CONTACT_EMAIL = 'info@innovationnxt.com'
 
 const offices = [
   { city: 'Kathmandu', country: 'Nepal', flag: '🇳🇵', role: 'Headquarters', badge: 'HQ', image: 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=900&q=80' },
@@ -188,8 +192,31 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
         {!compact && (
           <div className="mt-16 grid md:grid-cols-2 gap-5">
             {offices.map(o => (
-              <GlassLocationCard key={o.city} {...o} height="h-[340px]" />
+              <GlassLocationCard key={o.city} {...o} desc="Our headquarters and engineering hub." height="h-[340px]" />
             ))}
+            <div className="rounded-3xl bg-[#EBF5FF] p-8 md:p-10 flex flex-col justify-center gap-5">
+              <p className="text-xs font-medium" style={{ color: ACCENT }}>Get in touch</p>
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-4">
+                <span className="mt-0.5 flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style={{ background: `${ACCENT}12` }}>
+                  <Mail size={16} style={{ color: ACCENT }} />
+                </span>
+                <div>
+                  <div className="text-xs text-[#0A0A0A]/40 mb-1">Email</div>
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-base font-medium text-[#0A0A0A] hover:text-[#0040C1] transition-colors">
+                    {CONTACT_EMAIL}
+                  </a>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-4">
+                <span className="mt-0.5 flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style={{ background: `${ACCENT}12` }}>
+                  <MapPin size={16} style={{ color: ACCENT }} />
+                </span>
+                <div>
+                  <div className="text-xs text-[#0A0A0A]/40 mb-1">Headquarters</div>
+                  <div className="text-base font-medium text-[#0A0A0A]">Kathmandu, Nepal</div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 

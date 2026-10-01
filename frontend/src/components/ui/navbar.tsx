@@ -1,5 +1,8 @@
+'use client'
+
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, MotionConfig } from 'framer-motion'
 
 export type IMenu = {
@@ -17,7 +20,7 @@ type MenuProps = {
 
 export default function Menu({ list, theme = 'light' }: MenuProps) {
   const [hovered, setHovered] = useState<number | null>(null)
-  const { pathname } = useLocation()
+  const pathname = usePathname()
   const isActive = (item: IMenu) =>
     [item.url, ...(item.items?.map(i => i.url) ?? [])].some(u => u !== '/' && pathname.startsWith(u.split('/').slice(0, 2).join('/')))
 
@@ -32,7 +35,7 @@ export default function Menu({ list, theme = 'light' }: MenuProps) {
           {list.map((item) => (
             <li key={item.id} className="relative">
               <Link
-                to={item.url}
+                href={item.url}
                 onMouseEnter={() => setHovered(item.id)}
                 onMouseLeave={() => setHovered(null)}
                 className={`relative flex items-center justify-center rounded-3xl px-5 py-2 text-base font-normal transition-colors ${linkBase} ${
@@ -63,7 +66,7 @@ export default function Menu({ list, theme = 'light' }: MenuProps) {
                     {item.items?.map((nav) => (
                       <Link
                         key={nav.id}
-                        to={nav.url}
+                        href={nav.url}
                         className="w-full px-4 py-2.5 text-sm text-[#0A0A0A]/70 hover:text-[#0A0A0A] hover:bg-black/[0.04] transition-colors"
                       >
                         {nav.title}

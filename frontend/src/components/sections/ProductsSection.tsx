@@ -1,7 +1,9 @@
+'use client'
+
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
-import { ArrowRight, CreditCard, Smartphone } from 'lucide-react'
+import { ArrowRight, CreditCard, FileText, Smartphone } from 'lucide-react'
 
 const ACCENT = '#0040C1'
 const POPPINS = { fontFamily: "'Poppins', 'Public Sans', sans-serif" }
@@ -131,6 +133,23 @@ const products: Product[] = [
       { title: 'No-Code Flow Builder', desc: 'Configure flows per country, entity type, and risk tier.' },
     ],
   },
+  {
+    value: 'allxtract',
+    label: 'allXtract',
+    tagline: 'Document Intelligence Platform',
+    title: 'Documents in. Decisions out.',
+    desc: 'Capture, extract, check and route documents — invoices, contracts, ID papers and claims — without a data-entry team.',
+    href: '/products/allxtract',
+    accent: '#0040C1',
+    image: '/allxtract-mockup.svg',
+    imageAlt: 'allXtract document workspace',
+    highlights: [
+      { title: 'Schema-Governed Extraction', desc: 'Define fields once, or draft them from a single example.' },
+      { title: 'Compliance Rules', desc: '51 comparison operators, written as plain sentences.' },
+      { title: 'Workflows & Approvals', desc: 'Visual builder, approval gates, and workflows published as APIs.' },
+      { title: 'E-Sign & Redaction', desc: 'Tamper-evident signing and three tiers of redaction.' },
+    ],
+  },
 ]
 
 export function ProductsSection() {
@@ -159,7 +178,7 @@ export function ProductsSection() {
           <TabsList className="flex flex-wrap items-center gap-5">
             {products.map((p, i) => {
               const isActive = p.value === active
-              const Icon = i === 0 ? Smartphone : CreditCard
+              const Icon = p.value === 'allxtract' ? FileText : i === 0 ? Smartphone : CreditCard
               return (
                 <TabsTrigger
                   key={p.value}
@@ -199,7 +218,7 @@ export function ProductsSection() {
                       </div>
                     </div>
                     <Link
-                      to={p.href}
+                      href={p.href}
                       className="self-start inline-flex items-center gap-1.5 px-4 py-2 rounded-3xl text-xs leading-[18px] font-medium transition-colors text-[#0040C1] border border-[#0040C1] hover:bg-[#0040C1] hover:text-white"
                     >
                       Explore {p.label} <ArrowRight size={20} strokeWidth={1.5} />

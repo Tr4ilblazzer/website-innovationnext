@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 interface ProductFeatureCardProps {
@@ -14,7 +14,7 @@ interface ProductFeatureCardProps {
 export function ProductFeatureCard({ name, tagline, desc, href, accent, image, features }: ProductFeatureCardProps) {
   return (
     <Link
-      to={href}
+      href={href}
       className="glass-card overflow-hidden flex flex-col group hover:-translate-y-1 transition-all duration-300"
     >
       {/* Mockup image */}
@@ -125,7 +125,7 @@ export function FeaturedProduct({ name, tagline, desc, href, accent, image, feat
         </div>
 
         <Link
-          to={href}
+          href={href}
           className="inline-flex items-center gap-2 text-sm font-semibold transition-colors"
           style={{ color: accent }}
         >

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 const PUBLIC_SANS = { fontFamily: "'Public Sans', system-ui, sans-serif" }
 const POPPINS = { fontFamily: "'Poppins', system-ui, sans-serif" }
@@ -32,6 +32,7 @@ const columns = [
       { label: 'PFM', href: '/products/pfm' },
       { label: 'Loyalty Engine', href: '/products/loyalty' },
       { label: 'Onboarding Platform', href: '/products/onboarding' },
+      { label: 'allXtract', href: '/products/allxtract' },
     ],
   },
   {
@@ -55,7 +56,7 @@ export function Footer() {
         <div className="flex flex-col justify-between gap-12 lg:flex-row">
           {/* Brand */}
           <div className="flex w-full max-w-[304px] flex-none flex-col gap-4">
-            <Link to="/" aria-label="Innovation Next home">
+            <Link href="/" aria-label="Innovation Next home">
               <img src="/next_logo_lightbackgorund.png" alt="Innovation Next" className="h-10 w-auto object-contain" />
             </Link>
             <p className="text-base leading-6 text-[#8C8C8C]">
@@ -72,7 +73,7 @@ export function Footer() {
                   {col.links.map(link => (
                     <li key={link.href}>
                       <Link
-                        to={link.href}
+                        href={link.href}
                         className="text-base leading-6 text-[#8C8C8C] transition-colors hover:text-[#0040C1]"
                       >
                         {link.label}

@@ -1,5 +1,8 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
 import { InsightCarousel } from '@/components/ui/insight-carousel'
 import { getBlogPosts } from '@/services/api'
@@ -39,7 +42,7 @@ function HomeInsights({ posts }: { posts: InsightPost[] }) {
 
         <div className="w-full flex flex-col lg:flex-row gap-8">
           {/* Lead post */}
-          <Link to={`/insights/${lead.slug}`} className="group flex flex-col gap-6 lg:w-[640px] flex-none">
+          <Link href={`/insights/${lead.slug}`} className="group flex flex-col gap-6 lg:w-[640px] flex-none">
             <img
               src={lead.image}
               alt={lead.title}
@@ -61,7 +64,7 @@ function HomeInsights({ posts }: { posts: InsightPost[] }) {
             {rest.slice(0, 3).map(post => (
               <Link
                 key={post.id}
-                to={`/insights/${post.slug}`}
+                href={`/insights/${post.slug}`}
                 className="group flex flex-col sm:flex-row gap-8 flex-1"
               >
                 <img
@@ -90,7 +93,7 @@ interface InsightsSectionProps {
 }
 
 export function InsightsSection({ category }: InsightsSectionProps) {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [posts, setPosts] = useState<InsightPost[]>([])
   useEffect(() => {
     getBlogPosts(category).then(all => setPosts(all.slice(0, 8))).catch(() => {})
@@ -117,7 +120,7 @@ export function InsightsSection({ category }: InsightsSectionProps) {
             </h2>
           </div>
           <button
-            onClick={() => navigate('/insights')}
+            onClick={() => router.push('/insights')}
             className="hidden md:flex items-center gap-2 text-sm font-semibold text-[#0040C1] hover:gap-3 transition-all"
           >
             View all insights <ArrowRight className="h-4 w-4" />
@@ -128,7 +131,7 @@ export function InsightsSection({ category }: InsightsSectionProps) {
           posts={posts}
           footerLeft={
             <button
-              onClick={() => navigate('/insights')}
+              onClick={() => router.push('/insights')}
               className="md:hidden flex items-center gap-2 text-sm font-semibold text-[#0040C1]"
             >
               View all insights <ArrowRight className="h-4 w-4" />

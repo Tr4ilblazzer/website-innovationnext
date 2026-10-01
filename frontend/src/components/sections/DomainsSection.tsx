@@ -14,7 +14,7 @@ const domains = [
     short: 'E-Gov',
     href: '/industries/e-governance',
     desc: 'Citizen super-apps, governance monitoring, smart infrastructure, and digital revenue collection — seven live national deployments, now deploying in Sri Lanka.',
-    accent: '#0040C1',
+    accent: '#10b981',
     image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&h=600&fit=crop&auto=format',
   },
   {
@@ -22,7 +22,7 @@ const domains = [
     short: 'AI / ML',
     href: '/solutions/ai-ml',
     desc: 'Signature verification, fraud detection, document intelligence, and analytics — AI models in production, not in the lab.',
-    accent: '#0040C1',
+    accent: '#8b5cf6',
     image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=900&h=600&fit=crop&auto=format',
   },
   {
@@ -30,7 +30,7 @@ const domains = [
     short: 'Advise',
     href: '/solutions/consulting',
     desc: 'Business requirements, system specifications, tender documents, and process redesign — written by the team that builds and runs national systems.',
-    accent: '#0040C1',
+    accent: '#f59e0b',
     image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&h=600&fit=crop&auto=format',
   },
   {
@@ -54,7 +54,7 @@ const domains = [
     short: 'Run',
     href: '/solutions/managed-services',
     desc: 'SLA-governed application and infrastructure management, plus dedicated engineering teams from Kathmandu.',
-    accent: '#0040C1',
+    accent: '#ec4899',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&h=600&fit=crop&auto=format',
   },
 ]

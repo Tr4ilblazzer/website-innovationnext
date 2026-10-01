@@ -1,4 +1,3 @@
-/// <reference types="vite/client" />
 import type {
   ApiResponse,
   CaseStudy,
@@ -57,7 +56,7 @@ function toInsightPost(p: BackendPost): InsightPost {
   }
 }
 
-const BASE_URL = (import.meta as { env: { VITE_API_URL?: string } }).env.VITE_API_URL ?? ''
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? (typeof window === 'undefined' ? 'http://localhost:3001' : '')
 
 // ── Core fetch wrapper ───────────────────────────────────────────────────────
 
@@ -67,6 +66,8 @@ async function request<T>(
 ): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {
     headers: { 'Content-Type': 'application/json', ...options?.headers },
+    // Server-side: cache GETs for 5 min (ISR-style) so blog pages stay fast but pick up CMS edits
+    next: { revalidate: 300 },
     ...options,
   })
   if (!res.ok) {

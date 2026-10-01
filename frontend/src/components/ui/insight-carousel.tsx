@@ -1,5 +1,7 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel'
 import type { InsightPost } from '@/data/insights'
@@ -11,7 +13,7 @@ interface InsightCarouselProps {
 }
 
 export function InsightCarousel({ posts, footerLeft }: InsightCarouselProps) {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [api, setApi] = useState<CarouselApi>()
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(true)
@@ -38,7 +40,7 @@ export function InsightCarousel({ posts, footerLeft }: InsightCarouselProps) {
           {posts.map(post => (
             <CarouselItem key={post.slug} className="pl-5 basis-auto">
               <div
-                onClick={() => navigate(`/insights/${post.slug}`)}
+                onClick={() => router.push(`/insights/${post.slug}`)}
                 className="group relative w-[280px] h-[440px] sm:w-[320px] sm:h-[500px] lg:w-[360px] lg:h-[540px] overflow-hidden flex flex-col justify-between p-6 sm:p-8 rounded-2xl border border-black/[0.08] cursor-pointer hover:scale-[1.02] transition-transform duration-300"
               >
                 <img src={post.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
