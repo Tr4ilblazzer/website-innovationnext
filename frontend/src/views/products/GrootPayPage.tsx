@@ -54,7 +54,6 @@ export default function GrootPayPage() {
       capabilitiesSubtext="Each mini-app is built and released independently of the wallet core, so the platform grows one partner at a time."
       capabilities={capabilities}
       relatedProducts={relatedProducts}
-      ctaHeadline="Ready to deploy Groot Pay?"
       insightsCategory="Fintech"
     />
   )

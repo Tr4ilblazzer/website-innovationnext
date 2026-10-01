@@ -10,7 +10,7 @@ const STATIC_ROUTES = [
   '/solutions/ai-ml', '/solutions/bi-data', '/solutions/consulting',
   '/solutions/bespoke-software', '/solutions/managed-services',
   '/products/groot-neo', '/products/groot-pay', '/products/pfm',
-  '/products/loyalty', '/products/onboarding',
+  '/products/loyalty', '/products/onboarding', '/products/allxtract',
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

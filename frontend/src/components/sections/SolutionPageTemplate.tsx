@@ -1,6 +1,6 @@
+import { ClosingCta } from '@/components/sections/ClosingCta'
 import Link from 'next/link'
-import { ArrowRight, Check } from 'lucide-react'
-import { AnimatedBackground } from '@/components/ui/animated-background'
+import { Check } from 'lucide-react'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { InsightsSection } from '@/components/sections/InsightsSection'
 import { TechOrbit } from '@/components/ui/tech-orbit'
@@ -41,53 +41,47 @@ export function SolutionPageTemplate({
       {/* ── Hero ── */}
       <section className="bg-white pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-            <div>
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: ACCENT }}>
-                {tag}
-              </p>
-              <h1 className="hero-heading text-[#0A0A0A] mb-5">
-                {headline}
-                <br />
-                <span className="gradient-text">{headlineAccent}</span>
-              </h1>
-              <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
-                &ldquo;{quote}&rdquo;
-              </p>
-              <p className="text-[#0A0A0A]/55 leading-relaxed mb-8">
-                {description}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/company" className="btn-secondary">Our Credentials</Link>
-              </div>
-            </div>
-            <div>
-              <img
-                src={heroImage}
-                alt={heroImageAlt}
-                className="w-full h-[520px] object-cover rounded-3xl"
-              />
-            </div>
+          <div className="max-w-4xl mx-auto text-center mb-14">
+            <p className="text-xs font-medium mb-4" style={{ color: ACCENT }}>{tag}</p>
+            <h1 className="hero-heading text-[#0A0A0A] mb-5">
+              {headline} <span className="gradient-text">{headlineAccent}</span>
+            </h1>
+            <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
+              &ldquo;{quote}&rdquo;
+            </p>
+            <p className="text-[#0A0A0A]/55 leading-relaxed mb-8 max-w-3xl mx-auto">
+              {description}
+            </p>
+            <Link href="/company" className="btn-secondary">Our Credentials</Link>
           </div>
-          {stats && stats.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06] text-center">
-              {stats.map(s => (
-                <div key={s.label}>
-                  <div className="text-3xl md:text-4xl font-medium mb-1" style={{ color: ACCENT }}>{s.value}</div>
-                  <div className="text-sm text-[#575757]">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          )}
+          <img
+            src={heroImage}
+            alt={heroImageAlt}
+            className="w-full h-[240px] md:h-[340px] object-cover rounded-3xl"
+          />
         </div>
       </section>
+
+      {stats && stats.length > 0 && (
+        <section className="bg-[#F7F7F7] py-16">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+            {stats.map(s => (
+              <div key={s.label}>
+                <div className="text-4xl md:text-5xl font-medium mb-2" style={{ color: ACCENT }}>{s.value}</div>
+                <div className="text-sm text-[#575757]">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── Features ── */}
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14 grid md:grid-cols-2 md:items-end gap-6">
-            <h2 className="section-heading text-[#0A0A0A]">
-              What we <span className="section-accent">deliver.</span>
+          <div className="mb-14 max-w-3xl mx-auto text-center">
+            <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Work</p>
+            <h2 className="section-heading text-[#0A0A0A] mb-3">
+              What we <span className="section-accent">deliver</span>
             </h2>
             <p className="text-[#0A0A0A]/50 text-base leading-relaxed">{featuresSubheadline}</p>
           </div>
@@ -153,29 +147,7 @@ export function SolutionPageTemplate({
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
 
-          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: '#0040C1' }}>
-            <AnimatedBackground />
-            <div className="relative z-10">
-              <h2 className="section-heading text-white mb-3">Ready to get started?</h2>
-              <p className="text-white/70 mb-8 max-w-lg mx-auto leading-relaxed">
-                Talk to our team about your requirements. We&apos;ll tell you straight whether we&apos;re the right fit.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
-                >
-                  Get in Touch <ArrowRight size={14} />
-                </Link>
-                <Link
-                  href="/insights/case-studies"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 text-white font-semibold text-sm py-3.5 px-8 hover:bg-white/10 transition-colors"
-                >
-                  View Case Studies
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ClosingCta />
         </div>
       </section>
     </>

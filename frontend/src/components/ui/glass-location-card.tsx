@@ -33,7 +33,7 @@ export function GlassLocationCard({
       <div
         className="absolute inset-x-4 bottom-4 rounded-2xl p-6"
         style={{
-          background: 'rgba(255,255,255,0.76)',
+          background: 'rgba(255,255,255,0.85)',
           backdropFilter: 'blur(2px)',
           WebkitBackdropFilter: 'blur(2px)',
           border: '1px solid rgba(255,255,255,0.6)',
@@ -50,7 +50,7 @@ export function GlassLocationCard({
             </span>
           )}
         </div>
-        <h3 className="text-xl font-black text-[#0A0A0A] mb-1">{city}</h3>
+        <h3 className="text-xl font-medium text-[#0A0A0A] mb-1">{city}</h3>
         <p className="text-[#0A0A0A]/40 text-xs mb-2">{country} · {role}</p>
         {desc && <p className="text-[#0A0A0A]/55 text-sm leading-relaxed">{desc}</p>}
       </div>

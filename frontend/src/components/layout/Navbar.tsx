@@ -33,6 +33,7 @@ const menuItems: IMenu[] = [
       { id: 23, title: 'PFM', url: '/products/pfm' },
       { id: 24, title: 'Loyalty Engine', url: '/products/loyalty' },
       { id: 25, title: 'Onboarding Platform', url: '/products/onboarding' },
+      { id: 26, title: 'allXtract', url: '/products/allxtract' },
     ],
   },
   {
@@ -79,6 +80,7 @@ const mobileProducts = [
   { label: 'PFM', href: '/products/pfm' },
   { label: 'Loyalty Engine', href: '/products/loyalty' },
   { label: 'Onboarding Platform', href: '/products/onboarding' },
+  { label: 'allXtract', href: '/products/allxtract' },
 ]
 
 export function Navbar() {

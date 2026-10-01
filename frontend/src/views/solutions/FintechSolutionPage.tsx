@@ -1,9 +1,9 @@
 'use client'
 
 
+import { ClosingCta } from '@/components/sections/ClosingCta'
 import Link from 'next/link'
-import { ArrowRight, Check } from 'lucide-react'
-import { AnimatedBackground } from '@/components/ui/animated-background'
+import { Check } from 'lucide-react'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { InsightsSection } from '@/components/sections/InsightsSection'
 import { Smartphone, Package, CreditCard, BarChart3, Brain, Shield, Cloud } from 'lucide-react'
@@ -130,60 +130,45 @@ export default function FintechSolutionPage() {
       {/* ── Hero ──────────────────────────────────────── */}
       <section className="bg-white pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6">
-
-          {/* Two-column */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-
-            {/* Left */}
-            <div>
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: ACCENT }}>
-                Digital Financial Services
-              </p>
-              <h1 className="hero-heading text-[#0A0A0A] mb-5">
-                Wallets, neo-banking, payments,
-                <br />
-                <span className="gradient-text">in production.</span>
-              </h1>
-              <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
-                "Platforms we built, launched, and operate — not systems we only designed."
-              </p>
-              <p className="text-[#0A0A0A]/55 leading-relaxed mb-8">
-                We design, build, and scale production-grade fintech infrastructure for banks, digital banks, fintechs, telecoms, and microfinance institutions — digital wallets, neo-banking platforms, QR and real-time payments, and cross-border remittance, live in Nepal and Malaysia.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/company" className="btn-secondary">Our Credentials</Link>
-              </div>
-            </div>
-
-            {/* Right: domain image */}
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=80"
-                alt="Digital financial services"
-                className="w-full h-[520px] object-cover rounded-3xl"
-              />
-            </div>
+          <div className="max-w-4xl mx-auto text-center mb-14">
+            <p className="text-xs font-medium mb-4" style={{ color: ACCENT }}>Digital Financial Services</p>
+            <h1 className="hero-heading text-[#0A0A0A] mb-5">
+              Wallets, neo-banking, payments, <span className="gradient-text">in production.</span>
+            </h1>
+            <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
+              "Platforms we built, launched, and operate — not systems we only designed."
+            </p>
+            <p className="text-[#0A0A0A]/55 leading-relaxed mb-8 max-w-3xl mx-auto">
+              We design, build, and scale production-grade fintech infrastructure for banks, digital banks, fintechs, telecoms, and microfinance institutions — digital wallets, neo-banking platforms, QR and real-time payments, and cross-border remittance, live in Nepal and Malaysia.
+            </p>
+            <Link href="/company" className="btn-secondary">Our Credentials</Link>
           </div>
+          <img
+            src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=80"
+            alt="Digital financial services"
+            className="w-full h-[240px] md:h-[340px] object-cover rounded-3xl"
+          />
+        </div>
+      </section>
 
-          {/* Stats strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06] text-center">
-            {stats.map(s => (
-              <div key={s.label}>
-                <div className="text-3xl md:text-4xl font-medium mb-1" style={{ color: ACCENT }}>{s.value}</div>
-                <div className="text-sm text-[#575757]">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
+      <section className="bg-[#F7F7F7] py-16">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+          {stats.map(s => (
+            <div key={s.label}>
+              <div className="text-4xl md:text-5xl font-medium mb-2" style={{ color: ACCENT }}>{s.value}</div>
+              <div className="text-sm text-[#575757]">{s.label}</div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* ── Capabilities ──────────────────────────────── */}
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14 grid md:grid-cols-2 md:items-end gap-6">
-            <h2 className="section-heading text-[#0A0A0A]">
-              What we <span className="section-accent">deliver.</span>
+          <div className="mb-14 max-w-3xl mx-auto text-center">
+            <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Work</p>
+            <h2 className="section-heading text-[#0A0A0A] mb-3">
+              What we <span className="section-accent">deliver</span>
             </h2>
             <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
               Platforms we ship as named products, plus the payment infrastructure and integration work around them.
@@ -253,29 +238,7 @@ export default function FintechSolutionPage() {
         <div className="max-w-7xl mx-auto px-6">
 
           {/* CTA card */}
-          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: '#0040C1' }}>
-            <AnimatedBackground />
-            <div className="relative z-10">
-              <h2 className="section-heading text-white mb-3">Ready to get started?</h2>
-              <p className="text-white/70 mb-8 max-w-lg mx-auto leading-relaxed">
-                Talk to our team about your requirements. We'll tell you straight whether we're the right fit.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
-                >
-                  Get in Touch <ArrowRight size={14} />
-                </Link>
-                <Link
-                  href="/insights/case-studies"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 text-white font-semibold text-sm py-3.5 px-8 hover:bg-white/10 transition-colors"
-                >
-                  View Case Studies
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ClosingCta />
 
         </div>
       </section>

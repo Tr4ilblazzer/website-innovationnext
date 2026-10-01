@@ -57,7 +57,6 @@ export default function OnboardingPage() {
       capabilitiesSubtext="Merchant onboarding was the first live use case. The same platform onboards customers, agents, businesses, citizens, and suppliers."
       capabilities={capabilities}
       relatedProducts={relatedProducts}
-      ctaHeadline="Ready to automate onboarding?"
       insightsCategory="AI & ML"
     />
   )

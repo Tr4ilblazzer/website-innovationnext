@@ -27,7 +27,7 @@ export default function ProductsPage() {
         </h1>
 
         <p className="text-[#0A0A0A]/50 text-base leading-relaxed mb-10">
-          Our product suite — Groot Neo, Groot Pay, PFM, Loyalty Engine, and Onboarding Platform — is launching soon. Production-ready platforms built from real operational experience at national scale.
+          Our product suite — Groot Neo, Groot Pay, PFM, Loyalty Engine, Onboarding Platform, and allXtract — is launching soon. Production-ready platforms built from real operational experience at national scale.
         </p>
 
         {/* Animated dots */}

@@ -1,9 +1,8 @@
 'use client'
 
 
-import Link from 'next/link'
-import { ArrowRight, Check, Users, Lightbulb, Sprout } from 'lucide-react'
-import { AnimatedBackground } from '@/components/ui/animated-background'
+import { ClosingCta } from '@/components/sections/ClosingCta'
+import { Check, Users, Lightbulb, Sprout } from 'lucide-react'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 
 const ACCENT = '#0040C1'
@@ -184,36 +183,7 @@ export default function CompanyPage() {
         <div className="max-w-7xl mx-auto px-6">
 
           {/* CTA */}
-          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: ACCENT }}>
-            <AnimatedBackground />
-            <img
-              src="/skyline.png"
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-              style={{ mixBlendMode: 'multiply', opacity: 0.35, filter: 'hue-rotate(-30deg) saturate(2) brightness(1.3)' }}
-            />
-            <div className="relative z-10">
-              <h2 className="section-heading text-white mb-3">Ready to work with us?</h2>
-              <p className="text-white/70 mb-8 max-w-lg mx-auto leading-relaxed">
-                Talk to our team about your requirements. We'll tell you straight whether we're the right fit.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
-                >
-                  Get in Touch <ArrowRight size={14} />
-                </Link>
-                <Link
-                  href="/careers"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 text-white font-semibold text-sm py-3.5 px-8 hover:bg-white/10 transition-colors"
-                >
-                  Join Our Team
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ClosingCta />
 
         </div>
       </section>

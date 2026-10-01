@@ -32,6 +32,7 @@ const columns = [
       { label: 'PFM', href: '/products/pfm' },
       { label: 'Loyalty Engine', href: '/products/loyalty' },
       { label: 'Onboarding Platform', href: '/products/onboarding' },
+      { label: 'allXtract', href: '/products/allxtract' },
     ],
   },
   {

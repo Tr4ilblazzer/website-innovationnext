@@ -51,7 +51,6 @@ export default function LoyaltyPage() {
       capabilitiesSubtext="Deploys as SaaS or on-premise, and plugs into any wallet, banking, or POS system."
       capabilities={capabilities}
       relatedProducts={relatedProducts}
-      ctaHeadline="Ready to deploy Loyalty Engine?"
       insightsCategory="Fintech"
     />
   )

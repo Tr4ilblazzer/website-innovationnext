@@ -153,7 +153,7 @@ Prisma schema at `backend/src/prisma/schema.prisma`. Models:
 Each of the 7 solution pages is in `frontend/src/views/solutions/` and mounted by a route file under `frontend/src/app/(site)/`. Layout: hero → features/capabilities → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each page uses `<SolutionPageTemplate>` — except `FintechSolutionPage` and `ManagedServicesSolutionPage` which are hand-written.
 
 ### Closing CTA card
-The "Ready to get started?" card is copy-pasted (not a shared component) in `SolutionPageTemplate`, `ProductPageTemplate`, `FintechSolutionPage`, `ManagedServicesSolutionPage`, `CompanyPage` and `CareersPage`. It must stay fixed brand blue `#0040C1` — never bind it to a page's `accentColor` — so change all copies together.
+The "Ready to get started?" card is one shared component, `components/sections/ClosingCta.tsx` (heading, body, Get in Touch + View Case Studies). Every public page that ends in a CTA — `SolutionPageTemplate`, `ProductPageTemplate`, `FintechSolutionPage`, `ManagedServicesSolutionPage`, `CompanyPage`, `CareersPage`, `InsightDetailPage` — renders it, so change it in one place. It must stay fixed brand blue `#0040C1`, never a page's `accentColor`, and the copy stays generic (no per-page headlines).
 
 ### Product Pages
 All 5 product pages follow an identical pattern: hero + stats strip → feature cards grid → capabilities checklist → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each uses `<ProductPageTemplate>`.

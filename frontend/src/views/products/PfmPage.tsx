@@ -53,7 +53,6 @@ export default function PfmPage() {
       capabilitiesSubtext="Integrates through an API or an embedded SDK — no rip-and-replace required."
       capabilities={capabilities}
       relatedProducts={relatedProducts}
-      ctaHeadline="Ready to deploy PFM?"
       insightsCategory="Fintech"
     />
   )

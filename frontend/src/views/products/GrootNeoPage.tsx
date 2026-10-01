@@ -57,7 +57,6 @@ export default function GrootNeoPage() {
       capabilitiesSubtext="Live in multiple markets — for greenfield digital banks, commercial banks, telecoms launching mobile money, and microfinance institutions."
       capabilities={capabilities}
       relatedProducts={relatedProducts}
-      ctaHeadline="Ready to deploy Groot Neo?"
       insightsCategory="Fintech"
     />
   )

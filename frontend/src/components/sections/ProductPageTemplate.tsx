@@ -1,8 +1,17 @@
+import { ClosingCta } from '@/components/sections/ClosingCta'
 import Link from 'next/link'
-import { ArrowRight, Check } from 'lucide-react'
-import { AnimatedBackground } from '@/components/ui/animated-background'
+import { Check } from 'lucide-react'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { InsightsSection } from '@/components/sections/InsightsSection'
+
+const PRODUCT_IMAGES: Record<string, string> = {
+  '/products/groot-neo': '/groot-neo-mockup.png',
+  '/products/groot-pay': '/groot-pay-mockup.png',
+  '/products/pfm': '/pfm-mockup.png',
+  '/products/loyalty': '/loyalty-mockup.png',
+  '/products/onboarding': '/merchant-ai-mockup.png',
+  '/products/allxtract': '/allxtract-mockup.svg',
+}
 
 interface Feature { title: string; desc: string }
 interface RelatedProduct { name: string; href: string; desc: string }
@@ -24,7 +33,6 @@ interface ProductPageTemplateProps {
   capabilitiesSubtext: string
   capabilities: string[]
   relatedProducts?: RelatedProduct[]
-  ctaHeadline: string
   insightsCategory: string
 }
 
@@ -34,7 +42,7 @@ export function ProductPageTemplate({
   mockup, mockupAlt, mockupHeight = 'h-[500px]',
   stats, featuresSubheadline, features,
   capabilitiesSubtext, capabilities,
-  relatedProducts, ctaHeadline, insightsCategory,
+  relatedProducts, insightsCategory,
 }: ProductPageTemplateProps) {
   const ACCENT = accentColor
   return (
@@ -70,14 +78,18 @@ export function ProductPageTemplate({
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06] text-center">
-            {stats.map(s => (
-              <div key={s.label}>
-                <div className="text-3xl md:text-4xl font-medium mb-1" style={{ color: ACCENT }}>{s.value}</div>
-                <div className="text-sm text-[#575757]">{s.label}</div>
-              </div>
-            ))}
-          </div>
+        </div>
+      </section>
+
+      {/* ── Stats band ── */}
+      <section className="bg-[#F7F7F7] py-16">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+          {stats.map(s => (
+            <div key={s.label}>
+              <div className="text-4xl md:text-5xl font-medium mb-2" style={{ color: ACCENT }}>{s.value}</div>
+              <div className="text-sm text-[#575757]">{s.label}</div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -136,43 +148,34 @@ export function ProductPageTemplate({
         <div className="max-w-7xl mx-auto px-6">
 
           {relatedProducts && relatedProducts.length > 0 && (
-            <div className="rounded-3xl bg-[#EBF5FF] p-8 mb-8">
-              <p className="text-xs font-bold tracking-[0.2em] uppercase mb-5" style={{ color: ACCENT }}>Related Products</p>
-              <div className="grid md:grid-cols-3 gap-4">
+            <div className="mb-20">
+              <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Related Products</p>
+              <h2 className="section-heading text-[#0A0A0A] mb-10">
+                Explore More <span className="section-accent">Technology Solutions</span>
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
                 {relatedProducts.map(p => (
-                  <Link
-                    key={p.name}
-                    href={p.href}
-                    className="bg-white rounded-2xl p-5 flex items-center justify-between group hover:border-[#0040C1]/20 border border-transparent transition-colors"
-                  >
-                    <div>
-                      <div className="text-sm font-bold text-[#0A0A0A] mb-0.5">{p.name}</div>
-                      <div className="text-xs text-[#0A0A0A]/40">{p.desc}</div>
+                  <Link key={p.name} href={p.href} className="group block">
+                    <div className="h-[265px] rounded-2xl bg-[#E5E5E5] flex items-center justify-center overflow-hidden mb-6">
+                      {PRODUCT_IMAGES[p.href] && (
+                        <img
+                          src={PRODUCT_IMAGES[p.href]}
+                          alt={p.name}
+                          className="h-[85%] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                        />
+                      )}
                     </div>
-                    <ArrowRight size={14} className="text-[#0A0A0A]/20 group-hover:text-[#0040C1] transition-colors flex-shrink-0" />
+                    <div className="px-2.5">
+                      <div className="text-2xl font-medium text-[#0A0A0A] mb-2">{p.name}</div>
+                      <div className="text-base text-[#0A0A0A]/50">{p.desc}</div>
+                    </div>
                   </Link>
                 ))}
               </div>
             </div>
           )}
 
-          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: '#0040C1' }}>
-            <AnimatedBackground />
-            <div className="relative z-10">
-              <h2 className="section-heading text-white mb-3">{ctaHeadline}</h2>
-              <p className="text-white/70 mb-8 max-w-lg mx-auto leading-relaxed">
-                Talk to our team about your requirements. We&apos;ll tell you straight whether we&apos;re the right fit.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
-                >
-                  Get in Touch <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ClosingCta />
         </div>
       </section>
     </>

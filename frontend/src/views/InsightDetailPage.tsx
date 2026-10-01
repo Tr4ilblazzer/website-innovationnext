@@ -1,5 +1,6 @@
 'use client'
 
+import { ClosingCta } from '@/components/sections/ClosingCta'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Clock } from 'lucide-react'
@@ -175,29 +176,9 @@ export default function InsightDetailPage({ post, related }: { post: InsightPost
       )}
 
       {/* ── CTA ─────────────────────────────────────────────── */}
-      <section className="py-20 bg-white">
+      <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="relative overflow-hidden rounded-3xl bg-[#0040C1] p-12 text-center">
-            <div
-              className="pointer-events-none absolute inset-0 opacity-10"
-              style={{
-                backgroundImage: 'linear-gradient(rgba(255,255,255,0.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.6) 1px,transparent 1px)',
-                backgroundSize: '60px 60px',
-              }}
-            />
-            <div className="relative z-10">
-              <h2 className="text-3xl font-black text-white mb-3">Want to go deeper?</h2>
-              <p className="text-white/65 mb-8 max-w-md mx-auto leading-relaxed">
-                Talk to the team that built these systems. We are direct about what works, what does not, and whether we are the right fit.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
-              >
-                Get in Touch <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
+          <ClosingCta />
         </div>
       </section>
 
