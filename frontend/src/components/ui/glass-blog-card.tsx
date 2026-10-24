@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { Clock } from 'lucide-react'
@@ -17,13 +19,13 @@ interface GlassBlogCardProps {
 
 export function GlassBlogCard({
   title = 'The Future of Digital Infrastructure',
-  excerpt = 'How production-grade fintech platforms are reshaping financial services across emerging markets.',
+  excerpt = 'How well-built fintech platforms are reshaping financial services across emerging markets.',
   image = 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80',
   author = { name: 'Innovation Next Team' },
   date = 'Apr 2026',
   readTime = '5 min read',
   tags = ['Fintech'],
-  accentColor = '#0040C1',
+  accentColor = '#0A4FD6',
   className,
   onClick,
 }: GlassBlogCardProps) {
@@ -63,7 +65,7 @@ export function GlassBlogCard({
               {tag}
             </span>
           ))}
-          <span className="text-[10px] text-[#0A0A0A]/35">· {date}</span>
+          <span className="text-[10px] text-[#0A0A0A]/50">· {date}</span>
         </div>
 
         {/* Title */}
@@ -75,14 +77,14 @@ export function GlassBlogCard({
         </h3>
 
         {/* Excerpt */}
-        <p className="text-xs text-[#0A0A0A]/55 leading-relaxed line-clamp-2 mb-3">
+        <p className="text-xs text-[#0A0A0A]/65 leading-relaxed line-clamp-2 mb-3">
           {excerpt}
         </p>
 
         {/* Footer */}
         <div className="flex items-center justify-between">
-          <span className="text-xs font-medium text-[#0A0A0A]/50">{author.name}</span>
-          <div className="flex items-center gap-1 text-[11px] text-[#0A0A0A]/35">
+          <span className="text-xs font-medium text-[#0A0A0A]/60">{author.name}</span>
+          <div className="flex items-center gap-1 text-[11px] text-[#0A0A0A]/50">
             <Clock className="h-3 w-3" />
             <span>{readTime}</span>
           </div>

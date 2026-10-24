@@ -5,6 +5,7 @@ export const trustedClients: { name: string; logo: string; height?: string }[] =
   { name: 'n-able',             logo: '/logos/n-able.png' },
   { name: 'RisingPoint',        logo: '/logos/risingpoint.png', height: 'h-12' },
   { name: 'Sunlife',            logo: '/logos/sunlife.png',    height: 'h-12' },
+  { name: 'Four Symmetrons',   logo: '/logos/four-symmetrons.png', height: 'h-12' },
 ]
 
 // Duplicate enough times for a seamless infinite scroll
@@ -41,8 +42,8 @@ export function TrustedBySection() {
   return (
     <section className="py-20 bg-white overflow-hidden">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 text-center mb-14">
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-4">
+      <div className="max-w-7xl mx-auto px-6 text-center mb-10">
+        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/50 mb-4">
           Proven at scale
         </p>
         <h2 className="section-heading text-[#0A0A0A]">

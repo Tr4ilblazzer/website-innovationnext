@@ -1,12 +1,14 @@
-import { useState } from 'react'
+'use client'
+
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight, CheckCircle, Mail, MapPin } from 'lucide-react'
 import { api, cn } from '@/lib/utils'
 import { GlassLocationCard } from '@/components/ui/glass-location-card'
 
-const ACCENT = '#0040C1'
+const ACCENT = '#0A4FD6'
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -30,19 +32,31 @@ const interests = [
   'General Enquiry',
 ]
 
+const CONTACT_EMAIL = 'info@innovationnxt.com'
+
 const offices = [
   { city: 'Kathmandu', country: 'Nepal', flag: '🇳🇵', role: 'Headquarters', badge: 'HQ', image: 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=900&q=80' },
 ]
 
-const inputCls = 'w-full rounded-xl border border-black/[0.12] bg-white px-4 py-2.5 text-sm text-[#0A0A0A] placeholder:text-[#0A0A0A]/30 focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 focus:border-[#0040C1]/40 transition-colors'
+const inputCls = 'w-full rounded-xl border border-black/[0.12] bg-white px-4 py-2.5 text-sm text-[#0A0A0A] placeholder:text-[#0A0A0A]/50 focus:outline-none focus:ring-2 focus:ring-[#0A4FD6]/20 focus:border-[#0A4FD6]/40 transition-colors'
 
 export function ContactSection({ compact = false }: { compact?: boolean }) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [selectedInterest, setSelectedInterest] = useState<string>('')
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>({
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormValues>({
     resolver: zodResolver(schema),
   })
+
+  // A product page's "Request a Demo" button links here with ?demo=<product name>
+  useEffect(() => {
+    const demo = new URLSearchParams(window.location.search).get('demo')
+    if (!demo) return
+    setSelectedInterest(demo)
+    setValue('message', `I would like to request a demo of ${demo}.`)
+  }, [setValue])
+
+  const pills = selectedInterest && !interests.includes(selectedInterest) ? [selectedInterest, ...interests] : interests
 
   const onSubmit = async (data: FormValues) => {
     setStatus('loading')
@@ -62,13 +76,13 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
 
   if (status === 'success') {
     return (
-      <section className="pt-32 pb-24 bg-white">
+      <section className="pt-32 pb-16 md:pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5" style={{ background: ACCENT }}>
             <CheckCircle size={28} className="text-white" />
           </div>
           <h3 className="text-2xl font-black text-[#0A0A0A] mb-3">Message received</h3>
-          <p className="text-[#0A0A0A]/50 max-w-sm mx-auto mb-6">
+          <p className="text-[#0A0A0A]/60 max-w-sm mx-auto mb-6">
             Our team will get back to you within one business day.
           </p>
           <button onClick={() => setStatus('idle')} className="btn-secondary mx-auto">
@@ -80,7 +94,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <section className={compact ? 'bg-white py-16' : 'bg-white pt-32 pb-24'}>
+    <section className={compact ? 'bg-white py-16' : 'bg-white pt-32 pb-16 md:pb-20'}>
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ── Two-column: sidebar + form ── */}
@@ -112,12 +126,12 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Full Name *</label>
+                  <label className="block text-xs font-semibold text-[#0A4FD6] mb-1.5 uppercase tracking-wider">Full Name *</label>
                   <input {...register('name')} className={inputCls} placeholder="John Smith" />
                   {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Work Email *</label>
+                  <label className="block text-xs font-semibold text-[#0A4FD6] mb-1.5 uppercase tracking-wider">Work Email *</label>
                   <input {...register('email')} type="email" className={inputCls} placeholder="john@company.com" />
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                 </div>
@@ -125,20 +139,20 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Company</label>
+                  <label className="block text-xs font-semibold text-[#0A4FD6] mb-1.5 uppercase tracking-wider">Company</label>
                   <input {...register('company')} className={inputCls} placeholder="Your organisation" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Phone</label>
-                  <input {...register('phone')} className={inputCls} placeholder="+971 50 000 0000" />
+                  <label className="block text-xs font-semibold text-[#0A4FD6] mb-1.5 uppercase tracking-wider">Phone</label>
+                  <input {...register('phone')} className={inputCls} placeholder="+977 98 0000 0000" />
                 </div>
               </div>
 
               {/* Interest pills */}
               <div>
-                <label className="block text-xs font-semibold text-[#0A0A0A]/50 mb-2 uppercase tracking-wider">Area of Interest</label>
+                <label className="block text-xs font-semibold text-[#0A0A0A]/60 mb-2 uppercase tracking-wider">Area of Interest</label>
                 <div className="flex flex-wrap gap-2">
-                  {interests.map(i => (
+                  {pills.map(i => (
                     <button
                       key={i}
                       type="button"
@@ -146,8 +160,8 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
                       className={cn(
                         'text-xs px-3 py-1.5 rounded-full border transition-all',
                         selectedInterest === i
-                          ? 'border-[#0040C1] text-[#0040C1]'
-                          : 'border-black/10 text-[#0A0A0A]/50 hover:border-[#0040C1]/30 hover:text-[#0040C1]'
+                          ? 'border-[#0A4FD6] text-[#0A4FD6]'
+                          : 'border-black/10 text-[#0A0A0A]/60 hover:border-[#0A4FD6]/30 hover:text-[#0A4FD6]'
                       )}
                     >
                       {i}
@@ -157,7 +171,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#0040C1] mb-1.5 uppercase tracking-wider">Message *</label>
+                <label className="block text-xs font-semibold text-[#0A4FD6] mb-1.5 uppercase tracking-wider">Message *</label>
                 <textarea
                   {...register('message')}
                   rows={5}
@@ -174,7 +188,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="inline-flex items-center justify-center gap-2 w-full rounded-full font-semibold text-sm py-3.5 px-8 transition-colors disabled:opacity-60 border-[1.5px] border-[#0040C1] text-[#0040C1] bg-transparent hover:bg-[#0040C1] hover:text-white"
+                className="inline-flex items-center justify-center gap-2 w-full rounded-full font-semibold text-sm py-3.5 px-8 transition-colors disabled:opacity-60 border-[1.5px] border-[#0A4FD6] text-[#0A4FD6] bg-transparent hover:bg-[#0A4FD6] hover:text-white"
               >
                 {status === 'loading' ? 'Sending…' : 'Send Message'} <ArrowRight size={16} />
               </button>
@@ -186,10 +200,33 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
 
         {/* ── Office locations ── */}
         {!compact && (
-          <div className="mt-16 grid md:grid-cols-2 gap-5">
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-5">
             {offices.map(o => (
-              <GlassLocationCard key={o.city} {...o} height="h-[340px]" />
+              <GlassLocationCard key={o.city} {...o} desc="Our headquarters and engineering hub." height="h-[340px]" />
             ))}
+            <div className="rounded-3xl bg-[#EBF5FF] p-8 md:p-10 flex flex-col justify-center gap-5">
+              <p className="text-xs font-medium" style={{ color: ACCENT }}>Get in touch</p>
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-4">
+                <span className="mt-0.5 flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style={{ background: `${ACCENT}12` }}>
+                  <Mail size={16} style={{ color: ACCENT }} />
+                </span>
+                <div>
+                  <div className="text-xs text-[#0A0A0A]/60 mb-1">Email</div>
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="break-all text-base font-medium text-[#0A0A0A] hover:text-[#0A4FD6] transition-colors">
+                    {CONTACT_EMAIL}
+                  </a>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-4">
+                <span className="mt-0.5 flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style={{ background: `${ACCENT}12` }}>
+                  <MapPin size={16} style={{ color: ACCENT }} />
+                </span>
+                <div>
+                  <div className="text-xs text-[#0A0A0A]/60 mb-1">Headquarters</div>
+                  <div className="text-base font-medium text-[#0A0A0A]">Kathmandu, Nepal</div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 

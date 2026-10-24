@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowLeft, ArrowRight } from "lucide-react"
@@ -60,7 +62,7 @@ export const TestimonialSlider = ({ reviews, className }: TestimonialSliderProps
         {/* Left: pagination + thumbnails */}
         <div className="md:col-span-3 flex flex-col justify-between order-2 md:order-1">
           <div className="flex flex-row md:flex-col justify-between md:justify-start space-x-4 md:space-x-0 md:space-y-4">
-            <span className="text-sm text-[#0A0A0A]/35 font-mono">
+            <span className="text-sm text-[#0A0A0A]/50 font-mono">
               {String(currentIndex + 1).padStart(2, "0")} / {String(reviews.length).padStart(2, "0")}
             </span>
           </div>
@@ -113,7 +115,7 @@ export const TestimonialSlider = ({ reviews, className }: TestimonialSliderProps
                 exit="exit"
                 transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
-                <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#0A0A0A]/35">
+                <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#0A0A0A]/50">
                   {activeReview.affiliation}
                 </p>
                 <h3 className="text-lg font-bold text-[#0A0A0A] mt-1">
@@ -130,7 +132,7 @@ export const TestimonialSlider = ({ reviews, className }: TestimonialSliderProps
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full w-12 h-12 border-black/15 text-[#0A0A0A]/50 hover:text-[#0A0A0A] hover:border-black/30 hover:bg-transparent"
+              className="rounded-full w-12 h-12 border-black/15 text-[#0A0A0A]/60 hover:text-[#0A0A0A] hover:border-black/30 hover:bg-transparent"
               onClick={handlePrev}
               aria-label="Previous"
             >
@@ -139,7 +141,7 @@ export const TestimonialSlider = ({ reviews, className }: TestimonialSliderProps
             <Button
               variant="default"
               size="icon"
-              className="rounded-full w-12 h-12 bg-[#0040C1] hover:bg-[#0034A0] text-white"
+              className="rounded-full w-12 h-12 bg-[#0A4FD6] hover:bg-[#0841B3] text-white"
               onClick={handleNext}
               aria-label="Next"
             >

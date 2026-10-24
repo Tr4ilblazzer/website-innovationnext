@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" font-family="Poppins, Arial, sans-serif">
+  <defs>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#0A4FD6" flood-opacity="0.18"/></filter>
+  </defs>
+  <circle cx="500" cy="400" r="130" fill="#0A4FD6" opacity="0.12"/>
+  <g filter="url(#s)">
+    <rect x="20" y="30" width="600" height="440" rx="18" fill="#FFFFFF" stroke="#E4E4E4"/>
+    <path d="M20 48a18 18 0 0 1 18-18h564a18 18 0 0 1 18 18v28H20z" fill="#F7F7F7"/>
+    <circle cx="44" cy="53" r="5" fill="#D9D9D9"/><circle cx="62" cy="53" r="5" fill="#D9D9D9"/><circle cx="80" cy="53" r="5" fill="#D9D9D9"/>
+    <text x="40" y="106" font-size="15" font-weight="600" fill="#0A0A0A">Mention map</text>
+    <text x="40" y="124" font-size="10" fill="#575757">What customers talk about · illustrative</text>
+    <rect x="40" y="140" width="250" height="150" rx="10" fill="#F4B7B7"/>
+    <text x="54" y="164" font-size="12" font-weight="600" fill="#0A0A0A">Late delivery</text>
+    <rect x="298" y="140" width="150" height="150" rx="10" fill="#F7D0A8"/>
+    <text x="312" y="164" font-size="12" font-weight="600" fill="#0A0A0A">Burger</text>
+    <rect x="456" y="140" width="144" height="72" rx="10" fill="#BFE3C4"/>
+    <text x="470" y="164" font-size="12" font-weight="600" fill="#0A0A0A">Value</text>
+    <rect x="456" y="220" width="144" height="70" rx="10" fill="#F1E3A6"/>
+    <text x="470" y="244" font-size="12" font-weight="600" fill="#0A0A0A">Fries</text>
+    <text x="40" y="326" font-size="15" font-weight="600" fill="#0A0A0A">Kitchen view</text>
+    <rect x="40" y="340" width="560" height="44" rx="10" fill="#EBF5FF"/>
+    <rect x="52" y="352" width="4" height="20" rx="2" fill="#0A4FD6"/>
+    <text x="68" y="367" font-size="12" fill="#0A0A0A">Kitchen 1 · cold food</text>
+    <text x="560" y="367" font-size="12" font-weight="600" fill="#0A4FD6" text-anchor="end">falling</text>
+    <rect x="40" y="392" width="560" height="44" rx="10" fill="#EBF5FF"/>
+    <rect x="52" y="404" width="4" height="20" rx="2" fill="#0A4FD6"/>
+    <text x="68" y="419" font-size="12" fill="#0A0A0A">Kitchen 2 · late dispatch</text>
+    <text x="560" y="419" font-size="12" font-weight="600" fill="#0A4FD6" text-anchor="end">steady</text>
+  </g>
+</svg>

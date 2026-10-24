@@ -1,4 +1,7 @@
-import { NavLink, useNavigate, Outlet } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 import { useAdminStore } from '@/store/adminStore'
 import {
   LayoutDashboard,
@@ -16,13 +19,14 @@ const NAV = [
   { to: '/admin/contacts',  label: 'Contacts',   icon: Mail },
 ]
 
-export function AdminLayout() {
+export function AdminLayout({ children }: { children: React.ReactNode }) {
   const { admin, logout } = useAdminStore()
-  const navigate = useNavigate()
+  const router = useRouter()
+  const pathname = usePathname()
 
   function handleLogout() {
     logout()
-    navigate('/admin/login')
+    router.push('/admin/login')
   }
 
   return (
@@ -44,28 +48,25 @@ export function AdminLayout() {
         {/* Nav */}
         <nav className="flex-1 px-3 py-4 space-y-0.5">
           {NAV.map(({ to, label, icon: Icon, end }) => (
-            <NavLink
+            <Link
               key={to}
-              to={to}
-              end={end}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'bg-[#EBF5FF] text-[#0040C1]'
+              href={to}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                (end ? pathname === to : pathname.startsWith(to))
+                    ? 'bg-[#EBF5FF] text-[#0A4FD6]'
                     : 'text-black/50 hover:bg-black/[0.04] hover:text-black/80'
-                }`
-              }
+                }`}
             >
               <Icon className="w-4 h-4 shrink-0" />
               {label}
-            </NavLink>
+            </Link>
           ))}
         </nav>
 
         {/* User */}
         <div className="px-4 py-4 border-t border-black/[0.07]">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 rounded-full bg-[#EBF5FF] flex items-center justify-center text-[#0040C1] text-xs font-bold shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[#EBF5FF] flex items-center justify-center text-[#0A4FD6] text-xs font-bold shrink-0">
               {admin?.name?.[0]?.toUpperCase() ?? 'A'}
             </div>
             <div className="min-w-0">
@@ -85,7 +86,7 @@ export function AdminLayout() {
 
       {/* Main */}
       <main className="flex-1 overflow-y-auto">
-        <Outlet />
+        {children}
       </main>
     </div>
   )

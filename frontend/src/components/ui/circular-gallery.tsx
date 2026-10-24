@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useRef, HTMLAttributes } from 'react'
 
 const cn = (...classes: (string | undefined | null | false)[]) =>

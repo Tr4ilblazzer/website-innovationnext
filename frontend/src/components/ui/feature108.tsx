@@ -1,5 +1,7 @@
+'use client'
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import type { ReactNode } from 'react'
 
@@ -87,7 +89,7 @@ export function Feature108({ tabs }: Feature108Props) {
                 </div>
 
                 <Link
-                  to={tab.content.href}
+                  href={tab.content.href}
                   className="btn-secondary self-start"
                 >
                   {tab.content.buttonText} <ArrowRight size={14} />

@@ -1,68 +1,62 @@
-import { Link } from 'react-router-dom'
-import { ArrowRight, Check } from 'lucide-react'
-import { AnimatedBackground } from '@/components/ui/animated-background'
+import { ClosingCta } from '@/components/sections/ClosingCta'
+import Link from 'next/link'
+import { Check } from 'lucide-react'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { InsightsSection } from '@/components/sections/InsightsSection'
 
+const PRODUCT_IMAGES: Record<string, string> = {
+  '/products/groot-neo': '/groot-neo-mockup.png',
+  '/products/groot-pay': '/groot-pay-mockup.png',
+  '/products/pfm': '/pfm-mockup.png',
+  '/products/loyalty': '/loyalty-mockup.png',
+  '/products/onboarding': '/merchant-ai-mockup.png',
+  '/products/allxtract': '/allxtract-mockup.svg',
+  '/products/summa': '/summa-mockup.svg',
+}
+
 interface Feature { title: string; desc: string }
 interface RelatedProduct { name: string; href: string; desc: string }
-interface Stat { value: string; label: string }
 
 interface ProductPageTemplateProps {
-  tag: string
-  headline: string
-  headlineAccent: string
-  quote: string
+  title: string
   description: string
   accentColor?: string
   mockup: string
   mockupAlt: string
   mockupHeight?: string
-  stats: Stat[]
   featuresSubheadline: string
   features: Feature[]
   capabilitiesSubtext: string
   capabilities: string[]
   relatedProducts?: RelatedProduct[]
-  ctaHeadline: string
   insightsCategory: string
 }
 
 export function ProductPageTemplate({
-  tag, headline, headlineAccent, quote, description,
-  accentColor = '#0040C1',
+  title, description,
+  accentColor = '#0A4FD6',
   mockup, mockupAlt, mockupHeight = 'h-[500px]',
-  stats, featuresSubheadline, features,
+  featuresSubheadline, features,
   capabilitiesSubtext, capabilities,
-  relatedProducts, ctaHeadline, insightsCategory,
+  relatedProducts, insightsCategory,
 }: ProductPageTemplateProps) {
   const ACCENT = accentColor
   return (
     <>
       {/* ── Hero ── */}
-      <section className="bg-white pt-32 pb-20">
+      <section className="bg-white pt-28 pb-12 md:pb-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-8">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: ACCENT }}>
-                {tag}
-              </p>
-              <h1 className="hero-heading text-[#0A0A0A] mb-5">
-                {headline}
-                <br />
-                <span className="gradient-text">{headlineAccent}</span>
-              </h1>
-              <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
-                &ldquo;{quote}&rdquo;
-              </p>
-              <p className="text-[#0A0A0A]/55 leading-relaxed mb-8">
+              <h1 className="hero-heading gradient-text mb-5">{title}</h1>
+              <p className="text-[#0A0A0A]/65 leading-relaxed mb-8">
                 {description}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link to="/contact" className="btn-secondary">Request a Demo</Link>
+                <Link href={`/contact?demo=${encodeURIComponent(title)}`} className="btn-secondary">Request a Demo</Link>
               </div>
             </div>
-            <div className="flex items-center justify-center min-h-[520px]">
+            <div className="flex items-center justify-center">
               <img
                 src={mockup}
                 alt={mockupAlt}
@@ -70,25 +64,18 @@ export function ProductPageTemplate({
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-14 border-t border-black/[0.06] text-center">
-            {stats.map(s => (
-              <div key={s.label}>
-                <div className="text-3xl md:text-4xl font-medium mb-1" style={{ color: ACCENT }}>{s.value}</div>
-                <div className="text-sm text-[#575757]">{s.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
+
       {/* ── Features ── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14 grid md:grid-cols-2 md:items-end gap-6">
+          <div className="mb-10 grid md:grid-cols-2 md:items-end gap-6">
             <h2 className="section-heading text-[#0A0A0A]">
               What&apos;s <span className="section-accent">included.</span>
             </h2>
-            <p className="text-[#0A0A0A]/50 text-base leading-relaxed">{featuresSubheadline}</p>
+            <p className="text-[#0A0A0A]/60 text-base leading-relaxed">{featuresSubheadline}</p>
           </div>
           <div className="rounded-3xl bg-[#EBF5FF] p-8 md:p-10">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -96,7 +83,7 @@ export function ProductPageTemplate({
                 <div key={f.title} className="bg-white rounded-2xl p-7">
                   <div className="w-1.5 h-6 rounded-full mb-5" style={{ background: ACCENT }} />
                   <h3 className="text-base font-bold text-[#0A0A0A] mb-2">{f.title}</h3>
-                  <p className="text-sm text-[#0A0A0A]/50 leading-relaxed">{f.desc}</p>
+                  <p className="text-sm text-[#0A0A0A]/60 leading-relaxed">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -108,12 +95,12 @@ export function ProductPageTemplate({
       <InsightsSection category={insightsCategory} />
 
       {/* ── Capabilities + Related + CTA ── */}
-      <section className="bg-[#FAFAFA] py-24">
+      <section className="bg-[#FAFAFA] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-14">
           <div className="max-w-3xl text-center">
             <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Capabilities</p>
             <h2 className="text-3xl md:text-[38px] md:leading-[46px] font-medium text-[#0A0A0A] mb-4">
-              Built for <span style={{ color: ACCENT }}>production.</span>
+              Built for <span style={{ color: ACCENT }}>scale.</span>
             </h2>
             <p className="text-base leading-6 text-[#575757]">
               {capabilitiesSubtext}
@@ -132,47 +119,38 @@ export function ProductPageTemplate({
         </div>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
 
           {relatedProducts && relatedProducts.length > 0 && (
-            <div className="rounded-3xl bg-[#EBF5FF] p-8 mb-8">
-              <p className="text-xs font-bold tracking-[0.2em] uppercase mb-5" style={{ color: ACCENT }}>Related Products</p>
-              <div className="grid md:grid-cols-3 gap-4">
+            <div className="mb-20">
+              <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Related Products</p>
+              <h2 className="section-heading text-[#0A0A0A] mb-10">
+                Explore More <span className="section-accent">Technology Solutions</span>
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
                 {relatedProducts.map(p => (
-                  <Link
-                    key={p.name}
-                    to={p.href}
-                    className="bg-white rounded-2xl p-5 flex items-center justify-between group hover:border-[#0040C1]/20 border border-transparent transition-colors"
-                  >
-                    <div>
-                      <div className="text-sm font-bold text-[#0A0A0A] mb-0.5">{p.name}</div>
-                      <div className="text-xs text-[#0A0A0A]/40">{p.desc}</div>
+                  <Link key={p.name} href={p.href} className="group block">
+                    <div className="h-[265px] rounded-2xl bg-[#E5E5E5] flex items-center justify-center overflow-hidden mb-6">
+                      {PRODUCT_IMAGES[p.href] && (
+                        <img
+                          src={PRODUCT_IMAGES[p.href]}
+                          alt={p.name}
+                          className="h-[85%] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                        />
+                      )}
                     </div>
-                    <ArrowRight size={14} className="text-[#0A0A0A]/20 group-hover:text-[#0040C1] transition-colors flex-shrink-0" />
+                    <div className="px-2.5">
+                      <div className="text-2xl font-medium text-[#0A0A0A] mb-2">{p.name}</div>
+                      <div className="text-base text-[#0A0A0A]/60">{p.desc}</div>
+                    </div>
                   </Link>
                 ))}
               </div>
             </div>
           )}
 
-          <div className="relative overflow-hidden rounded-3xl p-12 text-center" style={{ background: '#0040C1' }}>
-            <AnimatedBackground />
-            <div className="relative z-10">
-              <h2 className="section-heading text-white mb-3">{ctaHeadline}</h2>
-              <p className="text-white/70 mb-8 max-w-lg mx-auto leading-relaxed">
-                Talk to our team about your requirements. We&apos;ll tell you straight whether we&apos;re the right fit.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#040404] font-semibold text-sm py-3.5 px-8 hover:bg-white/90 transition-colors"
-                >
-                  Get in Touch <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ClosingCta />
         </div>
       </section>
     </>

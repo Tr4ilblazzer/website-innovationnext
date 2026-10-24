@@ -41,7 +41,7 @@ const industries: GalleryItem[] = [
 export function IndustriesSection() {
   return (
     <ScrollableGallery
-      title="Industries that trust production-grade teams."
+      title="Industries that trust experienced teams."
       description="From central banks to citizen super-apps — we work with the teams building the critical infrastructure that millions depend on."
       items={industries}
     />

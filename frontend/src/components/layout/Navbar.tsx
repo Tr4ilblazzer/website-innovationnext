@@ -1,5 +1,8 @@
+'use client'
+
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu as MenuIcon, X, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Menu, { type IMenu } from '@/components/ui/navbar'
@@ -9,9 +12,11 @@ const menuItems: IMenu[] = [
   {
     id: 1,
     title: 'Solutions',
-    url: '/solutions/ai-ml',
+    url: '/solutions/digital-financial-services',
     dropdown: true,
     items: [
+      { id: 12, title: 'Digital Financial Services', url: '/solutions/digital-financial-services' },
+      { id: 18, title: 'E-Governance', url: '/solutions/e-governance' },
       { id: 13, title: 'AI & Machine Learning', url: '/solutions/ai-ml' },
       { id: 14, title: 'BI & Data Solutions', url: '/solutions/bi-data' },
       { id: 15, title: 'Digital Transformation Consulting', url: '/solutions/consulting' },
@@ -22,7 +27,7 @@ const menuItems: IMenu[] = [
   {
     id: 2,
     title: 'Products',
-    url: '/products',
+    url: '/products/groot-neo',
     dropdown: true,
     items: [
       { id: 21, title: 'Groot Neo', url: '/products/groot-neo' },
@@ -30,6 +35,8 @@ const menuItems: IMenu[] = [
       { id: 23, title: 'PFM', url: '/products/pfm' },
       { id: 24, title: 'Loyalty Engine', url: '/products/loyalty' },
       { id: 25, title: 'Onboarding Platform', url: '/products/onboarding' },
+      { id: 26, title: 'allXtract', url: '/products/allxtract' },
+      { id: 27, title: 'Summa', url: '/products/summa' },
     ],
   },
   {
@@ -38,13 +45,10 @@ const menuItems: IMenu[] = [
     url: '/industries',
     dropdown: true,
     items: [
-      { id: 36, title: 'Digital Financial Services', url: '/industries/digital-financial-services' },
-      { id: 37, title: 'E-Governance', url: '/industries/e-governance' },
-      { id: 31, title: 'Banks & Digital Banks', url: '/industries/banking' },
-      { id: 32, title: 'Governments & Public Sector', url: '/industries/government' },
-      { id: 33, title: 'Telecoms & MFIs', url: '/industries/telecom' },
-      { id: 34, title: 'Enterprises & Corporates', url: '/industries/enterprise' },
-      { id: 35, title: 'Fintechs & Startups', url: '/industries/fintech-startups' },
+      { id: 31, title: 'Banking & Finance', url: '/industries#banking-finance' },
+      { id: 32, title: 'Hospitality & Retail', url: '/industries#hospitality-retail' },
+      { id: 33, title: 'E-Governance & Digital Government', url: '/industries#e-governance' },
+      { id: 34, title: 'Enterprise', url: '/industries#enterprise' },
     ],
   },
   { id: 4, title: 'Company', url: '/company' },
@@ -53,6 +57,8 @@ const menuItems: IMenu[] = [
 ]
 
 const mobileSolutions = [
+  { label: 'Digital Financial Services', href: '/solutions/digital-financial-services' },
+  { label: 'E-Governance', href: '/solutions/e-governance' },
   { label: 'AI & Machine Learning', href: '/solutions/ai-ml' },
   { label: 'BI & Data Solutions', href: '/solutions/bi-data' },
   { label: 'Digital Transformation Consulting', href: '/solutions/consulting' },
@@ -61,13 +67,10 @@ const mobileSolutions = [
 ]
 
 const mobileIndustries = [
-  { label: 'Digital Financial Services', href: '/industries/digital-financial-services' },
-  { label: 'E-Governance', href: '/industries/e-governance' },
-  { label: 'Banks & Digital Banks', href: '/industries/banking' },
-  { label: 'Governments & Public Sector', href: '/industries/government' },
-  { label: 'Telecoms & MFIs', href: '/industries/telecom' },
-  { label: 'Enterprises & Corporates', href: '/industries/enterprise' },
-  { label: 'Fintechs & Startups', href: '/industries/fintech-startups' },
+  { label: 'Banking & Finance', href: '/industries#banking-finance' },
+  { label: 'Hospitality & Retail', href: '/industries#hospitality-retail' },
+  { label: 'E-Governance & Digital Government', href: '/industries#e-governance' },
+  { label: 'Enterprise', href: '/industries#enterprise' },
 ]
 
 const mobileProducts = [
@@ -76,16 +79,18 @@ const mobileProducts = [
   { label: 'PFM', href: '/products/pfm' },
   { label: 'Loyalty Engine', href: '/products/loyalty' },
   { label: 'Onboarding Platform', href: '/products/onboarding' },
+  { label: 'allXtract', href: '/products/allxtract' },
+  { label: 'Summa', href: '/products/summa' },
 ]
 
 export function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const location                    = useLocation()
+  const pathname                    = usePathname()
   const { isDark }                  = useHeroTheme()
 
   // Hero theme only applies on the home page before the user has scrolled
-  const isHome           = location.pathname === '/'
+  const isHome           = pathname === '/'
   const heroThemeActive  = isHome && !scrolled
 
   // Derived tokens
@@ -109,7 +114,7 @@ export function Navbar() {
 
   useEffect(() => {
     setMobileOpen(false)
-  }, [location])
+  }, [pathname])
 
   return (
     <>
@@ -124,7 +129,7 @@ export function Navbar() {
         <div className="max-w-[1312px] mx-auto px-6 flex items-center justify-between gap-6">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5">
             <img
               src={logoSrc}
               alt="Innovation Next"
@@ -140,8 +145,8 @@ export function Navbar() {
           {/* CTA */}
           <div className="hidden lg:flex items-center">
             <Link
-              to="/contact"
-              className="inline-flex items-center justify-center h-11 px-5 rounded-full bg-[#0040C1] text-[#FAFAFA] text-base font-medium border border-[#0040C1] hover:bg-white hover:text-[#0040C1] transition-all duration-200"
+              href="/contact"
+              className="inline-flex items-center justify-center h-11 px-5 rounded-full bg-[#0A4FD6] text-[#FAFAFA] text-base font-medium border border-[#0A4FD6] hover:bg-white hover:text-[#0A4FD6] transition-all duration-200"
             >
               Get in touch
             </Link>
@@ -162,30 +167,30 @@ export function Navbar() {
         <div className="fixed inset-0 z-40 bg-white pt-20 pb-8 px-6 overflow-y-auto lg:hidden">
           <div className="space-y-6">
             <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/30 mb-3">Solutions</p>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/50 mb-3">Solutions</p>
               <div className="space-y-1">
                 {mobileSolutions.map(s => (
-                  <Link key={s.href} to={s.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
+                  <Link key={s.href} href={s.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
                     {s.label}
                   </Link>
                 ))}
               </div>
             </div>
             <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/30 mb-3">Products</p>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/50 mb-3">Products</p>
               <div className="space-y-1">
                 {mobileProducts.map(p => (
-                  <Link key={p.href} to={p.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
+                  <Link key={p.href} href={p.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
                     {p.label}
                   </Link>
                 ))}
               </div>
             </div>
             <div>
-              <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/30 mb-3">Industries</p>
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/50 mb-3">Industries</p>
               <div className="space-y-1">
                 {mobileIndustries.map(i => (
-                  <Link key={i.href} to={i.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
+                  <Link key={i.href} href={i.href} className="block py-3 border-b border-black/[0.05] text-[#0A0A0A] font-medium">
                     {i.label}
                   </Link>
                 ))}
@@ -197,12 +202,12 @@ export function Navbar() {
                 { label: 'Insights', href: '/insights' },
                 { label: 'Careers', href: '/careers' },
               ].map(item => (
-                <Link key={item.href} to={item.href} className="block py-2 text-[#0A0A0A]/70 font-medium text-lg">
+                <Link key={item.href} href={item.href} className="block py-2 text-[#0A0A0A]/70 font-medium text-lg">
                   {item.label}
                 </Link>
               ))}
             </div>
-            <Link to="/contact" className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-full bg-[#0040C1] text-white font-semibold hover:bg-[#0034A0] transition-colors">
+            <Link href="/contact" className="inline-flex items-center gap-2 w-full justify-center px-5 py-3 rounded-full bg-[#0A4FD6] text-white font-semibold hover:bg-[#0841B3] transition-colors">
               Get in Touch <ArrowRight size={14} />
             </Link>
           </div>

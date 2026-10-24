@@ -1,12 +1,15 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
 import { InsightCarousel } from '@/components/ui/insight-carousel'
 import { getBlogPosts } from '@/services/api'
 import type { InsightPost } from '@/data/insights'
 
-// Home blog block follows the Figma spec (#0040C1 + Public Sans body)
-const FIGMA_BLUE = '#0040C1'
+// Home blog block follows the Figma spec (#0A4FD6 + Public Sans body)
+const FIGMA_BLUE = '#0A4FD6'
 const PUBLIC_SANS = { fontFamily: "'Public Sans', system-ui, sans-serif" }
 const POPPINS = { fontFamily: "'Poppins', 'Public Sans', sans-serif" }
 
@@ -39,7 +42,7 @@ function HomeInsights({ posts }: { posts: InsightPost[] }) {
 
         <div className="w-full flex flex-col lg:flex-row gap-8">
           {/* Lead post */}
-          <Link to={`/insights/${lead.slug}`} className="group flex flex-col gap-6 lg:w-[640px] flex-none">
+          <Link href={`/insights/${lead.slug}`} className="group flex flex-col gap-6 lg:w-[640px] flex-none">
             <img
               src={lead.image}
               alt={lead.title}
@@ -48,7 +51,7 @@ function HomeInsights({ posts }: { posts: InsightPost[] }) {
             <div className="flex flex-col gap-6">
               <PostMeta post={lead} />
               <div className="flex flex-col gap-4">
-                <h3 className="font-medium text-[28px] leading-8 text-black group-hover:text-[#0040C1] transition-colors" style={POPPINS}>
+                <h3 className="font-medium text-[28px] leading-8 text-black group-hover:text-[#0A4FD6] transition-colors" style={POPPINS}>
                   {lead.title}
                 </h3>
                 <p className="text-base leading-6 text-[#575757] line-clamp-3" style={PUBLIC_SANS}>{lead.excerpt}</p>
@@ -61,7 +64,7 @@ function HomeInsights({ posts }: { posts: InsightPost[] }) {
             {rest.slice(0, 3).map(post => (
               <Link
                 key={post.id}
-                to={`/insights/${post.slug}`}
+                href={`/insights/${post.slug}`}
                 className="group flex flex-col sm:flex-row gap-8 flex-1"
               >
                 <img
@@ -71,7 +74,7 @@ function HomeInsights({ posts }: { posts: InsightPost[] }) {
                 />
                 <div className="flex flex-col gap-6 min-w-0">
                   <PostMeta post={post} />
-                  <h3 className="font-medium text-[22px] leading-7 text-black group-hover:text-[#0040C1] transition-colors line-clamp-3" style={POPPINS}>
+                  <h3 className="font-medium text-[22px] leading-7 text-black group-hover:text-[#0A4FD6] transition-colors line-clamp-3" style={POPPINS}>
                     {post.title}
                   </h3>
                 </div>
@@ -90,7 +93,7 @@ interface InsightsSectionProps {
 }
 
 export function InsightsSection({ category }: InsightsSectionProps) {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [posts, setPosts] = useState<InsightPost[]>([])
   useEffect(() => {
     getBlogPosts(category).then(all => setPosts(all.slice(0, 8))).catch(() => {})
@@ -100,13 +103,13 @@ export function InsightsSection({ category }: InsightsSectionProps) {
   if (!category && posts.length >= 4) return <HomeInsights posts={posts} />
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
         <div className="flex items-end justify-between mb-12">
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-4">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/50 mb-4">
               Insights
             </p>
             <h2
@@ -117,8 +120,8 @@ export function InsightsSection({ category }: InsightsSectionProps) {
             </h2>
           </div>
           <button
-            onClick={() => navigate('/insights')}
-            className="hidden md:flex items-center gap-2 text-sm font-semibold text-[#0040C1] hover:gap-3 transition-all"
+            onClick={() => router.push('/insights')}
+            className="hidden md:flex items-center gap-2 text-sm font-semibold text-[#0A4FD6] hover:gap-3 transition-all"
           >
             View all insights <ArrowRight className="h-4 w-4" />
           </button>
@@ -128,8 +131,8 @@ export function InsightsSection({ category }: InsightsSectionProps) {
           posts={posts}
           footerLeft={
             <button
-              onClick={() => navigate('/insights')}
-              className="md:hidden flex items-center gap-2 text-sm font-semibold text-[#0040C1]"
+              onClick={() => router.push('/insights')}
+              className="md:hidden flex items-center gap-2 text-sm font-semibold text-[#0A4FD6]"
             >
               View all insights <ArrowRight className="h-4 w-4" />
             </button>

@@ -1,8 +1,11 @@
+BTW 
+
 # CMS Setup — Payload CMS
 
 ## Why Payload CMS
 
 Payload is the recommended CMS for this project because:
+
 - **Open-source & self-hosted** — no vendor lock-in, no monthly CMS fees
 - **TypeScript-native** — matches the project stack exactly
 - **Auto-generates REST + GraphQL API** — frontend consumes data without extra build
@@ -30,6 +33,7 @@ npx create-payload-app@latest .
 Create these four collections in `cms/src/collections/`:
 
 ### 1. BlogPosts.ts
+
 ```ts
 import { CollectionConfig } from 'payload/types'
 
@@ -60,6 +64,7 @@ export default BlogPosts
 ```
 
 ### 2. CaseStudies.ts
+
 ```ts
 import { CollectionConfig } from 'payload/types'
 
@@ -97,6 +102,7 @@ export default CaseStudies
 ```
 
 ### 3. Vacancies.ts
+
 ```ts
 import { CollectionConfig } from 'payload/types'
 
@@ -122,6 +128,7 @@ export default Vacancies
 ```
 
 ### 4. NewsletterSubscribers.ts (view-only for admin)
+
 ```ts
 import { CollectionConfig } from 'payload/types'
 
@@ -142,6 +149,7 @@ export default NewsletterSubscribers
 ---
 
 ## CMS Environment
+
 ```bash
 # cms/.env
 DATABASE_URI=postgresql://USER:PASSWORD@HOST:5432/innovation_next_cms
@@ -152,6 +160,7 @@ PORT=3000
 ---
 
 ## Running CMS
+
 ```bash
 cd cms && npm run dev   # Admin at http://localhost:3000/admin
 ```
@@ -162,6 +171,7 @@ cd cms && npm run dev   # Admin at http://localhost:3000/admin
 
 Option A — **Direct Payload API** (simplest):
 The frontend calls Payload's REST API directly:
+
 ```
 GET http://localhost:3000/api/blog-posts?where[published][equals]=true
 ```
@@ -175,10 +185,10 @@ When using Payload, update those routes to fetch from Payload's API instead of P
 
 ## Alternative CMS options
 
-| CMS | Pros | Cons |
-|-----|------|------|
-| **Payload** ✅ recommended | TypeScript, self-hosted, free, great DX | Newer, smaller community |
-| **Directus** | Very mature, open-source, no-code | Less TypeScript-native |
-| **Strapi** | Most popular open-source | Config-heavy, slower |
-| **Sanity** | Best editor UX | SaaS pricing, not self-hosted |
-| **Contentful** | Enterprise-grade | Expensive at scale |
+| CMS                              | Pros                                    | Cons                          |
+| -------------------------------- | --------------------------------------- | ----------------------------- |
+| **Payload** ✅ recommended | TypeScript, self-hosted, free, great DX | Newer, smaller community      |
+| **Directus**               | Very mature, open-source, no-code       | Less TypeScript-native        |
+| **Strapi**                 | Most popular open-source                | Config-heavy, slower          |
+| **Sanity**                 | Best editor UX                          | SaaS pricing, not self-hosted |
+| **Contentful**             | Enterprise-grade                        | Expensive at scale            |

@@ -20,3 +20,4 @@ coverage/
 # Prisma generated client
 backend/node_modules/
 backend/dist/
+Content/

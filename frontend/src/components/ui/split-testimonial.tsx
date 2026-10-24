@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
@@ -43,7 +45,7 @@ export function TestimonialsSplit({ testimonials }: TestimonialsSplitProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[#0A0A0A]/40"
+              className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[#0A0A0A]/60"
             >
               <span className="w-8 h-px bg-[#0A0A0A]/20" />
               {active.company}
@@ -79,7 +81,7 @@ export function TestimonialsSplit({ testimonials }: TestimonialsSplitProps) {
               <div className="w-10 h-px bg-[#0A0A0A]/15" />
               <div>
                 <p className="text-sm font-semibold text-[#0A0A0A]">{active.name}</p>
-                <p className="text-xs text-[#0A0A0A]/45 mt-0.5">{active.role}</p>
+                <p className="text-xs text-[#0A0A0A]/60 mt-0.5">{active.role}</p>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -110,7 +112,7 @@ export function TestimonialsSplit({ testimonials }: TestimonialsSplitProps) {
           <motion.div
             animate={{ opacity: isHovering ? 1 : 0, scale: isHovering ? 1 : 0.8 }}
             transition={{ duration: 0.2 }}
-            className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-xs text-[#0A0A0A]/40 whitespace-nowrap"
+            className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-xs text-[#0A0A0A]/60 whitespace-nowrap"
           >
             <span>Next</span>
             <ArrowUpRight className="w-3 h-3" />

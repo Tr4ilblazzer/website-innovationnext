@@ -1,4 +1,3 @@
-/// <reference types="vite/client" />
 import type {
   ApiResponse,
   CaseStudy,
@@ -27,14 +26,14 @@ interface BackendPost {
 }
 
 const CATEGORY_ACCENT: Record<string, string> = {
-  'Fintech':            '#0040C1',
-  'E-Governance':       '#0040C1',
-  'AI & ML':            '#0040C1',
-  'BI & Data':          '#0040C1',
-  'Software Engineering': '#0040C1',
-  'Managed Services':   '#0040C1',
+  'Fintech':            '#0A4FD6',
+  'E-Governance':       '#0A4FD6',
+  'AI & ML':            '#0A4FD6',
+  'BI & Data':          '#0A4FD6',
+  'Software Engineering': '#0A4FD6',
+  'Managed Services':   '#0A4FD6',
 }
-const DEFAULT_ACCENT = '#0040C1'
+const DEFAULT_ACCENT = '#0A4FD6'
 const DEFAULT_IMAGE  = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80'
 
 function toInsightPost(p: BackendPost): InsightPost {
@@ -57,7 +56,7 @@ function toInsightPost(p: BackendPost): InsightPost {
   }
 }
 
-const BASE_URL = (import.meta as { env: { VITE_API_URL?: string } }).env.VITE_API_URL ?? ''
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? (typeof window === 'undefined' ? 'http://localhost:3001' : '')
 
 // ── Core fetch wrapper ───────────────────────────────────────────────────────
 
@@ -67,6 +66,8 @@ async function request<T>(
 ): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {
     headers: { 'Content-Type': 'application/json', ...options?.headers },
+    // Server-side: cache GETs for 5 min (ISR-style) so blog pages stay fast but pick up CMS edits
+    next: { revalidate: 300 },
     ...options,
   })
   if (!res.ok) {

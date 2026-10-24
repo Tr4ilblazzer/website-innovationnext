@@ -3,12 +3,12 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-Full-stack corporate website for **Innovation Next** (also known as Four Symmetrons Innovation), a digital technology company HQ'd in Dubai with a hub in Kathmandu. The company operates across 5 solution pages (AI/ML, BI & Data, Digital Transformation Consulting, Bespoke Software Development (formerly IT Services), and Managed Services (formerly Staff Augmentation)) plus 2 industry pages: Digital Financial Services (`/industries/digital-financial-services`) and E-Governance (`/industries/e-governance`), which reuse `FintechSolutionPage` and `EGovSolutionPage`. Old `/solutions/fintech` and `/solutions/egovernance` redirect there. A fuller Sectors/Services restructure (see the Obsidian vault `Our Expertise - As Company`) is planned in later steps and lives on branch `content-restructure-backup`.
+Full-stack corporate website for **Innovation Next** (also known as Four Symmetrons Innovation), a digital technology company HQ'd in Dubai with a hub in Kathmandu. The company operates across 7 solution pages (Digital Financial Services (`/solutions/digital-financial-services`), E-Governance (`/solutions/e-governance`), AI/ML, BI & Data, Digital Transformation Consulting, Bespoke Software Development (formerly IT Services), and Managed Services (formerly Staff Augmentation)) and 4 industries (Banking & Finance, Hospitality & Retail, E-Governance & Digital Government, Enterprise). `/industries` is an overview page with a card per industry (anchors `#banking-finance`, `#hospitality-retail`, `#e-governance`, `#enterprise`) and no industry has its own page yet. E-Governance and Digital Financial Services are solution pages that reuse `EGovSolutionPage` and `FintechSolutionPage`. `/solutions` (→ first solution, Digital Financial Services) and `/products` (→ Groot Neo) redirect since there are no overview pages yet. `/solutions/fintech`, `/solutions/egovernance`, `/industries/digital-financial-services` and `/industries/e-governance` redirect to their `/solutions/...` homes. A fuller Sectors/Services restructure (see the Obsidian vault `Our Expertise - As Company`) is planned in later steps and lives on branch `content-restructure-backup`.
 
 ## Tech Stack
 | Layer | Technology |
 |-------|-----------|
-| Frontend | React 18 + TypeScript + Vite |
+| Frontend | Next.js 16 (App Router) + React 19 + TypeScript |
 | Styling | Tailwind CSS v3 + shadcn/ui |
 | State | Zustand (admin auth only — `useAdminStore`) |
 | Forms | React Hook Form + Zod |
@@ -31,7 +31,8 @@ npm run install:all
 
 # Frontend only
 cd frontend && npm run dev
-cd frontend && npm run build      # tsc + vite build
+cd frontend && npm run build      # next build (also type-checks)
+cd frontend && npm run typecheck  # tsc --noEmit
 
 # Backend only
 cd backend && npm run dev         # ts-node-dev with hot reload
@@ -46,14 +47,14 @@ cd backend && npm run seed:admin    # create the first admin login
 npm run db:studio     # open Prisma Studio visual browser
 ```
 
-There is no lint or test script in any package — `cd frontend && npm run build` (runs `tsc`) is the only correctness check. The Vercel project is linked from `frontend/` (`frontend/.vercel`), so run `vercel` from there; `frontend/vercel.json` is just the SPA rewrite.
+There is no lint or test script in any package — `cd frontend && npm run build` (runs `next build`, which type-checks) is the only correctness check. The Vercel project is linked from `frontend/` (`frontend/.vercel`), so run `vercel` from there. The Vercel project's framework preset must be **Next.js** (it was Vite), and its env var must be `NEXT_PUBLIC_API_URL`.
 
 ## Project Structure
 
 ```
 innovation-next/
 ├── frontend/src/
-│   ├── App.tsx              Router — all routes, lazy loading, PublicLayout vs AdminLayout split
+│   ├── app/                 Next.js App Router — layout.tsx (metadata, fonts), (site)/ public routes with Navbar/Footer, admin/ routes, sitemap.ts, robots.ts, globals.css
 │   ├── context/
 │   │   └── HeroThemeContext.tsx   isDark flag toggled by hero sections to switch Navbar style
 │   ├── components/
@@ -61,9 +62,9 @@ innovation-next/
 │   │   ├── layout/          Navbar, Footer
 │   │   ├── sections/        Reusable page sections (SolutionPageTemplate, ProductPageTemplate, etc.)
 │   │   └── admin/           AdminLayout, AdminRoute (JWT guard), RichTextEditor
-│   ├── pages/
-│   │   ├── solutions/       7 individual solution pages (lazy-loaded)
-│   │   ├── products/        5 individual product pages (lazy-loaded)
+│   ├── views/
+│   │   ├── solutions/       7 solution/industry views (6 solutions + E-Governance; rendered by thin `app/(site)/**/page.tsx` route files)
+│   │   ├── products/        6 individual product pages
 │   │   └── admin/           AdminDashboard, AdminContacts, AdminInsights, AdminBlogEditor,
 │   │                        AdminVacancies, AdminVacancyEditor, AdminApplications, AdminLogin
 │   ├── hooks/               useScrollY, useIntersection, useMediaQuery
@@ -133,25 +134,33 @@ Prisma schema at `backend/src/prisma/schema.prisma`. Models:
 ### Insights System
 - **Data:** `data/insights.ts` — 18 posts, 3 per domain. Each post has `id`, `slug`, `title`, `excerpt`, `category`, `author`, `publishedAt`, `readTime`, `featured`, `image`, `accentColor`, and `body: ContentBlock[]`.
 - **`ContentBlock`** is a discriminated union: `{ type: 'h2' | 'p' | 'blockquote' | 'ul', text?: string, items?: string[] }`.
-- **`InsightsSection`** (used on Home, all 7 solution pages, all 5 product pages) accepts an optional `category` prop. Returns `null` if no posts match (Consulting currently has no posts).
+- **`InsightsSection`** (used on Home, all 7 solution pages, all 6 product pages) accepts an optional `category` prop. Returns `null` if no posts match (Consulting currently has no posts).
 - **`InsightDetailPage`** — reads `slug` from `useParams()`, renders `body` blocks, shows related posts from the same category, then a CTA.
 - **Backend shape vs. frontend shape:** `api.ts` has a `toInsightPost()` function that normalises `BackendPost` → `InsightPost`. When the backend is live, only `api.ts` changes; pages stay untouched.
+
+### Routing, SEO & metadata (Next.js)
+- Public routes live in `frontend/src/app/(site)/` (Navbar + Footer layout); admin in `app/admin/` (`(panel)` group adds `AdminRoute` + `AdminLayout`, `login` sits outside it). Route files are thin: they export `metadata = pageMeta({ title, description, path })` from `lib/seo.ts` and render the component from `src/views/`.
+- Every new public page needs a `pageMeta` entry and a line in `app/sitemap.ts`. Stubs use `noindex: true`.
+- Anything using hooks, browser APIs or event handlers needs `'use client'`; views are all client components (they still server-render to HTML).
+- `/insights` and `/insights/[slug]` fetch on the server (`revalidate = 300`), set per-post metadata and emit Article JSON-LD. `api.ts` still falls back to mock data if the backend is unreachable, so a build without the backend bakes in mock posts until the next revalidation.
+- Redirects (old solution/product URLs) are in `next.config.ts`. Unknown URLs 404 via `app/(site)/[...notfound]`. `/products/[slug]`, `/industries/[slug]` and `/use-cases/[slug]` catch-all stubs were dropped.
+- Site URL comes from `NEXT_PUBLIC_SITE_URL` (defaults to a placeholder in `lib/seo.ts`).
 
 ### HeroThemeContext
 `HeroThemeProvider` wraps the entire app. Hero sections call `setIsDark(true/false)` on mount to signal whether they're dark-background — the Navbar uses `isDark` to switch between light and dark logo/link styles. Currently only the legacy `components/sections/HeroSection.tsx` (no longer used by any route) calls `setIsDark` — no live page sets it, so `isDark` stays `false` and the Navbar always renders its light variant on Home until a hero wires this back up.
 
 ### Solution Pages
-Each of the 7 solution pages is in `frontend/src/pages/solutions/` and lazy-loaded in `App.tsx`. Layout: hero → features/capabilities → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each page uses `<SolutionPageTemplate>` — except `FintechSolutionPage` and `ManagedServicesSolutionPage` which are hand-written.
+Each of the 7 solution views (6 solutions + the E-Governance industry page) is in `frontend/src/views/solutions/` and mounted by a route file under `frontend/src/app/(site)/`. Layout: hero → features/capabilities → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each page uses `<SolutionPageTemplate>` — except `FintechSolutionPage` and `ManagedServicesSolutionPage` which are hand-written.
 
 ### Closing CTA card
-The "Ready to get started?" card is copy-pasted (not a shared component) in `SolutionPageTemplate`, `ProductPageTemplate`, `FintechSolutionPage`, `ManagedServicesSolutionPage`, `CompanyPage` and `CareersPage`. It must stay fixed brand blue `#0040C1` — never bind it to a page's `accentColor` — so change all copies together.
+The closing CTA card ("Let's talk about your project") is one shared component, `components/sections/ClosingCta.tsx` (heading, body, Get in Touch button; the View Case Studies button was removed while `/insights/case-studies` is a stub, so add it back once a real case study exists). Every public page that ends in a CTA — `SolutionPageTemplate`, `ProductPageTemplate`, `FintechSolutionPage`, `ManagedServicesSolutionPage`, `CompanyPage`, `CareersPage`, `InsightDetailPage` — renders it, so change it in one place. It must stay fixed brand blue `#0A4FD6`, never a page's `accentColor`, and the copy stays generic (no per-page headlines).
 
 ### Product Pages
-All 5 product pages follow an identical pattern: hero + stats strip → feature cards grid → capabilities checklist → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each uses `<ProductPageTemplate>`.
+All 6 product pages follow an identical pattern: hero + stats strip → feature cards grid → capabilities checklist → `<TrustedBySection />` → `<InsightsSection category="..." />` → CTA. Each uses `<ProductPageTemplate>`.
 
 Domain-to-category mapping for `InsightsSection`:
 - GrootNeo, GrootPay, PFM, Loyalty → `category="Fintech"`
-- Onboarding Platform → `category="AI & ML"`
+- Onboarding Platform, allXtract, Summa → `category="AI & ML"` (Summa has no category of its own yet, so it borrows this one)
 
 ### Standard Card Pattern
 ```tsx
@@ -171,7 +180,7 @@ Domain-to-category mapping for `InsightsSection`:
 - Full-bleed image with `absolute inset-0`
 - Frosted panel at `absolute inset-x-4 bottom-4 rounded-2xl`
 - `backdropFilter: blur(2px)` + `border: 1px solid rgba(255,255,255,0.6)`
-- Always pass `post.accentColor` — never hardcode `#0040C1` here.
+- Always pass `post.accentColor` — never hardcode `#0A4FD6` here.
 
 ### TrustedBySection
 Appears on all pages **except** Contact, Careers, Insights, and Industries.
@@ -183,7 +192,8 @@ Each route file in `backend/src/routes/` is self-contained. Form routes use `for
 
 Frontend (`frontend/.env`):
 ```
-VITE_API_URL=http://localhost:3001
+NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_SITE_URL=http://localhost:5173   # canonical URLs, sitemap, Open Graph
 ```
 
 Backend (`backend/.env`):
@@ -221,8 +231,8 @@ NODE_ENV=development
 ## Component Styling Conventions
 
 Custom Tailwind utility classes in `frontend/src/index.css`:
-- `gradient-text` — **hero h1 only**: `linear-gradient(90deg, #0040C1 0%, #0DFFFF 100%)` clipped to text
-- `section-accent` — **section h2 highlighted words only**: solid `color: #0040C1` (no gradient)
+- `gradient-text` — **hero h1 only**: `linear-gradient(90deg, #0A4FD6 0%, #0DFFFF 100%)` clipped to text
+- `section-accent` — **section h2 highlighted words only**: solid `color: #0A4FD6` (no gradient)
 - `glass-card` — glassmorphism: `bg-white/[0.03] backdrop-blur-[16px] border border-white/[0.08]`
 - `btn-primary` — rounded-full gradient button
 - `btn-secondary` — rounded-full outlined button
@@ -238,19 +248,19 @@ Tailwind token aliases (from `tailwind.config.js`):
 
 `tailwind.config.js` also wires shadcn-convention semantic tokens (`background`, `foreground`, `primary`, `secondary`, `accent`, `muted`, `card`, `destructive`, `border`, `input`, `ring`) to the CSS custom properties already defined in `index.css`. Those vars are **space-separated RGB triplets** (e.g. `--background: 255 255 255`), not HSL — some (`--secondary`, `--accent`, `--muted`, `--border`, `--input`) already embed their own alpha (`0 0 0 / 0.06`) and are mapped as plain `rgb(var(--x))` rather than `rgb(var(--x) / <alpha-value>)`, so they won't respond to Tailwind opacity modifiers like `/50`. Use these tokens (`bg-background`, `text-muted-foreground`, etc.) when dropping in third-party/shadcn-registry components that expect them; hand-written components in this codebase use the `brand-*` tokens and raw hex instead.
 
-Path alias: `@/` maps to `frontend/src/` (configured in `vite.config.ts` and `tsconfig.json`).
+Path alias: `@/` maps to `frontend/src/` (configured in `tsconfig.json`).
 
 ### Third-party shader library
 `@paper-design/shaders-react` `<Warp>` component (`DomainsSection`). Its `shape` prop only accepts `"checks" | "stripes" | "edge"`.
 
 ## Branding Rules (Design System v2)
-- **Primary Blue:** `#0040C1` · **Hover:** `#0034A0` · **Tint (card bg):** `#EBF5FF` · **Cyan:** `#0DFFFF`
+- **Primary Blue:** `#0A4FD6` · **Hover:** `#0841B3` · **Tint (card bg):** `#EBF5FF` · **Cyan:** `#0DFFFF`
 - **Black:** `#040404` · **White:** `#FAFAFA` · **Surface:** `#111111` · **Card:** `#161616`
 - **Font:** Poppins (Google Fonts) for headings and body — use `.hero-heading` and `.section-heading`
 - **NEVER use Inter, serif fonts, or lime/green accents** — brand is blue/cyan only
-- Solution domain accent colours (legacy — **do not use for UI**; every page, CTA card and Domains card now renders brand blue `#0040C1` regardless of domain): fintech = `#0040C1`, e-gov = `#10b981`, ai-ml = `#8b5cf6`, bi-data = `#f59e0b`, bespoke-software (formerly it-services) = `#ef4444`, managed-services (formerly staff-aug) = `#ec4899`, consulting = `#f59e0b`
-- Pill/tag/badge selected state: border-only (`border-[#0040C1] text-[#0040C1]`), no background fill
-- Submit/CTA buttons that are border-only: `border: 1.5px solid #0040C1`, `color: #0040C1`, `background: transparent`, with `hover:bg-[#0040C1] hover:text-white`
+- Solution domain accent colours (legacy — **do not use for UI**; every page, CTA card and Domains card now renders brand blue `#0A4FD6` regardless of domain): fintech = `#0A4FD6`, e-gov = `#10b981`, ai-ml = `#8b5cf6`, bi-data = `#f59e0b`, bespoke-software (formerly it-services) = `#ef4444`, managed-services (formerly staff-aug) = `#ec4899`, consulting = `#f59e0b`
+- Pill/tag/badge selected state: border-only (`border-[#0A4FD6] text-[#0A4FD6]`), no background fill
+- Submit/CTA buttons that are border-only: `border: 1.5px solid #0A4FD6`, `color: #0A4FD6`, `background: transparent`, with `hover:bg-[#0A4FD6] hover:text-white`
 
 ## Content Rules
 - Source of truth for copy is the `Content/` vault (`Key Facts.md`, `09 Brand & Messaging.md`). Company delivery proof only — never founder names, founder history, or eSewa/Fonepay as credentials.
@@ -259,9 +269,10 @@ Path alias: `@/` maps to `frontend/src/` (configured in `vite.config.ts` and `ts
 - Confirmed stats only: 150+ clients, 15M+ citizens served, 13M+ users on platforms built, 3.5M+ daily transactions, 20+ AI models in production, 50+ dashboards, 20+ remittance corridors, 7 live national government deployments.
 - Unconfirmed — leave off the site until `Key Facts.md` resolves them: projects delivered (100+ vs 200+), team size, $275M+ monthly volume, $25B+ annual volume.
 - Retired terms: "IT Services", "Staff Augmentation", "six domains".
+- Never write "in production" / "production-ready" / "production-grade" in site copy (use "live", "in live use", "at scale"). Avoid naming countries or cities such as Malaysia or Nepal in solution/product copy.
 
 ## Pages: Live vs. Stub
 
-**Fully built:** Home (hero is `components/sections/HomeHero.tsx`), Company, Contact, Careers, Insights (list + detail), all 6 Solution pages, all 5 Product pages (GrootNeo, GrootPay, PFM, Loyalty, Onboarding Platform — formerly Merchant AI; `/products/merchant-ai` redirects), Admin panel (Login, Dashboard, Contacts, Insights/Blog, Vacancies, Applications)
+**Fully built:** Home (hero is `components/sections/HomeHero.tsx`), Company, Contact, Careers, Insights (list + detail), Industries overview (`/industries`), Privacy/Terms/Cookies (plain drafts in `components/sections/LegalPage.tsx` layout — need legal review before launch) and E-Governance, all 7 Solution pages, all 6 Product pages (GrootNeo, GrootPay, PFM, Loyalty Engine, Onboarding Platform — formerly Merchant AI; `/products/merchant-ai` redirects — allXtract, and Summa, the Feedback & Reputation Platform), Admin panel (Login, Dashboard, Contacts, Insights/Blog, Vacancies, Applications)
 
-**ComingSoon stubs:** Products index (`/products`), Industries detail pages, Use Cases, `/insights/case-studies`, Privacy, Terms, Cookies
+**ComingSoon stubs:** Use Cases, `/insights/case-studies`

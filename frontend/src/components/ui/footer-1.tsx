@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { LucideIcon } from 'lucide-react'
 
 interface FooterLink {
@@ -44,10 +44,10 @@ export const Footer: FC<FooterProps> = ({
 
           {/* Logo + Description + Social */}
           <div className="flex flex-col gap-4 md:w-1/3 md:pr-16">
-            <Link to="/">
+            <Link href="/">
               <img src={logoSrc} alt={logoAlt} className="h-9 w-auto object-contain" />
             </Link>
-            <p className="text-[#0A0A0A]/50 text-sm leading-relaxed">{description}</p>
+            <p className="text-[#0A0A0A]/60 text-sm leading-relaxed">{description}</p>
             <div className="flex items-center gap-4 mt-1">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
@@ -56,7 +56,7 @@ export const Footer: FC<FooterProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-[#0A0A0A]/40 hover:text-[#0040C1] hover:border-[#0040C1] transition-colors"
+                  className="w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-[#0A0A0A]/60 hover:text-[#0A4FD6] hover:border-[#0A4FD6] transition-colors"
                 >
                   <Icon size={15} />
                 </a>
@@ -68,18 +68,18 @@ export const Footer: FC<FooterProps> = ({
           <div className="flex flex-wrap gap-10 md:w-2/3 md:justify-end">
             {columns.map((col) => (
               <div key={col.title} className="flex flex-col gap-2.5 min-w-[120px]">
-                <h4 className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/30 mb-1">
+                <h4 className="text-xs font-semibold tracking-widest uppercase text-[#0A0A0A]/50 mb-1">
                   {col.title}
                 </h4>
                 {col.links.map(({ label, href, badge }) => (
                   <Link
                     key={label}
-                    to={href}
-                    className="text-sm text-[#0A0A0A]/50 hover:text-[#0A0A0A] flex items-center gap-1.5 transition-colors"
+                    href={href}
+                    className="text-sm text-[#0A0A0A]/60 hover:text-[#0A0A0A] flex items-center gap-1.5 transition-colors"
                   >
                     {label}
                     {badge && (
-                      <span className="bg-[#0040C1]/10 text-[#0040C1] text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                      <span className="bg-[#0A4FD6]/10 text-[#0A4FD6] text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
                         {badge}
                       </span>
                     )}
@@ -91,12 +91,12 @@ export const Footer: FC<FooterProps> = ({
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#0A0A0A]/30">
+        <div className="mt-14 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#0A0A0A]/50">
           <p>{copyright}</p>
           <div className="flex items-center gap-6">
-            <Link to="/privacy" className="hover:text-[#0A0A0A]/60 transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-[#0A0A0A]/60 transition-colors">Terms of Service</Link>
-            <Link to="/cookies" className="hover:text-[#0A0A0A]/60 transition-colors">Cookie Settings</Link>
+            <Link href="/privacy" className="hover:text-[#0A0A0A]/60 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#0A0A0A]/60 transition-colors">Terms of Service</Link>
+            <Link href="/cookies" className="hover:text-[#0A0A0A]/60 transition-colors">Cookie Settings</Link>
           </div>
         </div>
       </div>
