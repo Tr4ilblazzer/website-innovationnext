@@ -1,6 +1,7 @@
 'use client'
 
 
+import Image from 'next/image'
 import { ClosingCta } from '@/components/sections/ClosingCta'
 import Link from 'next/link'
 import { Check } from 'lucide-react'
@@ -8,14 +9,7 @@ import { TrustedBySection } from '@/components/sections/TrustedBySection'
 import { InsightsSection } from '@/components/sections/InsightsSection'
 import { TechOrbit } from '@/components/ui/tech-orbit'
 
-const ACCENT = '#0040C1'
-
-const stats = [
-  { value: '10', label: 'Government systems under maintenance' },
-  { value: '36 mo', label: 'SLA term, Sri Lanka' },
-  { value: '99.99%', label: 'Availability SLA, Sri Lanka' },
-  { value: '2–4 wks', label: 'Team onboarding time' },
-]
+const ACCENT = '#0A4FD6'
 
 const features = [
   { title: 'Dedicated Engineers', desc: 'Pre-vetted engineers from Kathmandu embedded in your team — backend, frontend, mobile, data, QA, DevOps, and fintech specialists.' },
@@ -72,49 +66,36 @@ export default function ManagedServicesSolutionPage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────── */}
-      <section className="bg-white pt-32 pb-20">
+      <section className="bg-white pt-28 pb-12 md:pb-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-14">
-            <p className="text-xs font-medium mb-4" style={{ color: ACCENT }}>Managed Services</p>
-            <h1 className="hero-heading text-[#0A0A0A] mb-5">
-              Managed teams and <span className="gradient-text">managed operations.</span>
-            </h1>
-            <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
-              "We keep national systems running — and put the engineers you need on your team."
-            </p>
-            <p className="text-[#0A0A0A]/55 leading-relaxed mb-8 max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto text-center mb-10">
+            <h1 className="hero-heading gradient-text mb-5">Managed Services</h1>
+            <p className="text-[#0A0A0A]/65 leading-relaxed mb-8 max-w-3xl mx-auto">
               Managed Services has two service lines. Managed Teams: dedicated engineers and pods from Kathmandu work inside your programme while you direct the work. Application & Infrastructure Management: we operate your live systems against an agreed SLA and own the outcome. Our team works from Kathmandu (UTC+5:45), overlapping the Middle East and Asia.
             </p>
             <Link href="/company" className="btn-secondary">Our Credentials</Link>
           </div>
-          <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80"
+          <Image
+            src="https://images.unsplash.com/photo-1758873268705-bb756c95f26a?w=1600&q=80"
             alt="Managed services team"
+            width={1600}
+            height={680}
+            sizes="(min-width: 1280px) 1216px, 100vw"
             className="w-full h-[240px] md:h-[340px] object-cover rounded-3xl"
           />
         </div>
       </section>
 
-      <section className="bg-[#F7F7F7] py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-          {stats.map(s => (
-            <div key={s.label}>
-              <div className="text-4xl md:text-5xl font-medium mb-2" style={{ color: ACCENT }}>{s.value}</div>
-              <div className="text-sm text-[#575757]">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ── Talent Roles ──────────────────────────────── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14 max-w-3xl mx-auto text-center">
+          <div className="mb-10 max-w-3xl mx-auto text-center">
             <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Work</p>
             <h2 className="section-heading text-[#0A0A0A] mb-3">
               What we <span className="section-accent">deliver</span>
             </h2>
-            <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
+            <p className="text-[#0A0A0A]/60 text-base leading-relaxed">
               Two service lines under one roof — people for your programme, and operations for your live systems.
             </p>
           </div>
@@ -124,7 +105,7 @@ export default function ManagedServicesSolutionPage() {
                 <div key={f.title} className="bg-white rounded-2xl p-7">
                   <div className="w-1.5 h-6 rounded-full mb-5" style={{ background: ACCENT }} />
                   <h3 className="text-base font-bold text-[#0A0A0A] mb-2">{f.title}</h3>
-                  <p className="text-sm text-[#0A0A0A]/50 leading-relaxed">{f.desc}</p>
+                  <p className="text-sm text-[#0A0A0A]/60 leading-relaxed">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -133,13 +114,13 @@ export default function ManagedServicesSolutionPage() {
       </section>
 
       {/* ── Engagement Models ─────────────────────────── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14 grid md:grid-cols-2 md:items-end gap-6">
+          <div className="mb-10 grid md:grid-cols-2 md:items-end gap-6">
             <h2 className="section-heading text-[#0A0A0A]">
               How we <span className="section-accent">engage.</span>
             </h2>
-            <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
+            <p className="text-[#0A0A0A]/60 text-base leading-relaxed">
               From a single embedded engineer to full operation of a live system.
             </p>
           </div>
@@ -157,10 +138,10 @@ export default function ManagedServicesSolutionPage() {
                 >
                   <div className="w-1.5 h-5 rounded-full mb-4" style={{ background: ACCENT }} />
                   <h3 className="text-base font-bold text-[#0A0A0A] mb-2">{e.title}</h3>
-                  <p className="text-sm text-[#0A0A0A]/55 leading-relaxed mb-4">{e.desc}</p>
+                  <p className="text-sm text-[#0A0A0A]/65 leading-relaxed mb-4">{e.desc}</p>
                   <div className="flex flex-wrap gap-2">
                     {e.tags.map(t => (
-                      <span key={t} className="text-xs px-2.5 py-1 rounded-full bg-white/80 text-[#0040C1] font-medium border border-[#0040C1]/15">{t}</span>
+                      <span key={t} className="text-xs px-2.5 py-1 rounded-full bg-white/80 text-[#0A4FD6] font-medium border border-[#0A4FD6]/15">{t}</span>
                     ))}
                   </div>
                 </div>
@@ -178,7 +159,7 @@ export default function ManagedServicesSolutionPage() {
               Stacks we work{' '}
               <span style={{ color: ACCENT }}>with.</span>
             </h2>
-            <p className="text-[#0A0A0A]/50 max-w-xl mx-auto">
+            <p className="text-[#0A0A0A]/60 max-w-xl mx-auto">
               36 technologies across frontend, backend, data, and cloud.
             </p>
           </div>
@@ -192,15 +173,15 @@ export default function ManagedServicesSolutionPage() {
       <InsightsSection category="Managed Services" />
 
       {/* ── Technical depth + CTA ─────────────────────── */}
-      <section className="bg-[#FAFAFA] py-24">
+      <section className="bg-[#FAFAFA] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-14">
           <div className="max-w-3xl text-center">
             <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Capabilities</p>
             <h2 className="text-3xl md:text-[38px] md:leading-[46px] font-medium text-[#0A0A0A] mb-4">
-              Built for <span style={{ color: ACCENT }}>production.</span>
+              Built for <span style={{ color: ACCENT }}>scale.</span>
             </h2>
             <p className="text-base leading-6 text-[#575757]">
-              Our engineers and operators work with the stacks that run production systems.
+              Our engineers and operators work with the stacks that run live systems.
             </p>
           </div>
           <div className="w-full flex flex-wrap justify-center gap-x-10 gap-y-5">
@@ -216,7 +197,7 @@ export default function ManagedServicesSolutionPage() {
         </div>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
 
           <ClosingCta />

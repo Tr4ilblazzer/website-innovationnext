@@ -1,11 +1,12 @@
 'use client'
 
 
+import Image from 'next/image'
 import { ClosingCta } from '@/components/sections/ClosingCta'
 import { Check, Users, Lightbulb, Sprout } from 'lucide-react'
 import { TrustedBySection } from '@/components/sections/TrustedBySection'
 
-const ACCENT = '#0040C1'
+const ACCENT = '#0A4FD6'
 
 const pillars = [
   {
@@ -47,12 +48,12 @@ export default function CompanyPage() {
     <main className="bg-white">
 
       {/* ── Hero ──────────────────────────────────────── */}
-      <section className="bg-white pt-32 pb-20">
+      <section className="bg-white pt-28 pb-12 md:pb-16">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-12 text-center">
           <div>
             <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>About us</p>
             <h1 className="text-3xl md:text-[46px] md:leading-[64px] font-medium text-[#0A0A0A]">
-              Build By Operators <span style={{ color: ACCENT }}>For Operators</span>
+              We advise, build, <span style={{ color: ACCENT }}>and run digital platforms</span>
             </h1>
           </div>
           <img
@@ -73,7 +74,7 @@ export default function CompanyPage() {
             { value: '150+', label: 'Clients' },
             { value: '13M+', label: 'Users on platforms we built' },
             { value: '15M+', label: 'Citizens served' },
-            { value: '20+', label: 'AI models in production' },
+            { value: '20+', label: 'AI models live' },
           ].map(s => (
             <div key={s.label}>
               <div className="text-5xl md:text-[64px] leading-[1.2] font-semibold" style={{ color: ACCENT }}>{s.value}</div>
@@ -95,16 +96,19 @@ export default function CompanyPage() {
               We advise, build, and run digital platforms for financial institutions, large enterprises, and governments — one accountable partner from the first requirement to live operation.
             </p>
           </div>
-          <img
-            src="/team-photo.png"
-            alt="The Innovation Next team"
+          <Image
+            src="https://images.unsplash.com/photo-1764140608148-80e010804af8?w=1600&q=80"
+            alt="Snow-capped mountains above the clouds at sunrise"
+            width={1600}
+            height={600}
+            sizes="(min-width: 1280px) 1216px, 100vw"
             className="w-full h-[240px] md:h-[299px] object-cover rounded-2xl"
           />
         </div>
       </section>
 
       {/* ── How We Work ───────────────────────────────── */}
-      <section className="bg-white pt-12 pb-24">
+      <section className="bg-white pt-12 pb-16 md:pb-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-14">
           <div className="max-w-3xl text-center">
             <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>How we work</p>
@@ -143,7 +147,7 @@ export default function CompanyPage() {
       </section>
 
       {/* ── Seven Domains ─────────────────────────────── */}
-      <section className="bg-[#FAFAFA] py-24">
+      <section className="bg-[#FAFAFA] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-14">
           <div className="max-w-3xl text-center">
             <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Capabilities</p>
@@ -151,7 +155,7 @@ export default function CompanyPage() {
               Seven Domains. <span style={{ color: ACCENT }}>One Partner.</span>
             </h2>
             <p className="text-base leading-6 text-[#575757]">
-              From digital financial services to national e-governance platforms — every capability has been delivered in production.
+              From digital financial services to national e-governance platforms — every capability has been delivered and is in live use.
             </p>
           </div>
           <div className="w-full flex flex-wrap justify-center gap-x-10 gap-y-5">
@@ -179,7 +183,7 @@ export default function CompanyPage() {
       <TrustedBySection />
 
       {/* ── CTA ───────────────────────────────────────── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
 
           {/* CTA */}

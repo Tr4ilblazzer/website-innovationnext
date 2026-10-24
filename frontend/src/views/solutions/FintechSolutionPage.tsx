@@ -1,6 +1,7 @@
 'use client'
 
 
+import Image from 'next/image'
 import { ClosingCta } from '@/components/sections/ClosingCta'
 import Link from 'next/link'
 import { Check } from 'lucide-react'
@@ -9,14 +10,7 @@ import { InsightsSection } from '@/components/sections/InsightsSection'
 import { Smartphone, Package, CreditCard, BarChart3, Brain, Shield, Cloud } from 'lucide-react'
 import RadialOrbitalTimeline from '@/components/ui/radial-orbital-timeline'
 
-const ACCENT = '#0040C1'
-
-const stats = [
-  { value: '13M+', label: 'Users on platforms we built' },
-  { value: '3.5M+', label: 'Daily transactions' },
-  { value: '20+', label: 'Remittance corridors' },
-  { value: 'Live', label: 'Nepal and Malaysia' },
-]
+const ACCENT = '#0A4FD6'
 
 const features = [
   { title: 'Neo-Banking — Groot Neo', desc: 'A pre-integrated digital banking stack — mobile banking, wallet, AI layer, engagement, payments, settlement, onboarding, lending, and virtual accounts — under one vendor.' },
@@ -128,50 +122,37 @@ export default function FintechSolutionPage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────── */}
-      <section className="bg-white pt-32 pb-20">
+      <section className="bg-white pt-28 pb-12 md:pb-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-14">
-            <p className="text-xs font-medium mb-4" style={{ color: ACCENT }}>Digital Financial Services</p>
-            <h1 className="hero-heading text-[#0A0A0A] mb-5">
-              Wallets, neo-banking, payments, <span className="gradient-text">in production.</span>
-            </h1>
-            <p className="text-[#0A0A0A]/40 italic text-lg leading-relaxed mb-4">
-              "Platforms we built, launched, and operate — not systems we only designed."
-            </p>
-            <p className="text-[#0A0A0A]/55 leading-relaxed mb-8 max-w-3xl mx-auto">
-              We design, build, and scale production-grade fintech infrastructure for banks, digital banks, fintechs, telecoms, and microfinance institutions — digital wallets, neo-banking platforms, QR and real-time payments, and cross-border remittance, live in Nepal and Malaysia.
+          <div className="max-w-4xl mx-auto text-center mb-10">
+            <h1 className="hero-heading gradient-text mb-5">Digital Financial Services</h1>
+            <p className="text-[#0A0A0A]/65 leading-relaxed mb-8 max-w-3xl mx-auto">
+              Digital wallets, neo-banking, real-time payments and cross-border remittance for banks, fintechs, telecoms and microfinance institutions.
             </p>
             <Link href="/company" className="btn-secondary">Our Credentials</Link>
           </div>
-          <img
-            src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=80"
-            alt="Digital financial services"
+          <Image
+            src="https://images.unsplash.com/photo-1741794852942-c4956a127ba2?w=1600&q=80"
+            alt="Contactless payment between two mobile phones"
+            width={1600}
+            height={680}
+            sizes="(min-width: 1280px) 1216px, 100vw"
             className="w-full h-[240px] md:h-[340px] object-cover rounded-3xl"
           />
         </div>
       </section>
 
-      <section className="bg-[#F7F7F7] py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-          {stats.map(s => (
-            <div key={s.label}>
-              <div className="text-4xl md:text-5xl font-medium mb-2" style={{ color: ACCENT }}>{s.value}</div>
-              <div className="text-sm text-[#575757]">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ── Capabilities ──────────────────────────────── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14 max-w-3xl mx-auto text-center">
+          <div className="mb-10 max-w-3xl mx-auto text-center">
             <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Work</p>
             <h2 className="section-heading text-[#0A0A0A] mb-3">
               What we <span className="section-accent">deliver</span>
             </h2>
-            <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
-              Platforms we ship as named products, plus the payment infrastructure and integration work around them.
+            <p className="text-[#0A0A0A]/60 text-base leading-relaxed">
+              Launch, onboard, pay, settle and reconcile.
             </p>
           </div>
           <div className="rounded-3xl bg-[#EBF5FF] p-8 md:p-10">
@@ -180,7 +161,7 @@ export default function FintechSolutionPage() {
                 <div key={f.title} className="bg-white rounded-2xl p-7">
                   <div className="w-1.5 h-6 rounded-full mb-5" style={{ background: ACCENT }} />
                   <h3 className="text-base font-bold text-[#0A0A0A] mb-2">{f.title}</h3>
-                  <p className="text-sm text-[#0A0A0A]/50 leading-relaxed">{f.desc}</p>
+                  <p className="text-sm text-[#0A0A0A]/60 leading-relaxed">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -189,14 +170,14 @@ export default function FintechSolutionPage() {
       </section>
 
       {/* ── Platform Architecture ─────────────────────── */}
-      <section className="py-24 bg-[#EBF5FF] relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-[#EBF5FF] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-4">
             <h2 className="section-heading text-[#0A0A0A] mb-4">
               Seven layers, one{' '}
               <span style={{ color: ACCENT }}>unified platform.</span>
             </h2>
-            <p className="text-[#0A0A0A]/50 max-w-2xl mx-auto text-base leading-relaxed">
+            <p className="text-[#0A0A0A]/60 max-w-2xl mx-auto text-base leading-relaxed">
               Click any layer to explore the components. Connected layers illuminate automatically.
             </p>
           </div>
@@ -210,12 +191,12 @@ export default function FintechSolutionPage() {
       <InsightsSection category="Fintech" />
 
       {/* ── Technical depth + CTA ─────────────────────── */}
-      <section className="bg-[#FAFAFA] py-24">
+      <section className="bg-[#FAFAFA] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-14">
           <div className="max-w-3xl text-center">
             <p className="text-xs font-medium mb-2" style={{ color: ACCENT }}>Capabilities</p>
             <h2 className="text-3xl md:text-[38px] md:leading-[46px] font-medium text-[#0A0A0A] mb-4">
-              Built for <span style={{ color: ACCENT }}>production.</span>
+              Built for <span style={{ color: ACCENT }}>scale.</span>
             </h2>
             <p className="text-base leading-6 text-[#575757]">
               Every capability listed has been delivered in real, live systems — not in proof-of-concept environments.
@@ -234,7 +215,7 @@ export default function FintechSolutionPage() {
         </div>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
 
           {/* CTA card */}

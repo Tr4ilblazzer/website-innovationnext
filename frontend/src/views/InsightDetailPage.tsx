@@ -25,7 +25,7 @@ function renderBlock(block: ContentBlock, i: number, accent: string) {
       return (
         <blockquote
           key={i}
-          className="pl-6 my-8 italic text-[#0A0A0A]/55 text-lg leading-relaxed"
+          className="pl-6 my-8 italic text-[#0A0A0A]/65 text-lg leading-relaxed"
           style={{ borderLeft: `3px solid ${accent}` }}
         >
           {block.text}
@@ -104,7 +104,7 @@ export default function InsightDetailPage({ post, related }: { post: InsightPost
       <div className="max-w-3xl mx-auto px-6 py-16">
 
         {/* Lead excerpt */}
-        <p className="text-lg md:text-xl text-[#0A0A0A]/55 leading-relaxed mb-10 pb-10 border-b border-black/[0.07] font-medium italic">
+        <p className="text-lg md:text-xl text-[#0A0A0A]/65 leading-relaxed mb-10 pb-10 border-b border-black/[0.07] font-medium italic">
           {post.excerpt}
         </p>
 
@@ -125,7 +125,7 @@ export default function InsightDetailPage({ post, related }: { post: InsightPost
 
         {/* Category tag */}
         <div className="mt-14 pt-8 border-t border-black/[0.07] flex items-center gap-3">
-          <span className="text-xs text-[#0A0A0A]/35 font-medium tracking-wide uppercase">Filed under</span>
+          <span className="text-xs text-[#0A0A0A]/50 font-medium tracking-wide uppercase">Filed under</span>
           <span
             className="text-[10px] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full border"
             style={{ borderColor: `${ACCENT}50`, color: ACCENT }}
@@ -141,7 +141,7 @@ export default function InsightDetailPage({ post, related }: { post: InsightPost
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex items-end justify-between mb-10">
               <div>
-                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-2">
+                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/50 mb-2">
                   More to read
                 </p>
                 <h2 className="text-2xl font-black text-[#0A0A0A]">
@@ -150,7 +150,7 @@ export default function InsightDetailPage({ post, related }: { post: InsightPost
               </div>
               <button
                 onClick={() => router.push('/insights')}
-                className="hidden md:flex items-center gap-2 text-sm font-semibold text-[#0040C1] hover:gap-3 transition-all"
+                className="hidden md:flex items-center gap-2 text-sm font-semibold text-[#0A4FD6] hover:gap-3 transition-all"
               >
                 All insights <ArrowRight className="h-4 w-4" />
               </button>
@@ -176,7 +176,7 @@ export default function InsightDetailPage({ post, related }: { post: InsightPost
       )}
 
       {/* ── CTA ─────────────────────────────────────────────── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
           <ClosingCta />
         </div>

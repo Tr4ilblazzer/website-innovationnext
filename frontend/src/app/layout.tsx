@@ -4,7 +4,7 @@ import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/seo'
 import './globals.css'
 
 const DESCRIPTION =
-  'Innovation Next is a digital technology company building digital financial services, e-governance, AI/ML, BI & data platforms and bespoke software. Headquartered in Kathmandu, Nepal.'
+  'Innovation Next is a full stack digital technology company building digital financial services, e-governance, AI/ML, BI & data platforms and bespoke software. Headquartered in Kathmandu, Nepal.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

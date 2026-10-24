@@ -3,13 +3,6 @@
 
 import { ProductPageTemplate } from '@/components/sections/ProductPageTemplate'
 
-const stats = [
-  { value: 'Live', label: 'In production' },
-  { value: '8', label: 'Reward and engagement features' },
-  { value: 'No code', label: 'Rules and tiers set in the admin console' },
-  { value: 'Cloud / on-prem', label: 'Deployment options' },
-]
-
 const features = [
   { title: 'Points Accumulation', desc: 'Transaction-based, category-based, and merchant-specific earn rules.' },
   { title: 'Tier Management', desc: 'Fully configurable tiers — Bronze, Silver, Gold, Platinum, or your own.' },
@@ -38,15 +31,11 @@ const relatedProducts = [
 export default function LoyaltyPage() {
   return (
     <ProductPageTemplate
-      tag="Points & Rewards Platform"
-      headline="Turn transactions"
-      headlineAccent="into relationships."
-      quote="Configurable loyalty and rewards for banks, wallets, and merchant networks."
+      title="Loyalty Engine"
       description="A configurable, API-first loyalty and rewards platform — points accumulation, tier management, campaign execution, and redemption across channels."
       mockup="/loyalty-mockup.png"
       mockupAlt="Loyalty Engine"
-      stats={stats}
-      featuresSubheadline="Everything is configured through an admin console, not code changes."
+      featuresSubheadline="A loyalty program your team controls."
       features={features}
       capabilitiesSubtext="Deploys as SaaS or on-premise, and plugs into any wallet, banking, or POS system."
       capabilities={capabilities}

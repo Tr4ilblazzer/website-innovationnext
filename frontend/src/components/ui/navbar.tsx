@@ -25,8 +25,8 @@ export default function Menu({ list, theme = 'light' }: MenuProps) {
     [item.url, ...(item.items?.map(i => i.url) ?? [])].some(u => u !== '/' && pathname.startsWith(u.split('/').slice(0, 2).join('/')))
 
   const linkBase  = theme === 'dark' ? 'text-white/70 hover:text-white'       : 'text-black'
-  const linkHover = theme === 'dark' ? 'bg-white/[0.07] text-white'           : 'bg-[#EFF4FF] text-[#0040C1]'
-  const linkActive = theme === 'dark' ? 'bg-white/[0.07] text-white'          : 'bg-[#EFF4FF] text-[#0040C1]'
+  const linkHover = theme === 'dark' ? 'bg-white/[0.07] text-white'           : 'bg-[#EFF4FF] text-[#0A4FD6]'
+  const linkActive = theme === 'dark' ? 'bg-white/[0.07] text-white'          : 'bg-[#EFF4FF] text-[#0A4FD6]'
 
   return (
     <MotionConfig transition={{ bounce: 0, type: 'tween' }}>

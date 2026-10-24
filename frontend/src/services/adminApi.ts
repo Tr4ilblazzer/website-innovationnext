@@ -1,3 +1,5 @@
+import { useAdminStore } from '@/store/adminStore'
+
 const BASE = process.env.NEXT_PUBLIC_API_URL ?? ''
 
 function getToken(): string | null {
@@ -27,6 +29,8 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   })
   const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }))
   if (!res.ok) {
+    // Stale or expired token: drop it so AdminRoute sends the user back to /admin/login
+    if (res.status === 401 && getToken()) useAdminStore.getState().logout()
     // Unpack Zod field errors so the editor shows exactly which fields are wrong
     const fieldErrors = body.details?.fieldErrors as Record<string, string[]> | undefined
     if (fieldErrors) {

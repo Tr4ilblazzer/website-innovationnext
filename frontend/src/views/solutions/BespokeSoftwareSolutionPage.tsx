@@ -3,13 +3,6 @@
 
 import { SolutionPageTemplate } from '@/components/sections/SolutionPageTemplate'
 
-const stats = [
-  { value: '7', label: 'Engineering service areas' },
-  { value: '3', label: 'Engagement models' },
-  { value: 'WCAG 2.1 AA', label: 'Accessibility standard' },
-  { value: 'OWASP Top 10', label: 'Built into delivery' },
-]
-
 const features = [
   { title: 'Custom Software Development', desc: 'Architecture, backend and microservices, integrations, agile delivery, QA, and warranty — starting from your BRD/SRS or a short discovery.' },
   { title: 'Mobile Applications', desc: 'Native iOS and Android, or React Native and Flutter, with offline capability, push notifications, and store deployment.' },
@@ -38,15 +31,11 @@ const capabilities = [
 export default function BespokeSoftwareSolutionPage() {
   return (
     <SolutionPageTemplate
-      tag="Bespoke Software Development"
-      headline="Software made for how"
-      headlineAccent="your institution works."
-      quote="Where a need matches one of our platforms, we start from that product instead of from zero."
+      title="Bespoke Software Development"
       description="Bespoke Software Development covers mobile, web, and backend platforms, security engineering, and legacy modernisation for banks, governments, and fintechs — built to the standard of our live national systems."
-      heroImage="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&q=80"
+      heroImage="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1600&q=80"
       heroImageAlt="Software development"
-      stats={stats}
-      featuresSubheadline="Requirements come in from consulting, and live systems hand over to Managed Services for long-term operation."
+      featuresSubheadline="Solutions to the technology challenges that hold businesses back, from outdated systems to operational challenges, supporting them through long-term operations."
       features={features}
       capabilitiesSubtext="The stacks and methods we deliver with across banks, government agencies, fintechs, telecoms, and microfinance institutions."
       capabilities={capabilities}

@@ -72,7 +72,7 @@ export function InsightCarousel({ posts, footerLeft }: InsightCarouselProps) {
             onClick={() => api?.scrollPrev()}
             disabled={!canPrev}
             aria-label="Previous"
-            className="h-10 w-10 rounded-full border border-black/15 bg-white text-[#0A0A0A]/70 flex items-center justify-center hover:border-[#0040C1] hover:text-[#0040C1] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="h-10 w-10 rounded-full border border-black/15 bg-white text-[#0A0A0A]/70 flex items-center justify-center hover:border-[#0A4FD6] hover:text-[#0A4FD6] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
           </button>
@@ -80,7 +80,7 @@ export function InsightCarousel({ posts, footerLeft }: InsightCarouselProps) {
             onClick={() => api?.scrollNext()}
             disabled={!canNext}
             aria-label="Next"
-            className="h-10 w-10 rounded-full border border-black/15 bg-white text-[#0A0A0A]/70 flex items-center justify-center hover:border-[#0040C1] hover:text-[#0040C1] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="h-10 w-10 rounded-full border border-black/15 bg-white text-[#0A0A0A]/70 flex items-center justify-center hover:border-[#0A4FD6] hover:text-[#0A4FD6] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             <ArrowRight className="h-4 w-4" />
           </button>

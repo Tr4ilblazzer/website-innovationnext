@@ -82,7 +82,7 @@ export default function AdminContactsPage() {
               onClick={() => setFilter(f.value)}
               className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                 activeFilter === f.value
-                  ? 'bg-white text-[#0040C1] shadow-sm'
+                  ? 'bg-white text-[#0A4FD6] shadow-sm'
                   : 'text-black/40 hover:text-black/60'
               }`}
             >
@@ -144,7 +144,7 @@ export default function AdminContactsPage() {
             <div className="px-6 py-4 border-b border-black/[0.07] space-y-2">
               <div className="flex items-center gap-2 text-xs text-black/50">
                 <Mail className="w-3.5 h-3.5 shrink-0" />
-                <a href={`mailto:${selected.email}`} className="hover:text-[#0040C1]">{selected.email}</a>
+                <a href={`mailto:${selected.email}`} className="hover:text-[#0A4FD6]">{selected.email}</a>
               </div>
               {selected.company && (
                 <div className="flex items-center gap-2 text-xs text-black/50">
@@ -182,7 +182,7 @@ export default function AdminContactsPage() {
                   value={selected.status}
                   onChange={e => changeStatus(selected.id, e.target.value)}
                   disabled={updating}
-                  className="appearance-none w-full px-3 py-2 pr-8 rounded-xl border border-black/[0.1] text-xs font-semibold text-black/70 bg-white focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 cursor-pointer"
+                  className="appearance-none w-full px-3 py-2 pr-8 rounded-xl border border-black/[0.1] text-xs font-semibold text-black/70 bg-white focus:outline-none focus:ring-2 focus:ring-[#0A4FD6]/20 cursor-pointer"
                 >
                   <option value="new">New</option>
                   <option value="read">Read</option>
@@ -194,7 +194,7 @@ export default function AdminContactsPage() {
               <a
                 href={`mailto:${selected.email}?subject=Re: ${encodeURIComponent(selected.subject)}`}
                 onClick={() => changeStatus(selected.id, 'replied')}
-                className="px-4 py-2 rounded-xl bg-[#0040C1] text-white text-xs font-semibold hover:bg-[#0034A0] transition-colors"
+                className="px-4 py-2 rounded-xl bg-[#0A4FD6] text-white text-xs font-semibold hover:bg-[#0841B3] transition-colors"
               >
                 Reply via email
               </a>

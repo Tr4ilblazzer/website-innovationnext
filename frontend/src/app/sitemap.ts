@@ -6,11 +6,10 @@ export const revalidate = 3600
 
 const STATIC_ROUTES = [
   '', '/company', '/contact', '/careers', '/insights', '/industries',
-  '/industries/digital-financial-services', '/industries/e-governance',
-  '/solutions/ai-ml', '/solutions/bi-data', '/solutions/consulting',
+  '/solutions/digital-financial-services', '/solutions/e-governance', '/solutions/ai-ml', '/solutions/bi-data', '/solutions/consulting',
   '/solutions/bespoke-software', '/solutions/managed-services',
   '/products/groot-neo', '/products/groot-pay', '/products/pfm',
-  '/products/loyalty', '/products/onboarding', '/products/allxtract',
+  '/products/loyalty', '/products/onboarding', '/products/allxtract', '/products/summa',
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

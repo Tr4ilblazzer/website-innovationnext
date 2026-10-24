@@ -52,13 +52,13 @@ export function ScrollableGallery({
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-10 flex items-end justify-between">
           <div className="flex flex-col gap-4">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/50">
               Industries
             </p>
             <h2 className="section-heading text-[#0A0A0A]">
               {title}
             </h2>
-            <p className="max-w-lg text-[#0A0A0A]/50 text-base leading-relaxed">
+            <p className="max-w-lg text-[#0A0A0A]/60 text-base leading-relaxed">
               {description}
             </p>
           </div>
@@ -68,7 +68,7 @@ export function ScrollableGallery({
               variant="ghost"
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto text-[#0A0A0A]/40 hover:text-[#0A0A0A] hover:bg-black/[0.04]"
+              className="disabled:pointer-events-auto text-[#0A0A0A]/60 hover:text-[#0A0A0A] hover:bg-black/[0.04]"
             >
               <ArrowLeft className="size-5" />
             </Button>
@@ -77,7 +77,7 @@ export function ScrollableGallery({
               variant="ghost"
               onClick={() => carouselApi?.scrollNext()}
               disabled={!canScrollNext}
-              className="disabled:pointer-events-auto text-[#0A0A0A]/40 hover:text-[#0A0A0A] hover:bg-black/[0.04]"
+              className="disabled:pointer-events-auto text-[#0A0A0A]/60 hover:text-[#0A0A0A] hover:bg-black/[0.04]"
             >
               <ArrowRight className="size-5" />
             </Button>
@@ -133,7 +133,7 @@ export function ScrollableGallery({
               key={index}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 currentSlide === index
-                  ? "bg-[#0040C1] w-6"
+                  ? "bg-[#0A4FD6] w-6"
                   : "bg-black/15 w-1.5 hover:bg-black/30"
               }`}
               onClick={() => carouselApi?.scrollTo(index)}

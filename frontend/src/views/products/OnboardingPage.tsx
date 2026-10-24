@@ -3,13 +3,6 @@
 
 import { ProductPageTemplate } from '@/components/sections/ProductPageTemplate'
 
-const stats = [
-  { value: '9', label: 'Core modules' },
-  { value: '6', label: 'Entity types onboarded' },
-  { value: 'No-code', label: 'Flow builder' },
-  { value: 'Mar 2026', label: 'Live at Boost, Malaysia' },
-]
-
 const features = [
   { title: 'Document Intelligence', desc: 'Document classification, OCR, field extraction, and authenticity checks — powered by allXtract.' },
   { title: 'Identity Verification', desc: 'Selfie capture, liveness detection, and face match against the ID document.' },
@@ -44,15 +37,11 @@ const relatedProducts = [
 export default function OnboardingPage() {
   return (
     <ProductPageTemplate
-      tag="AI Onboarding & Verification Platform"
-      headline="Onboard anyone,"
-      headlineAccent="set by your risk rules."
-      quote="Live in production at Boost (Axiata), Malaysia — merchant onboarding since March 2026."
+      title="Onboarding Platform"
       description="A configurable onboarding and verification platform for any customer, merchant, agent, or business. Each check is a building block, arranged into flows per country, entity type, and risk tier — from instant AI checks to live Video KYC."
       mockup="/merchant-ai-mockup.png"
       mockupAlt="Onboarding Platform"
-      stats={stats}
-      featuresSubheadline="Low-risk users complete automated eKYC in minutes; high-risk or regulator-mandated cases step up to Video KYC automatically."
+      featuresSubheadline="Onboarding that follows your risk policy."
       features={features}
       capabilitiesSubtext="Merchant onboarding was the first live use case. The same platform onboards customers, agents, businesses, citizens, and suppliers."
       capabilities={capabilities}

@@ -19,22 +19,15 @@ export default function InsightsPage({ initialPosts }: { initialPosts: InsightPo
   const ordered = [...filtered].sort((a, b) => Number(b.featured) - Number(a.featured))
 
   return (
-    <main className="pt-32 pb-20 bg-white">
+    <main className="pt-28 pb-12 md:pb-16 bg-white">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: '#0040C1' }}>
-              Insights
-            </p>
-            <h1 className="hero-heading text-[#0A0A0A] mb-5">
-              From the
-              <br />
-              <span style={{ color: '#0040C1' }}>infrastructure layer.</span>
-            </h1>
-            <p className="text-[#0A0A0A]/50 text-base leading-relaxed">
-              Analysis, lessons learned, and practical guides from practitioners who've built fintech and government platforms at national scale.
+            <h1 className="hero-heading gradient-text mb-5">Insights</h1>
+            <p className="text-[#0A0A0A]/60 text-base leading-relaxed">
+              Articles and practical guides from our team on fintech, e-governance, AI and data.
             </p>
           </div>
           <div>
@@ -55,8 +48,8 @@ export default function InsightsPage({ initialPosts }: { initialPosts: InsightPo
               className={cn(
                 'text-xs px-4 py-2 rounded-full border transition-all',
                 activeCategory === cat
-                  ? 'border-[#0040C1] bg-[#0040C1]/08 text-[#0040C1]'
-                  : 'border-black/10 text-[#0A0A0A]/40 hover:border-black/25 hover:text-[#0A0A0A]/70'
+                  ? 'border-[#0A4FD6] bg-[#0A4FD6]/08 text-[#0A4FD6]'
+                  : 'border-black/10 text-[#0A0A0A]/60 hover:border-black/25 hover:text-[#0A0A0A]/70'
               )}
             >
               {cat}
@@ -68,7 +61,7 @@ export default function InsightsPage({ initialPosts }: { initialPosts: InsightPo
         {ordered.length > 0 ? (
           <InsightCarousel key={activeCategory} posts={ordered} />
         ) : (
-          <p className="text-[#0A0A0A]/40 text-sm py-16 text-center">No insights in this category yet.</p>
+          <p className="text-[#0A0A0A]/60 text-sm py-16 text-center">No insights in this category yet.</p>
         )}
 
       </div>

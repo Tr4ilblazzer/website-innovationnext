@@ -1,4 +1,4 @@
-const ACCENT = '#0040C1'
+const ACCENT = '#0A4FD6'
 
 interface GlassLocationCardProps {
   city: string
@@ -51,8 +51,8 @@ export function GlassLocationCard({
           )}
         </div>
         <h3 className="text-xl font-medium text-[#0A0A0A] mb-1">{city}</h3>
-        <p className="text-[#0A0A0A]/40 text-xs mb-2">{country} · {role}</p>
-        {desc && <p className="text-[#0A0A0A]/55 text-sm leading-relaxed">{desc}</p>}
+        <p className="text-[#0A0A0A]/60 text-xs mb-2">{country} · {role}</p>
+        {desc && <p className="text-[#0A0A0A]/65 text-sm leading-relaxed">{desc}</p>}
       </div>
     </div>
   )

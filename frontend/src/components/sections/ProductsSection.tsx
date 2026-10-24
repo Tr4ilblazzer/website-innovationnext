@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
-import { ArrowRight, CreditCard, FileText, Smartphone } from 'lucide-react'
+import { ArrowRight, CreditCard, FileText, MessageSquare, Smartphone } from 'lucide-react'
 
-const ACCENT = '#0040C1'
+const ACCENT = '#0A4FD6'
 const POPPINS = { fontFamily: "'Poppins', 'Public Sans', sans-serif" }
 
 
@@ -54,7 +54,7 @@ const products: Product[] = [
     title: 'A complete digital bank in one pre-integrated product.',
     desc: 'Every component needed to launch a digital bank, delivered as one product — for banks, digital banks, and fintechs.',
     href: '/products/groot-neo',
-    accent: '#0040C1',
+    accent: '#0A4FD6',
     image: '/groot-neo-mockup.png',
     imageAlt: 'Groot Neo neo-banking platform mockup',
     showcaseHeight: 478,
@@ -140,7 +140,7 @@ const products: Product[] = [
     title: 'Documents in. Decisions out.',
     desc: 'Capture, extract, check and route documents — invoices, contracts, ID papers and claims — without a data-entry team.',
     href: '/products/allxtract',
-    accent: '#0040C1',
+    accent: '#0A4FD6',
     image: '/allxtract-mockup.svg',
     imageAlt: 'allXtract document workspace',
     highlights: [
@@ -148,6 +148,23 @@ const products: Product[] = [
       { title: 'Compliance Rules', desc: '51 comparison operators, written as plain sentences.' },
       { title: 'Workflows & Approvals', desc: 'Visual builder, approval gates, and workflows published as APIs.' },
       { title: 'E-Sign & Redaction', desc: 'Tamper-evident signing and three tiers of redaction.' },
+    ],
+  },
+  {
+    value: 'summa',
+    label: 'Summa',
+    tagline: 'Feedback & Reputation Platform',
+    title: 'Every review. One inbox.',
+    desc: 'Reviews, comments and messages from delivery apps and social channels, matched to the right brand and kitchen, and turned into replies, tickets and alerts.',
+    href: '/products/summa',
+    accent: '#0A4FD6',
+    image: '/summa-mockup.svg',
+    imageAlt: 'Summa mention map and kitchen view',
+    highlights: [
+      { title: 'Every Channel, One Inbox', desc: 'Delivery apps, Google and social channels in one place.' },
+      { title: 'Mention Map', desc: 'What customers talk about, sized by mentions and coloured by sentiment.' },
+      { title: 'Kitchen View', desc: 'See the cause once, fix it once.' },
+      { title: 'Reply, Ticket or Lead', desc: 'Arabic and English replies, SLA-tracked tickets, sales handoff.' },
     ],
   },
 ]
@@ -165,7 +182,7 @@ export function ProductsSection() {
             className="font-medium text-[28px] leading-9 md:text-[38px] md:leading-[46px] max-w-[511px]"
             style={{ ...POPPINS, color: ACCENT }}
           >
-            Production-ready. Not assembled from parts.
+            Ready to deploy. Not assembled from parts.
           </h2>
           <p className="text-lg leading-[26px] font-medium text-[#575757] max-w-[592px]">
             Every product is built from real operational experience — deployed at national scale, not assembled from third-party components.
@@ -178,12 +195,12 @@ export function ProductsSection() {
           <TabsList className="flex flex-wrap items-center gap-5">
             {products.map((p, i) => {
               const isActive = p.value === active
-              const Icon = p.value === 'allxtract' ? FileText : i === 0 ? Smartphone : CreditCard
+              const Icon = p.value === 'summa' ? MessageSquare : p.value === 'allxtract' ? FileText : i === 0 ? Smartphone : CreditCard
               return (
                 <TabsTrigger
                   key={p.value}
                   value={p.value}
-                  className="flex items-center gap-1.5 px-4 py-2.5 h-[46px] text-lg leading-[26px] font-medium cursor-pointer transition-colors duration-200 hover:text-[#0040C1]"
+                  className="flex items-center gap-1.5 px-4 py-2.5 h-[46px] text-lg leading-[26px] font-medium cursor-pointer transition-colors duration-200 hover:text-[#0A4FD6]"
                   style={isActive
                     ? { color: ACCENT, border: `1px solid ${ACCENT}`, borderRadius: 24, padding: '10px 20px' }
                     : { color: '#363636', border: '1px solid transparent', borderRadius: 20 }
@@ -219,7 +236,7 @@ export function ProductsSection() {
                     </div>
                     <Link
                       href={p.href}
-                      className="self-start inline-flex items-center gap-1.5 px-4 py-2 rounded-3xl text-xs leading-[18px] font-medium transition-colors text-[#0040C1] border border-[#0040C1] hover:bg-[#0040C1] hover:text-white"
+                      className="self-start inline-flex items-center gap-1.5 px-4 py-2 rounded-3xl text-xs leading-[18px] font-medium transition-colors text-[#0A4FD6] border border-[#0A4FD6] hover:bg-[#0A4FD6] hover:text-white"
                     >
                       Explore {p.label} <ArrowRight size={20} strokeWidth={1.5} />
                     </Link>

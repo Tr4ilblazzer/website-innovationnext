@@ -40,7 +40,7 @@ export function Testimonials() {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-12">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-4">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/50 mb-4">
             Client Feedback
           </p>
           <h2 className="section-heading text-[#0A0A0A] max-w-lg">

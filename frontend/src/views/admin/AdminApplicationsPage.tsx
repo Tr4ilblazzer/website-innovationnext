@@ -78,7 +78,7 @@ export default function AdminApplicationsPage() {
             key={s}
             onClick={() => setFilter(s)}
             className={`px-4 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors ${
-              filter === s ? 'bg-white text-[#0040C1] shadow-sm' : 'text-black/40 hover:text-black/60'
+              filter === s ? 'bg-white text-[#0A4FD6] shadow-sm' : 'text-black/40 hover:text-black/60'
             }`}
           >
             {s} {s !== 'all' && `(${apps.filter(a => a.status === s).length})`}
@@ -141,7 +141,7 @@ export default function AdminApplicationsPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={e => e.stopPropagation()}
-                        className="flex items-center gap-1 text-[11px] font-semibold text-[#0040C1] hover:underline"
+                        className="flex items-center gap-1 text-[11px] font-semibold text-[#0A4FD6] hover:underline"
                       >
                         <FileText className="w-3 h-3" /> CV
                       </a>
@@ -168,7 +168,7 @@ export default function AdminApplicationsPage() {
               {/* Links */}
               <div className="flex flex-wrap gap-2">
                 <a href={selected.cvUrl} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border border-[#0040C1] text-[#0040C1] hover:bg-[#0040C1] hover:text-white transition-colors">
+                  className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border border-[#0A4FD6] text-[#0A4FD6] hover:bg-[#0A4FD6] hover:text-white transition-colors">
                   <FileText className="w-3 h-3" /> Download CV
                 </a>
                 {selected.linkedinUrl && (
@@ -216,8 +216,8 @@ export default function AdminApplicationsPage() {
                       onClick={() => setStatus(selected, s)}
                       className={`text-[11px] font-semibold px-3 py-1 rounded-full capitalize border transition-colors ${
                         selected.status === s
-                          ? 'border-[#0040C1] bg-[#0040C1] text-white'
-                          : 'border-black/[0.1] text-black/50 hover:border-[#0040C1] hover:text-[#0040C1]'
+                          ? 'border-[#0A4FD6] bg-[#0A4FD6] text-white'
+                          : 'border-black/[0.1] text-black/50 hover:border-[#0A4FD6] hover:text-[#0A4FD6]'
                       }`}
                     >
                       {s}

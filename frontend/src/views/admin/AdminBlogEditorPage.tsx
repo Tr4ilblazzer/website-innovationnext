@@ -45,7 +45,7 @@ function Input({ className = '', ...props }: React.InputHTMLAttributes<HTMLInput
   return (
     <input
       {...props}
-      className={`w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 focus:border-[#0040C1]/40 placeholder:text-black/20 ${className}`}
+      className={`w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0A4FD6]/20 focus:border-[#0A4FD6]/40 placeholder:text-black/20 ${className}`}
     />
   )
 }
@@ -54,7 +54,7 @@ function Textarea({ className = '', ...props }: React.TextareaHTMLAttributes<HTM
   return (
     <textarea
       {...props}
-      className={`w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 focus:border-[#0040C1]/40 placeholder:text-black/20 resize-none ${className}`}
+      className={`w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0A4FD6]/20 focus:border-[#0A4FD6]/40 placeholder:text-black/20 resize-none ${className}`}
     />
   )
 }
@@ -153,7 +153,7 @@ export default function AdminBlogEditorPage() {
             <button
               onClick={() => save(!form.published)}
               disabled={saving}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0040C1] text-white text-xs font-semibold hover:bg-[#0034A0] transition-colors disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0A4FD6] text-white text-xs font-semibold hover:bg-[#0841B3] transition-colors disabled:opacity-50"
             >
               {form.published ? <Eye className="w-3.5 h-3.5" /> : <Globe className="w-3.5 h-3.5" />}
               {saving ? 'Saving…' : form.published ? 'Unpublish' : 'Publish'}
@@ -228,7 +228,7 @@ export default function AdminBlogEditorPage() {
                 type="checkbox"
                 checked={form.featured || false}
                 onChange={e => set('featured', e.target.checked)}
-                className="w-4 h-4 rounded accent-[#0040C1]"
+                className="w-4 h-4 rounded accent-[#0A4FD6]"
               />
               <span className="text-xs text-black/60">Featured post</span>
             </label>
@@ -240,7 +240,7 @@ export default function AdminBlogEditorPage() {
               <select
                 value={form.category || ''}
                 onChange={e => set('category', e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0040C1]/20 appearance-none cursor-pointer"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-black/[0.1] text-sm text-black/80 bg-white focus:outline-none focus:ring-2 focus:ring-[#0A4FD6]/20 appearance-none cursor-pointer"
               >
                 <option value="">Select category…</option>
                 {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}

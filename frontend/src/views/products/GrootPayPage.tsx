@@ -3,13 +3,6 @@
 
 import { ProductPageTemplate } from '@/components/sections/ProductPageTemplate'
 
-const stats = [
-  { value: '3.5M+', label: 'Daily transactions' },
-  { value: '20+', label: 'Remittance corridors' },
-  { value: '4', label: 'Currencies — USD, AED, MYR, NPR' },
-  { value: 'National', label: 'Scale, live in Nepal' },
-]
-
 const features = [
   { title: 'P2P & Merchant Payments', desc: 'Instant transfers by mobile number, QR, or NFC, and merchant payments by QR, NFC, or payment gateway.' },
   { title: 'Bill Payments & Top-Up', desc: 'Utilities, insurance, government fees, telecoms, and airtime recharge across carriers.' },
@@ -41,15 +34,11 @@ const relatedProducts = [
 export default function GrootPayPage() {
   return (
     <ProductPageTemplate
-      tag="Digital Wallet Infrastructure"
-      headline="White-label wallet."
-      headlineAccent="Production-ready."
-      quote="The wallet engine — standalone, or embedded in Groot Neo."
+      title="Groot Pay"
       description="A full-featured digital wallet platform for consumers, merchants, and agents — mobile money, QR payments, bill pay, and international remittance — and a mini-app platform that lets partners add their own services."
       mockup="/groot-pay-mockup.png"
       mockupAlt="Groot Pay"
-      stats={stats}
-      featuresSubheadline="Live at national scale in Nepal, at 3.5M+ transactions a day."
+      featuresSubheadline="A payment platform that other businesses build on."
       features={features}
       capabilitiesSubtext="Each mini-app is built and released independently of the wallet core, so the platform grows one partner at a time."
       capabilities={capabilities}

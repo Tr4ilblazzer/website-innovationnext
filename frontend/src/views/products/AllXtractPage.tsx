@@ -3,13 +3,6 @@
 
 import { ProductPageTemplate } from '@/components/sections/ProductPageTemplate'
 
-const stats = [
-  { value: '39', label: 'Ready-made workflow steps' },
-  { value: '7', label: 'Actions that run on arrival' },
-  { value: '51', label: 'Compliance comparison operators' },
-  { value: 'API', label: 'Every workflow publishable as an authenticated endpoint' },
-]
-
 const features = [
   { title: 'Capture & Understand', desc: 'Documents arrive by upload, S3, Google Drive, Azure, shared mailbox, or API. Layout, tables, signatures, stamps and photographs are read — including scans and skewed phone photos.' },
   { title: 'Schema-Governed Extraction', desc: 'Define fields once in Extract Studio, or let AutoSchema draft them from a single example. Validation rules are enforced during extraction.' },
@@ -42,15 +35,11 @@ const relatedProducts = [
 export default function AllXtractPage() {
   return (
     <ProductPageTemplate
-      tag="Document Intelligence Platform"
-      headline="Documents in."
-      headlineAccent="Decisions out."
-      quote="Your documents, read, checked, and routed without a data-entry team."
+      title="allXtract"
       description="allXtract is a document operating system: it captures documents, understands their layout and content, extracts structured data, checks it against your rules, and routes the result — to approval, to your ERP, or out for e-signature."
       mockup="/allxtract-mockup.svg"
       mockupAlt="allXtract workspace"
       mockupHeight="h-[460px]"
-      stats={stats}
       featuresSubheadline="Capture, understand, decide, act — one platform, with an audit trail on every step."
       features={features}
       capabilitiesSubtext="Built for invoices, contracts, identity papers, claims and customs forms — in finance, banking, legal and operations."

@@ -3,13 +3,6 @@
 
 import { ProductPageTemplate } from '@/components/sections/ProductPageTemplate'
 
-const stats = [
-  { value: '13M+', label: 'Users on platforms we built' },
-  { value: '3.5M+', label: 'Daily transactions' },
-  { value: '10', label: 'Pre-integrated modules' },
-  { value: '1', label: 'Vendor for every layer' },
-]
-
 const features = [
   { title: 'Core Mobile Banking', desc: 'Native iOS and Android apps — account management, statements, and alerts.' },
   { title: 'Digital Wallet — Groot Pay', desc: 'A fully embedded wallet: P2P, merchant payments, and bill pay. Partners can list their own services as mini-apps through the SDK.' },
@@ -43,16 +36,12 @@ const relatedProducts = [
 export default function GrootNeoPage() {
   return (
     <ProductPageTemplate
-      tag="Neo-Banking Platform"
-      headline="From contract to"
-      headlineAccent="live digital bank."
-      quote="A complete digital bank in one pre-integrated product."
+      title="Groot Neo"
       description="Groot Neo bundles every component needed to launch a fully featured digital bank into one pre-integrated product — removing the integration cost, vendor risk, and time of assembling a stack from point solutions. For banks, digital banks, and fintechs launching or modernising digital channels."
       mockup="/groot-neo-mockup.png"
       mockupAlt="Groot Neo"
       mockupHeight="h-[620px]"
-      stats={stats}
-      featuresSubheadline="Every module is part of one product, so it works out of the box."
+      featuresSubheadline="Every module a digital bank needs, each independent, all connected in one platform."
       features={features}
       capabilitiesSubtext="Live in multiple markets — for greenfield digital banks, commercial banks, telecoms launching mobile money, and microfinance institutions."
       capabilities={capabilities}

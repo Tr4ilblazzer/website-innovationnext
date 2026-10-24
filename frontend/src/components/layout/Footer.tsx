@@ -7,6 +7,8 @@ const columns = [
   {
     title: 'Solutions',
     links: [
+      { label: 'Digital Financial Services', href: '/solutions/digital-financial-services' },
+      { label: 'E-Governance', href: '/solutions/e-governance' },
       { label: 'AI & Machine Learning', href: '/solutions/ai-ml' },
       { label: 'BI & Data Solutions', href: '/solutions/bi-data' },
       { label: 'Digital Transformation Consulting', href: '/solutions/consulting' },
@@ -20,7 +22,6 @@ const columns = [
       { label: 'About us', href: '/company' },
       { label: 'Careers', href: '/careers' },
       { label: 'Insights', href: '/insights' },
-      { label: 'Case Studies', href: '/insights/case-studies' },
       { label: 'Contact', href: '/contact' },
     ],
   },
@@ -33,18 +34,16 @@ const columns = [
       { label: 'Loyalty Engine', href: '/products/loyalty' },
       { label: 'Onboarding Platform', href: '/products/onboarding' },
       { label: 'allXtract', href: '/products/allxtract' },
+      { label: 'Summa', href: '/products/summa' },
     ],
   },
   {
     title: 'Industries',
     links: [
-      { label: 'Digital Financial Services', href: '/industries/digital-financial-services' },
-      { label: 'E-Governance', href: '/industries/e-governance' },
-      { label: 'Banks & Digital Banks', href: '/industries/banking' },
-      { label: 'Government & Public Sector', href: '/industries/government' },
-      { label: 'Telecoms & MFIs', href: '/industries/telecom' },
-      { label: 'Enterprise', href: '/industries/enterprise' },
-      { label: "FinTech's & Startup's", href: '/industries/fintech-startups' },
+      { label: 'Banking & Finance', href: '/industries#banking-finance' },
+      { label: 'Hospitality & Retail', href: '/industries#hospitality-retail' },
+      { label: 'E-Governance & Digital Government', href: '/industries#e-governance' },
+      { label: 'Enterprise', href: '/industries#enterprise' },
     ],
   },
 ]
@@ -62,6 +61,17 @@ export function Footer() {
             <p className="text-base leading-6 text-[#8C8C8C]">
               Full-stack digital technology company with a technology hub in Kathmandu, Nepal.
             </p>
+            <a
+              href="https://www.linkedin.com/company/innovation-next1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Innovation Next on LinkedIn"
+              className="w-fit text-[#8C8C8C] transition-colors hover:text-[#0A4FD6]"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6" aria-hidden>
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+              </svg>
+            </a>
           </div>
 
           {/* Link columns */}
@@ -74,7 +84,7 @@ export function Footer() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-base leading-6 text-[#8C8C8C] transition-colors hover:text-[#0040C1]"
+                        className="text-base leading-6 text-[#8C8C8C] transition-colors hover:text-[#0A4FD6]"
                       >
                         {link.label}
                       </Link>

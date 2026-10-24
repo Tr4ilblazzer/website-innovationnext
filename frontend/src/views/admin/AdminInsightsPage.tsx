@@ -12,7 +12,7 @@ function formatDate(iso: string) {
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Fintech': '#0040C1',
+  'Fintech': '#0A4FD6',
   'E-Governance': '#10b981',
   'AI & ML': '#8b5cf6',
   'BI & Data': '#f59e0b',
@@ -57,7 +57,7 @@ export default function AdminInsightsPage() {
         action={
           <Link
             href="/admin/insights/new"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0040C1] text-white text-sm font-semibold rounded-xl hover:bg-[#0034A0] transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0A4FD6] text-white text-sm font-semibold rounded-xl hover:bg-[#0841B3] transition-colors"
           >
             <Plus className="w-4 h-4" />
             New post
@@ -72,7 +72,7 @@ export default function AdminInsightsPage() {
             key={f}
             onClick={() => setFilter(f)}
             className={`px-4 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors ${
-              filter === f ? 'bg-white text-[#0040C1] shadow-sm' : 'text-black/40 hover:text-black/60'
+              filter === f ? 'bg-white text-[#0A4FD6] shadow-sm' : 'text-black/40 hover:text-black/60'
             }`}
           >
             {f}
@@ -91,7 +91,7 @@ export default function AdminInsightsPage() {
         ) : visible.length === 0 ? (
           <div className="py-16 text-center">
             <p className="text-black/25 text-sm mb-4">No posts yet</p>
-            <Link href="/admin/insights/new" className="text-xs font-semibold text-[#0040C1] hover:underline">
+            <Link href="/admin/insights/new" className="text-xs font-semibold text-[#0A4FD6] hover:underline">
               Write your first post →
             </Link>
           </div>
@@ -139,7 +139,7 @@ export default function AdminInsightsPage() {
                     <div className="flex items-center gap-1 justify-end">
                       <button
                         onClick={() => router.push(`/admin/insights/${post.id}`)}
-                        className="p-1.5 rounded-lg text-black/30 hover:text-[#0040C1] hover:bg-[#EBF5FF] transition-colors"
+                        className="p-1.5 rounded-lg text-black/30 hover:text-[#0A4FD6] hover:bg-[#EBF5FF] transition-colors"
                         title="Edit"
                       >
                         <Pencil className="w-3.5 h-3.5" />

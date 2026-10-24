@@ -3,7 +3,7 @@ import { pageMeta } from '@/lib/seo'
 
 export const metadata = pageMeta({
   title: 'Industries We Serve',
-  description: 'Innovation Next builds for digital financial services and e-governance, with live deployments across national-scale platforms.',
+  description: 'Banking and finance, hospitality and retail, e-governance and enterprise: the sectors where Innovation Next platforms and delivery teams are in live use.',
   path: '/industries',
 })
 

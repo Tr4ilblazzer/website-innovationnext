@@ -32,7 +32,7 @@ export const ALL_POSTS: InsightPost[] = [
     author: { name: 'Innovation Next Team' },
     publishedAt: '10 Apr 2026', readTime: '8 min read', featured: true,
     image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80',
-    accentColor: '#0040C1',
+    accentColor: '#0A4FD6',
     body: [
       { type: 'h2', text: 'Licensing comes before architecture' },
       { type: 'p', text: 'Most engineering teams underestimate the regulatory runway. In South Asia and the Middle East, central bank licensing for a payment switch typically takes 9–18 months. During that window you are writing AML policies, defining capital adequacy plans, and submitting technical architecture documents for regulatory review. Get legal and compliance in the room on day one.' },
@@ -54,7 +54,7 @@ export const ALL_POSTS: InsightPost[] = [
     author: { name: 'Innovation Next Team' },
     publishedAt: '2 Apr 2026', readTime: '7 min read', featured: false,
     image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
-    accentColor: '#0040C1',
+    accentColor: '#0A4FD6',
     body: [
       { type: 'h2', text: 'Consent flows are harder than they look' },
       { type: 'p', text: 'The OAuth 2.0 consent flow seems straightforward until you are dealing with multi-party consent delegation across corporate banking relationships. Who can grant access on behalf of a business entity? What happens when consent is revoked mid-transaction? These edge cases need explicit handling, not front-end workarounds.' },
@@ -74,7 +74,7 @@ export const ALL_POSTS: InsightPost[] = [
     author: { name: 'Innovation Next Team' },
     publishedAt: '18 Mar 2026', readTime: '9 min read', featured: false,
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
-    accentColor: '#0040C1',
+    accentColor: '#0A4FD6',
     body: [
       { type: 'h2', text: 'Interoperability is a political problem before it is technical' },
       { type: 'p', text: 'In South Asia, wallet interoperability is technically straightforward with a shared switch. The challenge is commercial and regulatory — each provider has an incentive to keep users inside their ecosystem, and regulators often lack the mandate to force interoperability. Understanding this dynamic early saves months of integration effort aimed at the wrong problem.' },

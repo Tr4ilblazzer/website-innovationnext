@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { LogoMarquee } from '@/components/sections/TrustedBySection'
 
-const ACCENT = '#0040C1'
+const ACCENT = '#0A4FD6'
 const PUBLIC_SANS = { fontFamily: "'Public Sans', system-ui, sans-serif" }
 const POPPINS = { fontFamily: "'Poppins', system-ui, sans-serif" }
 
@@ -29,7 +29,7 @@ function RoomBackdrop() {
 
 export function HomeHero() {
   return (
-    <section className="relative isolate flex min-h-[720px] items-center justify-center overflow-hidden bg-white px-6 pt-[80px] pb-[100px] lg:min-h-[900px]">
+    <section className="relative isolate flex min-h-[640px] items-center justify-center overflow-hidden bg-white px-6 pt-[80px] pb-[100px] lg:min-h-svh">
       <RoomBackdrop />
 
       <motion.div
@@ -56,13 +56,13 @@ export function HomeHero() {
         <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/contact"
-            className="inline-flex h-11 items-center justify-center rounded-full px-5 text-base font-medium text-[#FAFAFA] transition-colors hover:bg-[#0034A0]"
+            className="inline-flex h-11 items-center justify-center rounded-full px-5 text-base font-medium text-[#FAFAFA] transition-colors hover:bg-[#0841B3]"
             style={{ background: ACCENT, ...PUBLIC_SANS }}
           >
             Talk To Our Team
           </Link>
           <Link
-            href="/solutions/ai-ml"
+            href="/solutions/digital-financial-services"
             className="inline-flex h-11 items-center justify-center rounded-full border border-[#3C53FF] bg-[#FAFAFA] px-5 text-base font-medium transition-colors hover:bg-[#EFF4FF]"
             style={{ color: ACCENT, ...PUBLIC_SANS }}
           >
@@ -72,7 +72,7 @@ export function HomeHero() {
       </motion.div>
 
       {/* Logo strip — pinned to the bottom of the hero */}
-      <div className="absolute inset-x-0 bottom-0">
+      <div className="absolute inset-x-0 bottom-0 bg-white pb-6 md:pb-10">
         <LogoMarquee />
       </div>
     </section>

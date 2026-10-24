@@ -1,12 +1,12 @@
 export function CredentialsSection() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
           {/* Left */}
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-5">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/50 mb-5">
               Founder Credentials
             </p>
             <h2
@@ -15,7 +15,7 @@ export function CredentialsSection() {
             >
               Built by operators who ran a nation's financial infrastructure.
             </h2>
-            <p className="text-[#0A0A0A]/55 text-base leading-relaxed mb-10">
+            <p className="text-[#0A0A0A]/65 text-base leading-relaxed mb-10">
               Not consultants who advised on it. Not vendors who packaged it. Builders who launched it, scaled it, and operated it under central bank oversight.
             </p>
 
@@ -45,7 +45,7 @@ export function CredentialsSection() {
                   </div>
                   <div className="pb-2">
                     <h4 className="text-[#0A0A0A] font-bold text-sm mb-1.5">{step.title}</h4>
-                    <p className="text-[#0A0A0A]/50 text-sm leading-relaxed">{step.body}</p>
+                    <p className="text-[#0A0A0A]/60 text-sm leading-relaxed">{step.body}</p>
                   </div>
                 </div>
               ))}
@@ -58,9 +58,9 @@ export function CredentialsSection() {
             {/* eSewa */}
             <div className="border border-black/[0.08] rounded-3xl p-7">
               <div className="mb-5">
-                <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-1">Founder Credential</p>
+                <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/50 mb-1">Founder Credential</p>
                 <h3 className="text-[#0A0A0A] font-black text-2xl">eSewa</h3>
-                <p className="text-[#0A0A0A]/45 text-sm mt-0.5">South Asia's First Digital Wallet</p>
+                <p className="text-[#0A0A0A]/60 text-sm mt-0.5">South Asia's First Digital Wallet</p>
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {[
@@ -69,8 +69,8 @@ export function CredentialsSection() {
                   { v: '3.5M+', l: 'Daily txns' },
                 ].map(s => (
                   <div key={s.l} className="bg-black/[0.02] rounded-xl p-3.5 border border-black/[0.06]">
-                    <div className="text-[#0040C1] text-lg font-black">{s.v}</div>
-                    <div className="text-[#0A0A0A]/40 text-xs mt-0.5">{s.l}</div>
+                    <div className="text-[#0A4FD6] text-lg font-black">{s.v}</div>
+                    <div className="text-[#0A0A0A]/60 text-xs mt-0.5">{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -79,9 +79,9 @@ export function CredentialsSection() {
             {/* Fonepay */}
             <div className="border border-black/[0.08] rounded-3xl p-7">
               <div className="mb-5">
-                <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/30 mb-1">Founder Credential</p>
+                <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#0A0A0A]/50 mb-1">Founder Credential</p>
                 <h3 className="text-[#0A0A0A] font-black text-2xl">Fonepay</h3>
-                <p className="text-[#0A0A0A]/45 text-sm mt-0.5">Nepal's National Payment Switch</p>
+                <p className="text-[#0A0A0A]/60 text-sm mt-0.5">Nepal's National Payment Switch</p>
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {[
@@ -90,8 +90,8 @@ export function CredentialsSection() {
                   { v: 'PCI DSS', l: 'Certified' },
                 ].map(s => (
                   <div key={s.l} className="bg-black/[0.02] rounded-xl p-3.5 border border-black/[0.06]">
-                    <div className="text-[#0040C1] text-lg font-black">{s.v}</div>
-                    <div className="text-[#0A0A0A]/40 text-xs mt-0.5">{s.l}</div>
+                    <div className="text-[#0A4FD6] text-lg font-black">{s.v}</div>
+                    <div className="text-[#0A0A0A]/60 text-xs mt-0.5">{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -104,7 +104,7 @@ export function CredentialsSection() {
               </p>
               <div className="mt-5 flex items-center gap-3">
                 <div className="w-6 h-px bg-black/20" />
-                <span className="text-[#0A0A0A]/35 text-xs font-semibold tracking-widest uppercase">Innovation Next Leadership</span>
+                <span className="text-[#0A0A0A]/50 text-xs font-semibold tracking-widest uppercase">Innovation Next Leadership</span>
               </div>
             </div>
           </div>

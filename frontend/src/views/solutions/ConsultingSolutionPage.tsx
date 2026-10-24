@@ -30,15 +30,12 @@ const capabilities = [
 export default function ConsultingSolutionPage() {
   return (
     <SolutionPageTemplate
-      tag="Digital Transformation Consulting"
-      headline="Requirements engineers"
-      headlineAccent="can build from."
-      quote="Documentation tested against live delivery, not written in isolation."
+      title="Digital Transformation Consulting"
       description="Digital Transformation Consulting helps banks and governments define what to build before they build it — business requirements, system specifications, and redesigned processes, written by the team that builds and runs national systems."
-      accentColor="#0040C1"
-      heroImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80"
+      accentColor="#0A4FD6"
+      heroImage="https://images.unsplash.com/photo-1617526738882-1ea945ce3e56?w=1600&q=80"
       heroImageAlt="Consulting workshop"
-      featuresSubheadline="A consulting engagement can stand alone, or lead into build and run with the same team holding the context."
+      featuresSubheadline="Consulting — a flexible standalone engagement or a path into build and run, with the same team carrying the context throughout."
       features={features}
       capabilitiesSubtext="The method our own delivery teams work from — and where requirements match one of our platforms, the specification maps directly to that product's modules."
       capabilities={capabilities}
