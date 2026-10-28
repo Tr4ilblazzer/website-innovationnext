@@ -81,7 +81,7 @@ innovation-next/
 ├── backend/src/
 │   ├── index.ts             Express app — middleware, rate limits, route mounting
 │   ├── routes/              Public route files (contact, newsletter, vacancies, careers, blog, caseStudies)
-│   │   └── admin/           Admin routes (auth, stats, contacts, blog, vacancies) — JWT protected
+│   │   └── admin/           Admin routes (auth, stats, contacts, blog, vacancies, users) — JWT protected
 │   └── prisma/
 │       └── schema.prisma    DB schema (non-standard location: backend/src/prisma/, not backend/prisma/)
 └── docs/
@@ -113,7 +113,8 @@ The admin panel is a fully custom React CMS, not Payload. It lives at `/admin/*`
 
 - **Login:** `POST /api/admin/login` → JWT stored via `useAdminStore.setAuth(token, admin)`
 - **Auth state:** Zustand with `persist` middleware — survives page refresh
-- **Admin routes:** `/admin` → Dashboard, `/admin/contacts`, `/admin/insights` (blog CRUD), `/admin/vacancies`, `/admin/vacancies/:id/applications`
+- **Admin routes:** `/admin` → Dashboard, `/admin/contacts`, `/admin/insights` (blog CRUD), `/admin/vacancies`, `/admin/vacancies/:id/applications`, `/admin/users` (admin user CRUD)
+- **Admin users:** privilege is name-based — the account named `Admin` (case-insensitive) is the only one that can reset another admin's password. That account's name is locked, it cannot be deleted, only it can edit its own email, and `Admin` is a reserved name for everyone else. Every admin can change their own password (requires the current password); resetting another admin does not require their old password
 - **No Navbar/Footer** on admin pages — uses `AdminLayout` instead of `PublicLayout`
 
 Backend admin endpoints all live under `/api/admin/` and require `Authorization: Bearer` header.

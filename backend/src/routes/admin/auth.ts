@@ -21,10 +21,13 @@ router.post('/login', async (req: Request, res: Response) => {
     return
   }
 
-  const { email, password } = parsed.data
+  const email = parsed.data.email.trim().toLowerCase()
+  const { password } = parsed.data
 
   try {
-    const admin = await prisma.adminUser.findUnique({ where: { email } })
+    const admin = await prisma.adminUser.findFirst({
+      where: { email: { equals: email, mode: 'insensitive' } },
+    })
     if (!admin) {
       res.status(401).json({ error: 'Invalid email or password' })
       return

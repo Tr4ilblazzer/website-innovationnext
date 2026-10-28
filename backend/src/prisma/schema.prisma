@@ -75,7 +75,8 @@ model JobApplication {
   currentRole  String?
   experience   String
   coverLetter  String?
-  cvUrl        String
+  cvUrl        String?
+  cvKey        String?
   portfolioUrl String?
   linkedinUrl  String?
   status       String   @default("new")

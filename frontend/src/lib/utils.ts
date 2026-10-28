@@ -7,14 +7,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // ── API Base URL ─────────────────────────────────────────────────
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api'
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? ''
 
 // ── Generic fetch wrapper ─────────────────────────────────────────
 async function apiFetch<T>(
   endpoint: string,
   options?: RequestInit
 ): Promise<T> {
-  const res = await fetch(`${API_BASE}${endpoint}`, {
+  const res = await fetch(`${API_BASE}/api${endpoint}`, {
     headers: {
       'Content-Type': 'application/json',
       ...options?.headers,
@@ -43,7 +43,7 @@ export const api = {
 
   // Job Applications (multipart)
   submitApplication: (formData: FormData) =>
-    fetch(`${API_BASE}/careers/apply`, { method: 'POST', body: formData })
+    fetch(`${API_BASE}/api/careers/apply`, { method: 'POST', body: formData })
       .then(r => r.json()),
 
   // Blog

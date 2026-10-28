@@ -2,6 +2,7 @@ import { Router, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 import { requireAdmin, AdminRequest } from '../../middleware/requireAdmin'
+import { getCvPresignedUrl } from '../../lib/minio'
 
 const router = Router()
 const prisma = new PrismaClient()
@@ -124,7 +125,15 @@ router.get('/:id/applications', requireAdmin, async (req: AdminRequest, res: Res
       orderBy: { createdAt: 'desc' },
       include: { vacancy: { select: { title: true } } },
     })
-    res.json({ success: true, data: applications })
+    const data = await Promise.all(
+      applications.map(async (app) => {
+        if (app.cvKey) {
+          return { ...app, cvUrl: await getCvPresignedUrl(app.cvKey) }
+        }
+        return app
+      })
+    )
+    res.json({ success: true, data })
   } catch {
     res.status(500).json({ error: 'Failed to fetch applications' })
   }

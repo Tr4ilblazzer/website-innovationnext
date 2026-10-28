@@ -1,25 +1,13 @@
 import { Router, Request, Response } from 'express'
 import multer from 'multer'
-import { v2 as cloudinary } from 'cloudinary'
 import { PrismaClient } from '@prisma/client'
 import { Resend } from 'resend'
+import { buildCvKey, uploadCvBuffer, getCvPresignedUrl } from '../lib/minio'
 
 const router = Router()
 const prisma = new PrismaClient()
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Configure Cloudinary (only if credentials are provided)
-const cloudinaryConfigured =
-  process.env.CLOUDINARY_CLOUD_NAME &&
-  process.env.CLOUDINARY_CLOUD_NAME !== 'your_cloud_name'
-
-if (cloudinaryConfigured) {
-  cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-  })
-}
 
 // Multer — memory storage
 const upload = multer({
@@ -35,29 +23,6 @@ const upload = multer({
     }
   },
 })
-
-// Upload buffer to Cloudinary, or return a placeholder if not configured
-async function uploadCV(buffer: Buffer, filename: string): Promise<string> {
-  if (!cloudinaryConfigured) {
-    // Cloudinary not set up yet — store filename as placeholder
-    console.warn('⚠️  Cloudinary not configured. CV not uploaded:', filename)
-    return `pending-upload:${filename}`
-  }
-  return new Promise((resolve, reject) => {
-    const stream = cloudinary.uploader.upload_stream(
-      {
-        folder: 'innovation-next/cvs',
-        resource_type: 'raw',
-        public_id: `cv_${Date.now()}_${filename.replace(/\s+/g, '_')}`,
-      },
-      (error, result) => {
-        if (error) reject(error)
-        else resolve(result!.secure_url)
-      }
-    )
-    stream.end(buffer)
-  })
-}
 
 // POST /api/careers/apply
 router.post('/apply', upload.single('cvFile'), async (req: Request, res: Response) => {
@@ -79,8 +44,10 @@ router.post('/apply', upload.single('cvFile'), async (req: Request, res: Respons
       return res.status(404).json({ error: 'Vacancy not found' })
     }
 
-    // Upload CV (skips Cloudinary if not configured)
-    const cvUrl = await uploadCV(req.file.buffer, req.file.originalname)
+    // Upload CV to MinIO (shared bucket with HRMS) and persist the object key
+    const cvKey = buildCvKey(vacancyId as string, req.file.originalname)
+    await uploadCvBuffer(req.file.buffer, cvKey, req.file.mimetype)
+    const cvUrl = await getCvPresignedUrl(cvKey)
 
     // Save application
     const application = await prisma.jobApplication.create({
@@ -93,7 +60,7 @@ router.post('/apply', upload.single('cvFile'), async (req: Request, res: Respons
         currentRole: currentRole || null,
         experience,
         coverLetter: coverLetter || null,
-        cvUrl,
+        cvKey,
         portfolioUrl: portfolioUrl || null,
         linkedinUrl: linkedinUrl || null,
         status: 'new',
