@@ -3,6 +3,7 @@ import type { NextConfig } from 'next'
 const permanent = (source: string, destination: string) => ({ source, destination, permanent: true })
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   images: { remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }] },
   // The repo root has its own lockfile; pin Turbopack to this app
   turbopack: { root: process.cwd() },
