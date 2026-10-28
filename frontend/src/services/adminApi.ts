@@ -105,6 +105,14 @@ export interface Vacancy {
   _count?: { applications: number }
 }
 
+export interface AdminUser {
+  id: string
+  name: string
+  email: string
+  createdAt: string
+  updatedAt: string
+}
+
 // ── Auth ──────────────────────────────────────────────────────────
 
 export const adminLogin = (email: string, password: string) =>
@@ -115,6 +123,35 @@ export const adminLogin = (email: string, password: string) =>
 
 export const adminMe = () =>
   request<{ success: boolean; admin: { id: string; name: string; email: string } }>('/api/admin/me')
+
+// ── Admin Users ───────────────────────────────────────────────────
+
+export const getAdminUsers = () =>
+  request<{ success: boolean; data: AdminUser[] }>('/api/admin/users')
+
+export const createAdminUser = (data: { name: string; email: string; password: string }) =>
+  request<{ success: boolean; data: AdminUser }>('/api/admin/users', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+
+export const updateAdminUser = (id: string, data: { name: string; email: string }) =>
+  request<{ success: boolean; data: AdminUser }>(`/api/admin/users/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
+
+export const changeAdminPassword = (
+  id: string,
+  data: { currentPassword?: string; newPassword: string }
+) =>
+  request<{ success: boolean }>(`/api/admin/users/${id}/password`, {
+    method: 'PATCH',
+    body: JSON.stringify(data),
+  })
+
+export const deleteAdminUser = (id: string) =>
+  request<{ success: boolean }>(`/api/admin/users/${id}`, { method: 'DELETE' })
 
 // ── Stats ─────────────────────────────────────────────────────────
 

@@ -8,6 +8,7 @@ import {
   FileText,
   Briefcase,
   Mail,
+  Users,
   LogOut,
   ChevronRight,
 } from 'lucide-react'
@@ -17,6 +18,7 @@ const NAV = [
   { to: '/admin/insights',  label: 'Insights',   icon: FileText },
   { to: '/admin/vacancies', label: 'Vacancies',  icon: Briefcase },
   { to: '/admin/contacts',  label: 'Contacts',   icon: Mail },
+  { to: '/admin/users',     label: 'Users',      icon: Users },
 ]
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
